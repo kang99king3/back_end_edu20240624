@@ -18,6 +18,16 @@ public class D1_VariableTest {
 //		float f = 12.7f;
 		float f = (float)12.7;
 		float ff= (float)(d + f); //다른 타입의 두 변수를 연산하면 큰쪽의 타입으로 반환
+		
+		//3. 다른 타입끼리 연산
+		int ii=(int)(i+d); // int + double = double반환
+		double dd=i+d;
+		int iii=(int)dd;// dd double --> int형 변환  예) 12.3 --> 12
+		
+		//4. 정수끼리 연산
+		byte b1=10;
+		byte b2=20;
+		byte b3=(byte)(b1+b2);// byte끼리 연산해도 int형으로 반환
 	}
 }
 
