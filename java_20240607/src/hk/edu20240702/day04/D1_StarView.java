@@ -62,21 +62,38 @@ public class D1_StarView {
 		}
 		 
 		/*  4.아래방향 정삼각형
-		  	★★★★★★★★★
-		  	☆★★★★★★★
+		  	★★★★★★★★★            공백출력: 0 1 2 3 4     0 + i*1 = i
+		  	☆★★★★★★★             별출력 :  9 7 5 3 1     9 + i*-2 = 9-(i*2) 
 		  	☆☆★★★★★ 
 		  	☆☆☆★★★
 		  	☆☆☆☆★
 		 */
+		 System.out.println("=====================");
+		 int num2=10;
+		 for (int i = 0; i < num2; i++) {
+			for (int j = 0; j < i; j++) {
+				System.out.print("☆");
+			}
+			for (int j = 0; j < (num2*2-1)-(i*2); j++) {
+				System.out.print("★");
+			}
+			System.out.println();
+		}
+		 
 		 
 		 /* 5.아래방향 직삼각형
-		  	★★★★★
+		  	★★★★★             5-i
 		  	★★★★
 		  	★★★ 
 		  	★★
 		  	★
 		 */
-		 
+		 for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5-i; j++) {
+				System.out.print("★");
+			}
+			System.out.println();
+		}
 		 /* 6.마름모
 	  			☆☆☆☆★                   
 		  		☆☆☆★★★
