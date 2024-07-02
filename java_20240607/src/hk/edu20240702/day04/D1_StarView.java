@@ -1,0 +1,48 @@
+package hk.edu20240702.day04;
+
+public class D1_StarView {
+
+	public static void main(String[] args) {
+		/*                             a1 + (n-1)*d
+			0★       0 + 1  = 1        1  + (0)*1    자바에서는 이미 0부터시작하니깐
+		    1★★      1 + 1  = 2        1  + (1)*1    자릿수에서 -1을 할필요없음
+		 	2★★★                       1  + (2)*1
+		 	3★★★★
+		 	4★★★★★                    ---> 1+i*1 --> 1+i 일반항을 만들 수 있음
+		 */
+		for (int i = 0; i < 5; i++) { //i는 자릿수
+			for (int j = 0; j < 1+i; j++) { // j는 값
+				System.out.print("★");
+			}
+			System.out.println();//줄바꿈만 해줌
+		}
+		
+//		for (int i = 0; i < 5; i++) { //i는 자릿수
+//			for (int j = 0; j < 1+i*2; j++) { // j는 값
+//				System.out.print("★");
+//			}
+//			System.out.println();//줄바꿈만 해줌
+//		}
+		
+		/* 오른쪽
+		  ☆☆☆☆★
+		  ☆☆☆★★
+		  ☆☆★★★
+		  ☆★★★★
+		  ★★★★★
+		 */
+		
+		/* 정삼각형
+		  ☆☆☆☆★
+		  ☆☆☆★★★
+		  ☆☆★★★★★
+		  ☆★★★★★★★
+		  ★★★★★★★★★
+		 */
+	}
+}
+
+
+
+
+
