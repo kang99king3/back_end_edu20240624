@@ -126,9 +126,9 @@ public class D1_StarView {
 			}
 			System.out.println();
 		}
-		 
-		//절대값 이용해서 출력
-		  int aa=9;
+		System.out.println("==========================");
+		//절대값 이용해서 출력 
+		  int aa=9;//홀수값만 가능
 	      for (int i = 0; i < aa; i++) {
 //		         System.out.println(i);
 	         for (int j = 0; j < Math.abs(aa/2-i); j++) { // 4 3 2 1 0 1 2 3 4
