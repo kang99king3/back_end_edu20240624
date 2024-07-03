@@ -1,5 +1,7 @@
 package hk.edu20240702.day04;
 
+import hk.edu20240703.day05.D3_AccessTest;
+
 public class D3_Divisor {
 
 	public static void main(String[] args) {
@@ -9,6 +11,10 @@ public class D3_Divisor {
       	lowestMultiple(10, 40);//최소공배수 구하기
       	amicable(1, 5000);//친화수 구하기
       	perfectNum(1, 10000);//완전수 구하기
+      	
+      	
+      	D3_AccessTest access=new D3_AccessTest();
+//      access.b; //default접근제한자 접근 불가
 	}
 	
 	//약수를 구하는 메서드
