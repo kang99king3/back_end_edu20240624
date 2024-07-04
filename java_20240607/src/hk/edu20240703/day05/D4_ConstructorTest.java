@@ -20,7 +20,7 @@ public class D4_ConstructorTest extends D3_AccessTest {
 	
 	//default 생성자는 단독으로 사용할땐 생략가능하지만 오버로딩하면 생략 불가능
 	public D4_ConstructorTest() {
-		super();//부모의 생성자를 호출(반드시 첫줄에 작성한다)
+//		super();//부모의 생성자를 호출(반드시 첫줄에 작성한다)
 //		this(2);// super()와 this()는 같이 쓸 수 없다
 		        //  -> 생성자는 하나만 실행되기 때문에 this(2)를 쓰는 순간  
 		        //     파라미터 1개짜리 생성자가 실행된다. 
@@ -30,6 +30,7 @@ public class D4_ConstructorTest extends D3_AccessTest {
 	
 	//생성자 오버로딩(파라미터 1개짜리)
 	public D4_ConstructorTest(int size) {
+		super();
 		this.size=size;
 	}
 	public D4_ConstructorTest(int size,String color) {
