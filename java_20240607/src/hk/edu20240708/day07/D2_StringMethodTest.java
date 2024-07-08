@@ -67,7 +67,7 @@ public class D2_StringMethodTest {
 	//2.해당 검색어의 인덱스를 구해보기: 검색어 인덱스 출력하기
 	//3.해당 검색어를 추출해서 출력해보기: substring()을 사용해서 추출한뒤  출력하기
 	//4.해당 검색어를 문자열에서 ###으로 바꿔주기
-	//5.해당 검색어의 검색된 개수 출력하기[indexOf(idx,검색시작인덱스)]
+	//5.해당 검색어의 검색된 개수 출력하기[indexOf("검색어",검색시작인덱스)]
 	
 	//String str은 검색어 : 네트워크
 	public void search(String str) {
@@ -78,8 +78,30 @@ public class D2_StringMethodTest {
 				+ "양사는 4G·5G 기술 노하우를 바탕으로 고객 경험 향상과 네트워크 안정성·효율성을 동시에 개선할 계획이다. 이를 위해 이동통신 네트워크 엔지니어링·구축·운용·설루션 등 다양한 상용망 분야에서 기술 논의와 인력 교류를 추진한다.\r\n"
 				+ "\r\n"
 				+ "아울러 에지 AI 인프라 적용과 코어망 운용 기술 연구, 네트워크 슬라이싱(맞춤형 서비스를 위해 코어네트워크를 독립된 여러 가상 네트워크로 분리하는 기술) 등 5G 유무선 이동통신망 진화 기술 전략, 6G 적용 사례 개발 등 분야에서 협력할 예정이다.";
+	
+		if(s.indexOf(str)!=-1) {
+			int count=0;//검색된 개수
+			int idx=0;//검색 시작 인덱스           // 01  4      1+3=4
+			while(s.indexOf(str,idx)!=-1) {    // "abcde" -> "bcd"
+				String ss=s.substring(s.indexOf(str,idx),s.indexOf(str,idx)+str.length());
+				System.out.println("검색어"+(++count)+":"+ss);//검색어 추출
+				System.out.println("검색어 인덱스:"+s.indexOf(str,idx));//검색어 인덱스 출력
+				idx=s.indexOf(str,idx)+str.length();//검색 시작 인덱스 구하기
+				System.out.println("=========================\n");
+			}
+			System.out.println("더이상 검색어가 존재하지 않습니다.");
+			System.out.println("검색된 총 개수는 "+count+"입니다.");
+			System.out.println(s.replace(str, "###"));
+		}else {
+			System.out.println("검색어가 존재하지 않습니다.");
+		}
+		
+	
 	}
 }
+
+
+
 
 
 

@@ -16,6 +16,8 @@ public class D2_StringMethodMain {
 		
 		String sss=smt.sTest5("java프로그래밍언어");
 		System.out.println(sss);
+		
+		smt.search("ㅏㅏㅏㅏ");
 	}
 
 }
