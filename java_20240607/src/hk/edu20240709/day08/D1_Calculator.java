@@ -11,7 +11,7 @@ public class D1_Calculator {
 		// [맴버필드 초기화]문자열에서 정수를 추출하여, 맴버필드 num1,num2에 저장하는 기능 구현
 		// "5+10" --> 5, 10 추출   5+10 을 실행해야 15가 구해짐
 		// String을 int형으로 변환
-		// String s는"5+10" ,  String cal은 "+","/","-","*" 사칙연산자
+		//           String s는"5+10" ,  String cal은 "+","/","-","*" 사칙연산자
 		public void paramInt(String s,String cal) {
 //			num1=앞에 문자열에 추출하여 int형으로 변환 코드작성; //indexOf, substring 활용
 //			num2=뒤에 문자열에 추출하여 int형으로 변환 코드작성;  
@@ -40,7 +40,7 @@ public class D1_Calculator {
 	/*		
 			if(조건식) { //s라는 문자열에서 "+"문자열이 존재하는지 확인하는 조건
 			
-				// 맴버필드  num1,num2를 초기화해주는 코드(paramInt()사용)
+				// 맴버필드  num1,num2를 초기화해주는 코드(paramInt(s,cal)사용)
 				// 연산결과 출력 코드 작성
 				 
 			}else if(조건식) {//s라는 문자열에서 "-"문자열이 존재하는지 확인하는 조건
