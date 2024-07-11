@@ -35,7 +35,7 @@ public class D1_Lotto {
 		int count=0;
 		while(count<lots.length) {
 			int b=makeBall();//랜덤숫자 생성
-			if(!isSame(lots, b)) {//중복숫자가 없다면
+			if(!Util.isSame(lots, b)) {//중복숫자가 없다면
 				lots[count++]=b;//배열에 숫자 저장
 			}
 		}
@@ -43,16 +43,16 @@ public class D1_Lotto {
 
 	//배열에 중복 숫자가 있는지 확인하는 메서드: 반환타입 boolean
 	//배열하고, 숫자하나에 대한 비교
-	public boolean isSame(int[] a, int b) {
-		boolean isS=false;
-		for (int i = 0; i < a.length; i++) {
-			if(a[i]==b) {
-				isS=true;
-				break;
-			}
-		}
-		return isS;
-	}
+//	public boolean isSame(int[] a, int b) {
+//		boolean isS=false;
+//		for (int i = 0; i < a.length; i++) {
+//			if(a[i]==b) {
+//				isS=true;
+//				break;
+//			}
+//		}
+//		return isS;
+//	}
 	
 	//배열lots가 private으로 선언되어 있어
 	//메서드를 통해서 가져올 수 있도록한다.

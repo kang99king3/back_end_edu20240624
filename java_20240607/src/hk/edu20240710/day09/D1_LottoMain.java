@@ -17,12 +17,19 @@ public class D1_LottoMain {
 //		System.out.println(Arrays.toString(lottoStore.lottoObj));
 //		System.out.println(Arrays.toString(lottoStore.lottoObj[0].getLots()));
 	
-		D1_LottoCompare lottoCompare=new D1_LottoCompare(3);
+		D1_LottoCompare lottoCompare=new D1_LottoCompare(10);
 	
-		System.out.println(
-				Arrays.toString(lottoCompare.lottoBall.getLots()));
-		System.out.println(
-				Arrays.toString(lottoCompare.userBall.lottoObj[0].getLots()));
+		D1_LottoCompare lottoCompare2=new D1_LottoCompare(5);
+		
+		
+		System.out.println(Arrays.toString(lottoCompare.lottoBall.getLots()));
+		
+		lottoCompare.compareBall();
+//		
+//		System.out.println(Arrays.toString(lottoCompare2.lottoBall.getLots()));
+		
+//		System.out.println(
+//				Arrays.toString(lottoCompare.userBall.lottoObj[0].getLots()));
 	}
 
 }
