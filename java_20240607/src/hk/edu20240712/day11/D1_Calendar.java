@@ -1,6 +1,6 @@
 package hk.edu20240712.day11;
 
-public class D1_Calendar {
+public class D1_Calendar{
 
 	//leap , plain  : final(금지)
 	private static final int[] leap= {31,29,31,30,31,30,31,31,30,31,30,31};
@@ -80,7 +80,10 @@ public class D1_Calendar {
 			cal.calendarPrint(2024, i);	
 			System.out.println("\n------------------------------------------------------");
 		}
-
+		
+		int a=cal.dates(2024, 7, 12);
+		int birthday=cal.dates(2004, 5, 10);
+		System.out.println("나의 얼마나 살았을까?:"+(a-birthday)+"일");
 	}
 }
 

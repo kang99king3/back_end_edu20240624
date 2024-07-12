@@ -8,10 +8,12 @@ public class D1_OddMagicSquare {
 	public int [][] magic;
 	
 	public D1_OddMagicSquare() {
+		super();
 		this.magic=new int[3][3];//기본 구성 3X3 생성
 	}
 	
 	public D1_OddMagicSquare(int n) {
+		super();
 		this.magic=new int[n][n];
 	}
 	
