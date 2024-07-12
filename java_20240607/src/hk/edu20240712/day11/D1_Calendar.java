@@ -53,6 +53,35 @@ public class D1_Calendar {
 	public int lastDay(int year, int month) {
 		return isLeapYear(year)?leap[month-1]:plain[month-1];
 	}
+	
+	//한달을 출력하는 메서드
+	public void calendarPrint(int year, int month) {
+		System.out.println(year+"년 "+month+"월" );
+		System.out.println("일\t월\t화\t수\t목\t금\t토");
+		int dayOfWeek=dates(year, month, 1)%7;// 공백수 --> Calendar객체를 활용경우 -1
+		//달력의 공백을 출력
+		for (int i = 0; i < dayOfWeek; i++) {
+			System.out.print("\t");
+		}
+		//날짜를 출력
+		for (int i = 1; i <= lastDay(year, month); i++) {
+			System.out.print(i+"\t");
+			//여기서 토요일을 확인하는 코드추가
+			if((dayOfWeek+i)%7==0) {// 토요일을 구하는 조건 (공백수 + 현재날짜)%7==0
+				System.out.println();				
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		D1_Calendar cal=new D1_Calendar();
+		
+		for (int i = 1; i <= 12; i++) {
+			cal.calendarPrint(2024, i);	
+			System.out.println("\n------------------------------------------------------");
+		}
+
+	}
 }
 
 
