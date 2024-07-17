@@ -42,8 +42,13 @@ public class D3_IOTest {
 			e.printStackTrace();
 		}finally {
 			try {
-				out.close();//마지막에 실행된 객체부터 닫아준다.
-				in.close();
+				// 객체가 null일때 close()를 실행하면 오류발생될 수 있어서..
+				if(out!=null) {
+					out.close();//마지막에 실행된 객체부터 닫아준다.					
+				}
+				if(in!=null) {
+					in.close();					
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,9 +75,15 @@ public class D3_IOTest {
 		}finally {
 			try {
 //				ds.close();
-				bw.close();
-				ow.close();
-				out.close();
+				if(bw!=null) {
+					bw.close();					
+				}
+				if(ow!=null) {
+					ow.close();				
+				}
+				if(out!=null) {
+					out.close();				
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,7 +102,7 @@ public class D3_IOTest {
 			ds=new DataOutputStream(out);//보조스트림 사용
 //				ds.writeUTF(s);//UTF-8형식으로 인코딩된 문자열을 출력해 준다.
 			               //문자열을 자동으로 byte로 나눠서 처리
-			ds.writeChars(s);
+				ds.writeChars(s);
 			//보조스트림 미사용시
 //				byte [] b=s.getBytes();//문자열을 byte단위로 변환하여 배열로 반환
 //				out.write(b);
@@ -100,12 +111,39 @@ public class D3_IOTest {
 			e.printStackTrace();
 		}finally {
 			try {
-				ds.close();
-				out.close();
+				if(ds!=null) {
+					ds.close();					
+				}
+				if(out!=null) {
+					out.close();			
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	//한번에 읽을때 크기를 설정해서 읽고 쓰기
+	public static void test03() {
+		InputStream in=null;
+		OutputStream out=null;
+		
+		try {
+			in=new FileInputStream("C:\\Users\\user\\test_IMG.png");
+			out=new FileOutputStream("C:\\Users\\user\\test_IMG_copy.png");
+			
+			//10byte 단위 읽기
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
