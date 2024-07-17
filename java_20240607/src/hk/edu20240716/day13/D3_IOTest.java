@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
@@ -17,7 +18,9 @@ public class D3_IOTest {
 
 //		test01();
 //		test02();
-		test02_1();
+//		test02_1();
+//		test03();
+		test04();
 	}
 
 	//파일을 읽고 출력하기
@@ -134,7 +137,14 @@ public class D3_IOTest {
 			out=new FileOutputStream("C:\\Users\\user\\test_IMG_copy.png");
 			
 			//10byte 단위 읽기
-			
+			byte [] b=new byte[10];// {0,0,0,0,0,0,0,0,0,0}
+			int i=0;//읽어들인 개수가 저장
+			while((i=in.read(b))!=-1) {
+//				out.write(b);//   [1,2,3,4,5,6,7,8,9,10]
+				             //   [11,12,13,14,15,6,7,8,9,10] -> 나머지 데이터가 10개이하면
+				             //                           그전에 읽었던 데이터가 남아있게 된다
+				out.write(b, 0, i);//b배열의 0번째부터 i개수의 길이만큼 출력한다.
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,8 +154,55 @@ public class D3_IOTest {
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(out!=null) {
+					out.close();
+				}
+				if(in!=null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+	
+	//Reader와 Writer를 이용해서 키보드로 입력 및 출력해보기
+	public static void test04() {
+		InputStreamReader in=null;
+		OutputStreamWriter out=null;
+		System.out.println("입력하세요");
+		
+		try {
+			in=new InputStreamReader(System.in);
+			out=new OutputStreamWriter(System.out);
+			
+			char[] ch=new char[512];// 1byte -128~127 , 2byte -256~255 : 512
+			int i=0;
+			while((i=in.read(ch))!=-1) {
+				System.out.println("입력값");
+				out.write(ch, 0, i);// ~er 객체들은 기본적으로 버퍼의 기능을 가지고 있음
+				out.flush();        // --->  다 채워질때까지 출력되지 않을 수 있음--> flush() 밀어낸다.
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(out!=null) {
+					out.close();
+				}
+				if(in!=null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }
 
 
