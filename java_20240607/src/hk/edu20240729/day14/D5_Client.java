@@ -17,7 +17,7 @@ public class D5_Client {
 		
 		try {
 //		socket=new Socket("192.168.22.81",9595);
-			socket=new Socket("localhost",9595);
+			socket=new Socket("localhost",9595);// (서버주소, 서버포트)
 			System.out.println("Client:Connection to server...");
 			out=new PrintWriter(socket.getOutputStream(),true);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
