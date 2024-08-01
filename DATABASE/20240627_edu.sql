@@ -236,7 +236,66 @@ WHERE empno IN (
 						  WHERE job = 'SALESMAN');
 
 
+-- 정렬 : 오름차순 asc, 내림차순 desc   
+-- order by 절 
+SELECT NAME, mdate 
+FROM usertbl 
+ORDER BY mdate desc; -- 기본 오름차순 정렬 -> 생략 가능
 
+-- 정렬할 경우 여러 컬럼으로 정의 할 수 있다.
+SELECT NAME, height
+FROM usertbl
+ORDER BY height DESC, NAME ASC; 
+
+-- 중복제거 : DISTINCT 
+SELECT DISTINCT addr 
+FROM usertbl;
+
+-- 출력개수를 제한하는 LIMIT
+SELECT emp_no, hire_date
+FROM employees
+ORDER BY hire_date ASC
+LIMIT 5;
+
+-- 테이블 복사하기 (서브쿼리 활용)
+CREATE TABLE buytbl2 (SELECT * FROM buytbl);  
+SELECT * FROM buytbl2;
+
+-- group by 절 : 컬럼의 데이터들을 그룹화시켜주는 기능
+SELECT userid, SUM(amount) AS '총 구매 개수'
+FROM buytbl 
+GROUP BY userid
+ORDER BY userid;
+
+SELECT userid, SUM(price*amount) AS '총 구매액'
+FROM buytbl 
+GROUP BY userid;
+
+-- 집계함수 
+SELECT userid, AVG(amount) AS '평균 구매 개수'
+FROM buytbl
+GROUP BY userid;
+
+SELECT NAME, MAX(height), MIN(height)
+FROM usertbl
+GROUP BY NAME;
+
+SELECT NAME, height
+FROM usertbl
+WHERE height = (SELECT MAX(height) FROM usertbl)
+   OR height = (SELECT MIN(height) FROM usertbl);
+
+SELECT COUNT(*) FROM usertbl;
+
+SELECT COUNT(mobile1) AS '휴대폰이 있는 사용자'
+FROM usertbl;
+
+-- having절 : 집계함수를 활용한 조건식을 작성할 경우
+SELECT userid AS '사용자', SUM(price*amount) AS '총구매액'
+FROM buytbl
+-- WHERE SUM(price*amount) > 1000
+GROUP BY userid
+HAVING SUM(price*amount) > 1000;-- group by 절 다음에 작성한다.
 
 
 
