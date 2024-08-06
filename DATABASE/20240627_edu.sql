@@ -302,7 +302,7 @@ HAVING SUM(price*amount) > 1000;-- group by 절 다음에 작성한다.
 
 -- 01. 'SMITH'보다 월급을 많이 받는 사원들의 
 -- 이름과 월급을 출력하자.
-
+  
 SELECT ename, sal
 FROM emp 
 WHERE sal >
@@ -584,7 +584,529 @@ SELECT ename,
        ) AS '근무일수'
 FROM emp;
 
+-- 8/5 -------------------------------------------------------
+-- 10.연습문제  순위함수( 윈도우함수)
+
+-- 1.사원 테이블에서 각 사원에 급여(SAL)가 높은 순서대로 
+--  상위 5명을 아래 예제처럼 출력하세요?
+SELECT rn, empno, ename, job, mgr, hiredate, sal, comm, deptno
+FROM (SELECT ROW_NUMBER() over(ORDER BY sal DESC) AS 'rn', empno, ename, job, mgr, 
+       hiredate, sal, comm, deptno
+		FROM emp) AS e  -- 서브쿼리를 인라인뷰로 활용
+WHERE rn BETWEEN 1 AND 5;
+
+-- 오류
+SELECT ROW_NUMBER() over(ORDER BY sal DESC) AS 'rn', empno, ename, job, mgr, 
+       hiredate, sal, comm, deptno
+FROM emp
+WHERE rn BETWEEN 1 AND 5; 
+
+-- 2. 사원 테이블에서 각 사원에 급여(SAL)가 높은 순서대로 
+-- 순위를 부여 했을 때 6등~10등인 사람을 순위대로 아래 예제처럼 출력하세요? 
+SELECT rn, empno, ename, job, mgr, hiredate, sal, comm, deptno
+FROM 
+	(SELECT ROW_NUMBER() over(ORDER BY sal DESC) AS 'rn', empno, ename, job, mgr, 
+                    hiredate, sal, comm, deptno
+	 FROM emp) AS e
+WHERE rn BETWEEN 6 AND 10;
+
+-- 3.SALGRADE 테이블 데이터 세로 정보를 가로로 아래 예제처럼 출력하세요?
+
+SELECT max(if(grade = 1,CONCAT(losal,'~',hisal),NULL)) AS 'grade1',
+       max(if(grade = 2,CONCAT(losal,'~',hisal),NULL)) AS 'grade2',
+	    max(if(grade = 3,CONCAT(losal,'~',hisal),NULL)) AS 'grade3',
+	    max(if(grade = 4,CONCAT(losal,'~',hisal),NULL)) AS 'grade4',
+       max(if(grade = 5,CONCAT(losal,'~',hisal),NULL)) AS 'grade5'
+FROM salgrade;
+
+SELECT MAX(
+		  case grade
+        when 1 then CONCAT(losal,'~',hisal) 
+		 END ) AS 'grade1',
+		 MAX(
+		  case grade
+        when 2 then CONCAT(losal,'~',hisal) 
+		 END ) AS 'grade2',
+		 MAX(
+		  case grade
+        when 3 then CONCAT(losal,'~',hisal) 
+		 END ) AS 'grade3',
+		 MAX(
+		  case grade
+        when 4 then CONCAT(losal,'~',hisal) 
+		 END ) AS 'grade4',
+		 MAX(
+		  case grade
+        when 5 then CONCAT(losal,'~',hisal) 
+		 END ) AS 'grade5'
+FROM salgrade;
+
+-- 4. 사원 테이블에서 직업이 ‘SALESMAN’ 사원 중에 급여(SAL) 낮은 순서대로 
+-- 순위(RANK)를 아래 예제처럼 출력하세요?
+SELECT job, ename, sal, ROW_NUMBER() over(ORDER BY sal) AS 'RANK'
+FROM emp 
+WHERE job = 'SALESMAN';
+
+-- 5.사원 테이블에서 직업이 ‘SALESMAN’ 사원 중에 급여(SAL) 낮은 순서대로 순위(RANK)를 아래 예제처럼 출력하세요?
+SELECT job, ename, sal, RANK() over(ORDER BY sal) AS 'RANK'
+FROM emp 
+WHERE job = 'SALESMAN';
+
+-- 6.사원 테이블에서 직업이 ‘SALESMAN’ 사원 중에 급여(SAL) 낮은 순서대로 순위(RANK)를 아래 예제처럼 출력하세요?
+SELECT job, ename, sal, DENSE_RANK() over(ORDER BY sal) AS 'RANK'
+FROM emp 
+WHERE job = 'SALESMAN';
+
+-- join하기
+
+-- sqlDB에 usertbl, buytbl 테이블을 조인하기
+USE sqldb;
+
+SELECT *
+FROM usertbl JOIN buytbl
+ON usertbl.userID = buytbl.userID  
+WHERE buytbl.userid = 'JYP';
+
+-- 테이블에 별칭 주기 --> 보통 다 별칭 부여해서 사용함
+SELECT b.userid, u.NAME, b.prodname, u.addr, CONCAT(u.mobile1, u.mobile2) AS 'phonnumber'
+FROM usertbl u INNER JOIN buytbl b
+ON u.userID = u.userID;
+
+-- 부모 쿼리의 컬럼과 서브쿼리에 컬럼을 맵핑할 수 있다.
+SELECT *
+FROM usertbl u
+WHERE EXISTS (SELECT * FROM buytbl b WHERE u.userid = b.userid);
+
+-- join하는 다른 방법: join ~ on 을 사용하기 않고 실행하는 방법
+SELECT *
+FROM usertbl u , buytbl b 
+WHERE u.userid = b.userid;
+
+-- 테이블 3개 조인하기
+
+CREATE TABLE `stdtbl` (
+	`stdname` VARCHAR(10) NOT NULL ,
+	`addr` CHAR(4) NOT NULL ,
+	PRIMARY KEY (`stdname`) 
+);
+
+CREATE TABLE `clubtbl` (
+	`clubname` VARCHAR(10) NOT NULL ,
+	`roomno` CHAR(4) NOT NULL ,
+	PRIMARY KEY (`clubname`)
+);
+
+CREATE TABLE `stdclubtbl` (
+	`num` INT(11) NOT NULL AUTO_INCREMENT,
+	`stdname` VARCHAR(10) NOT NULL ,
+	`clubname` VARCHAR(10) NOT NULL ,
+	PRIMARY KEY (`num`) ,
+	INDEX `stdname` (`stdname`) ,
+	INDEX `clubname` (`clubname`) ,
+	CONSTRAINT `stdclubtbl_ibfk_1` FOREIGN KEY (`stdname`) REFERENCES `sqldb`.`stdtbl` (`stdname`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+	CONSTRAINT `stdclubtbl_ibfk_2` FOREIGN KEY (`clubname`) REFERENCES `sqldb`.`clubtbl` (`clubname`) ON UPDATE RESTRICT ON DELETE RESTRICT
+);
+
+INSERT INTO stdtbl VALUES('김범수','경남'),
+								 ('성시경','서울'),
+								 ('조용필','경기'),
+								 ('은지원','경북'),
+								 ('바비킴','서울');
+
+INSERT INTo clubtbl VALUES('수영','101호'),
+									('바둑','102호'),
+									('축구','103호'),
+									('봉사','104호');
+
+INSERT INTO stdclubtbl VALUES(NULL,'김범수','바둑'),
+                             (NULL,'김범수','축구'),
+										(NULL,'조용필','축구'),
+										(NULL,'은지원','축구'),
+										(NULL,'은지원','봉사'),
+										(NULL,'바비킴','봉사');
+
+SELECT c.clubname, c.roomno, s.stdname, s.addr
+FROM stdtbl s JOIN stdclubtbl sc
+ON s.stdname = sc.stdname
+JOIN clubtbl c 
+ON sc.clubname = c.clubname
+ORDER BY c.clubname;
+
+-- outer join 
+-- 구매기록이 없는 사용자도 조회하자
+-- left,right + outer + join
+-- left/right/full + outer ~ : full은 mariadb에서 지원X
+SELECT u.userID, u.name, b.prodName, u.addr,
+       CONCAT(u.mobile1,u.mobile2) AS '연락처' 
+FROM usertbl u LEFT OUTER JOIN buytbl b
+ON u.userID = b.userID
+WHERE b.prodName IS NULL 
+ORDER BY  u.userID;
+
+-- 자기자신의 테이블로 조인하는 방법
+-- self join
+SELECT e.empno, e.ename,m.EMPNO, m.ename 
+FROM emp e JOIN emp m
+ON e.MGR = m.EMPNO ;
+
+-- union, union all, not in, in
+-- union : 중복값 제거 후 표현
+-- union all : 중복값 표현
+SELECT stdname, addr FROM stdtbl
+UNION ALL 
+SELECT clubname,roomno FROM clubtbl;
+
+-- sql 프로그래밍
+-- procedure 프로시져 ---> PL-SQL 
+-- java에 메서드 작성 ---> 호출해서 사용 
+--                    ---> 자주 사용되는 기능 정의 --> 재사용성 
+-- 프로시저 정의
+delimiter $$ -- 일반적인 문장에서  ;을 사용해서 문장이 종료되는것을 구분
+  CREATE PROCEDURE ifProc() -- 프로시저 생성, 이름 정의
+  BEGIN 
+  	DECLARE var1 INT ;  -- DECLARE 키워드는 변수 선언할때 사용
+	SET var1 = 100; -- 변수에 값 저장
+	
+	if var1 = 100 then 
+		SELECT '100입니다.';
+	ELSE 
+		SELECT '100이 아닙니다.';	
+	END if;
+  END $$            
+delimiter ;  -- $$ --> ; 으로 설정을 변경하자
+
+CALL ifProc();
+
+DROP PROCEDURE if EXISTS ifPoc2;
+delimiter $$ -- 일반적인 문장에서  ;을 사용해서 문장이 종료되는것을 구분
+  CREATE PROCEDURE ifProc2() -- 프로시저 생성, 이름 정의
+  BEGIN 
+  	DECLARE hireDATE DATE ;  -- 입사일
+	DECLARE curDATE DATE ;   -- 오늘날짜
+	DECLARE days INT ;  -- 근무한 일수
+	
+	SELECT hire_date INTO hireDATE -- hire_date의 결과를 대입
+	FROM employees.employees
+	WHERE emp_no = 10001;
+	
+	SET CURDATE = CURRENT_DATE(); -- 현재날짜: 'yyyy-MM-dd'
+	                              -- sysdate():'yyyy-MM-dd hh:mm:ss'
+	
+	SET days = DATEDIFF(CURDATE,hiredate);
+	
+	if (days/365) >= 5  then 
+		SELECT CONCAT('입사한지',days,'일이나 지났습니다. 축하함');
+	ELSE 
+		SELECT CONCAT('입사한지',days,'일밖에 안되었네요 열심히 하삼');	
+	END if;
+  END $$            
+delimiter ; 
+
+CALL ifProc2();
 
 
+DECLARE CONTINUE handler FOR 1146 SELECT '테이블이 없어요';
+SELECT * FROM noTable; -- 해당 쿼리가 실행됐을 때 테이블이 
+                       -- 없다는 오류가 발생하면
+
+-- prepare 문 : 동적쿼리
+CREATE TABLE myTable(id INT AUTO_INCREMENT PRIMARY KEY ,
+							mDate DATETIME);
+
+SET @CURDATE = CURRENT_TIMESTAMP(); --현재날짜와 시간
+
+PREPARE myQuery FROM 'insert into myTable values(null, ?)';
+EXECUTE myQuery USING @CURDATE; -- 쿼리 실행할때 ?값을 넣고 실행 
+DEALLOCATE PREPARE myQuery;
+
+SELECT * FROM myTable;
+
+-- 11.실습문제
+-- 11. join 이용하기
+
+-- Q1) 사원테이블과 부서테이블에서 
+-- 사원들의 이름, 부서번호, 부서이름을 출력하자.
+	SELECT e.ENAME, d.deptno,d.DNAME
+	FROM emp e JOIN dept d
+	     ON  e.DEPTNO = d.DEPTNO;
+-- Q2) 사원테이블과 부서테이블에서 'DALLAS'에서 근무하는 
+-- 사원의 이름, 직위, 부서번호, 부서이름을 출력하자.
+	SELECT e.ENAME, e.JOB, d.deptno, d.DNAME
+	FROM emp e JOIN dept d
+	     ON  e.DEPTNO = d.DEPTNO
+	WHERE d.loc = 'DALLAS';
+-- Q3) 사원테이블과 부서테이블에서 이름에 'A'가 들어가는 
+-- 사원들의 이름과 부서이름을 출력하자.
+	SELECT e.ENAME, d.DNAME
+	FROM emp e JOIN dept d
+	     ON  e.DEPTNO = d.DEPTNO
+	WHERE e.ENAME LIKE '%A%';
+-- Q4) 사원테이블과 부서테이블에서 사원이름과 그 사원이 
+--  속한 부서의 부서명, 월급을 출력하자.
+-- 단 월급이 3000 이상인 사원들을 출력하자.
+	SELECT e.ENAME, d.DNAME, e.SAL
+	FROM emp e JOIN dept d
+	     ON  e.DEPTNO = d.DEPTNO
+	WHERE e.sal >= 3000;     
+-- Q5) 사원테이블과 부서테이블에서 직업이 'SALESMAN'인 
+-- 사원들의 직업과 사원이름, 속한 부서이름을 출력하자.
+	SELECT e.job,e.ENAME, d.DNAME
+	FROM emp e JOIN dept d
+	     ON  e.DEPTNO = d.DEPTNO
+	WHERE e.job = 'SALESMAN';
+-- Q6) 사원테이블과 급여테이블(SALGRADE)에서 커미션이 책정된 
+-- 사원들의 사원번호, 이름, 연봉, 연봉+커미션, 급여등급을 출력하자.
+-- 단, 각각의 컬럼명을 '사원번호', '사원이름', '연봉', '실급여', '급여등급'으로 출력하자.
+	SELECT e.EMPNO '사원번호', e.ENAME '사원이름',
+	      e.SAL*12 '연봉', e.SAL+e.comm '실급여', s.GRADE '급여등급'
+	FROM emp e JOIN salgrade s
+		ON e.SAL BETWEEN s.LOSAL AND s.HISAL;
+-- Q7) 사원테이블과 부서테이블, 급여테이블에서 
+-- 부서번호가 10번인 사원들의 부서번호, 부서이름, 사원이름, 월급, 급여등급을 출력하자.
+	SELECT e.DEPTNO, d.DNAME, e.ENAME, e.SAL,s.GRADE
+	FROM emp e JOIN dept d
+		ON e.DEPTNO = d.DEPTNO
+		JOIN salgrade s
+		ON e.sal BETWEEN s.LOSAL AND s.HISAL
+	WHERE d.DEPTNO = 10;
+-- Q8) 사원테이블과 부서테이블, 급여테이블에서 부서번호가 10번이거나 20번인 사원들의 부서번호, 부서이름, 사원이름, 월급, 급여등급을 출력하자.
+-- 단, 부서번호가 낮은 순으로(오름차순), 월급이 높은 순으로(내림차순) 출력하자.
+	SELECT e.DEPTNO, d.DNAME, e.ENAME, e.SAL,s.GRADE
+	FROM emp e JOIN dept d
+		ON e.DEPTNO = d.DEPTNO
+		JOIN salgrade s
+		ON e.sal BETWEEN s.LOSAL AND s.HISAL
+	WHERE e.DEPTNO IN (10,20)	
+	ORDER BY e.DEPTNO ASC, e.SAL DESC;
+-- Q9) 사원테이블에서 사원번호와 사원이름, 그리고 그 사원을 
+-- 관리하는 관리자의 사원번호와 사원이름을 출력하자.
+-- 단, 각각의 컬렴명을 '사원번호', '사원이름', '관리자번호', '관리자이름'으로 출력하자.
+   SELECT e.EMPNO, e.ENAME, m.EMPNO, m.ENAME
+   FROM emp e JOIN emp m
+   ON e.MGR = m.EMPNO ;
+   
+-- Q10) 사원테이블과 부서테이블에서 해당 부서의 모든 사원에 
+-- 대한 부서이름, 위치, 사원 수 및 평균 급여를 출력하자.
+-- 단, 각각의 컬럼명을 DNAME, LOC, NUMBER OF PEOPLE, SALARY 로 출력하자.
+	SELECT d.DNAME 'DNAME', d.LOC LOC, COUNT(*) 'NUMBER OF PEOPLE'
+			, AVG(e.sal) 'SALARY'
+	FROM emp e JOIN dept d
+	ON e.DEPTNO = d.DEPTNO
+	GROUP BY d.DNAME,d.loc;
+
+-- 8/6
+-- 8.테이블과 뷰
+-- - 테이블
+DROP DATABASE if EXISTS tabledb;   
+CREATE DATABASE tabledb;
+
+CREATE TABLE `usertbl` (
+	`userid` CHAR(8) NOT NULL ,
+	`name` VARCHAR(10) NOT NULL ,
+	`birthyear` INT(11) NOT NULL,
+	`addr` CHAR(2) NOT NULL ,
+	`mobile1` CHAR(3) NULL DEFAULT NULL ,
+	`mobile2` CHAR(8) NULL DEFAULT NULL ,
+	`height` SMALLINT(6) NULL DEFAULT NULL,
+	`mDate` DATE NULL DEFAULT NULL,
+	CONSTRAINT pk_usertbl_userid  PRIMARY KEY (`userid`) 
+);
+
+CREATE TABLE `buytbl` (
+	`num` INT(11) NOT NULL AUTO_INCREMENT,
+	`userid` CHAR(8) NOT NULL ,
+	`prodname` CHAR(6) NOT NULL ,
+	`groupname` CHAR(4) NULL DEFAULT NULL ,
+	`price` INT(11) NOT NULL,
+	`amount` SMALLINT(6) NOT NULL ,
+	PRIMARY KEY (`num`) ,
+	CONSTRAINT `FK1_buytbl_userid` FOREIGN KEY (`userid`) REFERENCES `tabledb`.`usertbl` (`userid`) 
+);
+
+-- 기본키 PK 제약조건
+-- unique(중복X), not null 두개의 조건을 만족
+-- auto_increment설정하면 insert할때 null을 넣는다.
+-- pk로 설정하면 자동으로 클러스터형 인덱스를 생성한다.
+DESC usertbl; -- table의 상세 내용 조회
+
+SHOW KEYS FROM usertbl; -- table의 설정된 key들을 조회
+
+-- alter문 사용
+-- 개체에 대해서 수정 작업을 할 경우
+CREATE TABLE usertbl2( userid CHAR(8) NOT NULL,
+							  NAME VARCHAR(10) NOT NULL,
+							  birthyear INT NOT NULL);
+ALTER TABLE usertbl2
+	ADD CONSTRAINT pk_usertbl_userid PRIMARY KEY (userid);							  
+
+-- 복합키 : 2개이상의 컬럼을 조합해서 기본키로 설정
+-- PRIMARY KEY (COLUMN1, COLUMN2)
+
+-- 외래키 FK : 두테이블간에 관계형성, 중복가능 
+--             반드시 참조 테이블에 컬럼이 pk로 설정되어 있어야 한다. 
+--            부모테이블의 참조컬럼을 삭제하려면 
+--            자식테이블의 fk값부터 삭제한다.
+
+-- 실습5
+DROP TABLE if EXISTS buytbl, usertbl;
+
+CREATE TABLE `usertbl` (
+	`userid` CHAR(8) ,
+	`name` VARCHAR(10) ,
+	`birthyear` INT(11) ,
+	`addr` CHAR(2)  ,
+	`mobile1` CHAR(3) ,
+	`mobile2` CHAR(8) ,
+	`height` SMALLINT(6) ,
+	`mDate` DATE 
+);
+
+CREATE TABLE `buytbl` (
+	`num` INT(11) AUTO_INCREMENT PRIMARY KEY  ,
+	`userid` CHAR(8) ,
+	`prodname` CHAR(6) ,
+	`groupname` CHAR(4)  ,
+	`price` INT(11) ,
+	`amount` SMALLINT(6)
+);
+
+INSERT INTO usertbl VALUES
+('LSG','이승기',1987,'서울','011','11111111',182,'2008-8-8'),
+('KBS','김범수',NULL,'서울','011','22222222',173,'2012-8-8'),
+('KKH','김경호',1871,'서울','011','33333333',177,'2007-8-8'),
+('JYP','조용필',1950,'서울','011','44444444',166,'2009-8-8');
+
+INSERT INTO buytbl VALUES
+(NULL,'KBS','운동화',NULL,30,2),
+(NULL,'KBS','노트북','전자',1000,1),
+(NULL,'JYP','모니터','전자',200,1),
+(NULL,'BBK','모니터','전자',200,5);
+
+ALTER TABLE usertbl
+	ADD CONSTRAINT pk_usertbl_userid PRIMARY KEY (userid);
+
+DESC usertbl;
+
+ALTER TABLE buytbl
+	ADD CONSTRAINT fk_usertbl_buytbl
+		FOREIGN KEY (userid) REFERENCES usertbl (userid);
+
+DELETE FROM buytbl WHERE userid = 'BBK';
+
+INSERT INTO buytbl VALUES(NULL,'BBK','모니터','전자',200,5);
+
+SET FOREIGN_key_checks = 0; -- 외래키 조건 비활성화
+-- INSERT INTO buytbl VALUES(NULL,'BBK','모니터','전자',200,5);
+INSERT INTO buytbl VALUES(NULL,'BBK','TV','전자',300,8);
+SET FOREIGN_key_checks = 1; -- 외래키 조건 활성화
+
+ALTER TABLE usertbl
+	ADD CONSTRAINT ck_birthyear
+		CHECK ((birthyear >=1900 AND birthyear <= 2020)
+				  AND (birthyear IS NOT NULL)) ;
+
+SET check_constraint_checks=0;
+ALTER TABLE usertbl
+	ADD CONSTRAINT ck_birthyear
+		CHECK ((birthyear >=1900 AND birthyear <= 2020)
+				  AND (birthyear IS NOT NULL)) ;
+SET check_constraint_checks=1;
+
+INSERT INTO usertbl VALUES
+('BBK','바비킴',1973,'서울','010','00000000',176,'2013-5-5');
+
+SELECT * FROM usertbl;
+
+UPDATE usertbl SET userid = 'VVK' WHERE userid='BBK';
+SET foreign_key_checks = 0;
+UPDATE usertbl SET userid = 'VVK' WHERE userid='BBK';
+SET foreign_key_checks = 1;
+
+SELECT * 
+FROM buytbl b JOIN usertbl u
+ON b.userid = u.userid;
+
+SET foreign_key_checks = 0;
+UPDATE usertbl SET userid = 'BBK' WHERE userid='VVK';
+SET foreign_key_checks = 1;
+
+ALTER TABLE buytbl
+	DROP FOREIGN KEY FK_usertbl_buytbl;
+
+ALTER TABLE buytbl
+	ADD constraint FK_usertbl_buytbl
+	    FOREIGN KEY (userid)
+	    REFERENCES usertbl (userid)
+	    ON UPDATE CASCADE
+		 ON DELETE CASCADE;
+	
+UPDATE usertbl SET userid = 'VVK' WHERE userid='BBK';	
+
+-- 뷰 사용하기 : 가상의 테이블 개념 
+--              원본 테이블 ---> 뷰로 생성
+--    사용범위: 조회기능 외에  추가,수정,삭제 가능하다.  
+--                             --> 원본테이블을 대상으로....
+-- 보안강화효과: 사용자가 원본테이블, 뷰에 접근
+--         --->  뷰에만 접근하도록 권한 부여
+
+CREATE VIEW v_usertbl
+AS SELECT userid, NAME, addr FROM usertbl;
+
+SELECT *
+FROM v_usertbl
+WHERE userid = 'JYP';
+
+-- index 사용하기
+CREATE TABLE tbl1(
+	a INT PRIMARY KEY,
+	b INT,
+	c INT 
+);
+ 
+SHOW INDEX FROM tbl1; 
+
+CREATE TABLE tbl2(
+	a INT PRIMARY KEY,
+	b INT UNIQUE ,
+	c INT UNIQUE ,
+	d INT  
+);
+SHOW INDEX FROM tbl2; 
+
+CREATE TABLE tbl3(
+	a INT UNIQUE,
+	b INT UNIQUE ,
+	c INT UNIQUE ,
+	d INT  
+);
+SHOW INDEX FROM tbl3; 
+
+CREATE TABLE tbl4(
+	a INT UNIQUE,
+	b INT UNIQUE NOT NULL,
+	c INT UNIQUE ,
+	d INT  
+);
+SHOW INDEX FROM tbl4; 
+
+CREATE TABLE tbl5(
+	a INT UNIQUE NOT NULL,
+	b INT UNIQUE ,
+	c INT UNIQUE ,
+	d INT PRIMARY KEY  
+);
+SHOW INDEX FROM tbl5; 
+
+SELECT * FROM usertbl;
+
+CREATE TABLE usertbl3
+AS SELECT * FROM usertbl;
+
+ALTER TABLE  usertbl3
+ 	ADD CONSTRAINT pk_usertbl_userid PRIMARY KEY (userid);
+	
+SELECT * FROM usertbl3;
 
 
+	
+	
