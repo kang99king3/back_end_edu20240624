@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html06_폼요소</title>
+<script type="text/javascript">
+	// JS에 location 객체에서 전송된 값을 확인할 수 있다.
+	// get방식일때 받을 수 있음
+	onload=function(){
+		console.log(location.search);
+	}
+</script>
+</head>
+<body>
+<h1>폼요소</h1>
+<h2>POST전송방식</h2>
+<form action="html06_폼요소.html" method="get">
+	<fieldset>
+		<legend>기본정보</legend>
+		<label for="id">아이디:</label>
+		<input type="text" name="id" value="입력값" id="id" /><br/>
+		<label for="name">이름:</label>
+		<input type="text" name="name" value="입력값" id="name" />
+	</fieldset>
+	<fieldset>
+		<legend>기타정보</legend>
+		<label for="addr">주소:</label>
+		<input type="text" name="addr" id="addr" /><br/>
+		<label for="email">이메일:</label>
+		<input type="email" name="email" id="email" />
+	</fieldset>
+	<input type="submit" value="가입"/>
+</form>
+<h2>GET전송방식</h2>
+<p>get방식은 한글이 깨질 수 있다.</p>
+<a href="html06_폼요소.html?id=hk&name=hankyung">가입</a>
+<a href="https://www.google.com/search?q=javascript&rlz=1C1GIVA_koKR987KR988&oq=%EC%A0%84%EC%86%A1%EB%B0%A9%EC%8B%9D&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIGCAEQABgeMggIAhAAGA8YHjIICAMQABgPGB4yCAgEEAAYBRgeMggIBRAAGAUYHjIICAYQABgFGB4yCAgHEAAYBRgeMggICBAAGAUYHjIICAkQABgFGB6oAgiwAgE&sourceid=chrome&ie=UTF-8">전송</a>
+<hr/>
+<h2>폼 구성요소</h2>
+<form action="html06_폼요소.html" method="get" enctype="multipart/form-data">
+	<h3>회원가입</h3>
+	<fieldset>
+		<legend>기본정보</legend>
+		<p>
+			<label for="labelID">아이디:</label>
+			<input type="text" id="labelID" name="id" 
+										    placeholder="아이디는 영문으로 입력하세요"
+										    required="required"
+										    pattern="[a-z]{3}"
+										    autofocus="autofocus"
+										    autocomplete="off"/>
+		</p>
+		<p>
+			<label for="labelPW">비밀번호:</label>
+			<input type="password" id="labelPW" name="pw" required="required"/>
+		</p>
+		<p>
+			<label for="labelBirth">생년월일:</label>
+			<input type="date" id="labelBirth" name="birth" required="required"/>
+		</p>
+	</fieldset>
+	<fieldset>
+		<legend>메일수신여부</legend>
+		<p>
+			<label>수신여부</label>
+			<input type="radio" id="y" name="receive" value="y" />
+			<label for="y">예</label>
+			<input type="radio" id="n" name="receive" value="n" />
+			<label for="n">아니오</label>
+			<br/>
+			<small>
+				라디오 버튼은 하나만 체크되고 다시 취소되지 않는다.
+				데이터 전송시 체크된 태그만 값이 전송된다.
+			</small>
+		</p>
+	</fieldset>
+	<fieldset>
+		<legend>관심분야</legend>
+		<p>
+			<input type="checkbox" id="h" name="chk" value="html" />
+			<label for="h">HTML</label>
+			<input type="checkbox" id="c" name="chk" value="css" />
+			<label for="c">CSS</label>
+			<br/>
+			<small>
+				체크박스는 여러개를 동시에 체크할 수 있다. 취소도 가능하다
+				데이터 전송시 체크된 태그만 값이 전송된다.
+			</small>
+		</p>
+		
+	</fieldset>
+	<fieldset>
+		<legend>파일업로드</legend>
+		<p>
+			<label for="labelID">파일유형:</label>
+			<select name="sel">
+				<option value="kk">공지사항</option>
+				<option value="bb">자유게시판</option>
+				<option value="cc" selected="selected">회원전용</option>
+			</select>
+			<br/>
+			<small>
+				데이터 전송시 선택된 태그만 값이 전송된다.
+			</small>
+		</p>
+		<p>
+			<label>파일업로드:</label>
+			<input type="file" name="fileupload" value="" />
+		</p>
+	</fieldset>
+	<input type="submit" value="가입"/>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
