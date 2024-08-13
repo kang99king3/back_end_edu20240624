@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html05_표만들기.html</title>
+<style type="text/css">
+	table{border-collapse: collapse;}
+	.tb{width:600px;}
+	
+	.table{
+		display: table; /* div요소를 table태그처럼 보이게 설정*/
+	}
+	.tr{
+		display: table-row;
+	}
+	.td{
+		display: table-cell;
+		border: 1px solid black; 
+		width: 100px;
+	}
+	
+	/* mobile 화면일 경우*/
+	@media screen and (max-width:600px){
+		.table{
+			display: block; /* div요소를 table태그처럼 보이게 설정*/
+		}
+		.tr{
+			display: block;
+		}
+		.td{
+			display: block;
+			border: 1px solid black; 
+			width: 100%;
+			background-color: orange;
+		}
+	}
+</style>
+</head>
+<body>
+<h1>1.기본 표만들기</h1>
+<table border="1" class="tb">
+	<tr><th>번호</th><th>제목</th><th>작성일</th></tr>
+	<tr><td>1</td><td>title</td><td>2024.08.12</td></tr>
+	<tr><td>1</td><td>title</td><td>2024.08.11</td></tr>
+</table>
+<h1>2.표의 다양한 구성 요소들 사용하기</h1>
+<table border="1" class="tb">
+	<caption>표의 제목</caption>
+	<col width="100px"/><col width="300px"/><col width="200px"/>
+	<thead>
+		<tr><th>번호</th><th>제목</th><th>작성일</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>1</td><td>title</td><td>2024.08.12</td></tr>
+		<tr><td>1</td><td>title</td><td>2024.08.11</td></tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="3">바닥글 영역</td></tr>
+	</tfoot>
+</table>
+<h1>3.셀병합하기</h1>
+<table border="1" class="tb">
+	<tr><td rowspan="3">1</td><td>2</td><td>3</td></tr>
+	<tr><td>2</td><td>3</td></tr>
+	<tr><td colspan="2">2</td></tr>
+</table>
+<h1>4.표안에 표 작성하기</h1>
+<table border="1">
+	<tr>
+		<td>
+			<table>
+				<tr><td>1111</td></tr>
+				<tr><td>1111</td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr><td>1111</td></tr>
+				<tr><td>1111</td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr><td>1111</td></tr>
+				<tr><td>1111</td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<h1>div태그로 표만들기</h1>
+<div class="table">
+	<div class="tr">
+		<div class="td">1</div>
+		<div class="td">2</div>
+		<div class="td">3</div>
+	</div>
+	<div class="tr">
+		<div class="td">1</div>
+		<div class="td">2</div>
+		<div class="td">3</div>
+	</div>
+	<div class="tr">
+		<div class="td">1</div>
+		<div class="td">2</div>
+		<div class="td">3</div>
+	</div>
+	<div class="tr">
+		<div class="td">1</div>
+		<div class="td">2</div>
+		<div class="td">3</div>
+	</div>
+</div>
+</body>
+</html>
+
+
+
+
+

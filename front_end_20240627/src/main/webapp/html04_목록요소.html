@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html04_목록요소.html</title>
+<style type="text/css">
+/* li요소의 자식요소들 중에 ul요소를 선택*/
+	li > ul{display: none;}
+	ul li{list-style: none;}
+	b{cursor:pointer;}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		document.querySelectorAll("b")[0].onclick=function(){
+			document.querySelectorAll("li>ul")[0].style.display="block";
+		}
+	}
+</script>
+</head>
+<body>
+<h1>비순차적 목록 요소</h1>
+<ul>
+	<li><b>java</b>
+		<ul>
+			<li>변수의 사용</li>
+			<li>제어문</li>
+			<li>객체지향[상속,은닉화,다형성]</li>
+		</ul>
+	</li>
+	<li><b>데이터베이스</b>
+		<ul>
+			<li>환경설정</li>
+			<li>DB모델링의 개념</li>
+			<li>DML/DDL/DCL</li>
+			<li>테이블/뷰/프로시저</li>
+		</ul>
+	</li>
+	<li>HTML</li>
+	<li>CSS</li>
+</ul>
+<h1>순차적 목록 요소</h1>
+<ol>
+	<li><b>java</b>
+		<ol>
+			<li>변수의 사용</li>
+			<li>제어문</li>
+			<li>객체지향[상속,은닉화,다형성]</li>
+		</ol>
+	</li>
+	<li><b>데이터베이스</b>
+		<ol>
+			<li>환경설정</li>
+			<li>DB모델링의 개념</li>
+			<li>DML/DDL/DCL</li>
+			<li>테이블/뷰/프로시저</li>
+		</ol>
+	</li>
+	<li>HTML</li>
+	<li>CSS</li>
+</ol>
+<dl>
+	<dt>java</dt>
+	<dd>변수선언</dd>
+	<dt>데이터베이스</dt>
+	<dd>DML/DDL</dd>
+</dl>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
