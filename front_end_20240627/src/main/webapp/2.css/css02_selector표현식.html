@@ -5,48 +5,123 @@
 <title>css02_selector표현식.html</title>
 <style type="text/css">
 /* 	타입 선택자 */
-	p{
+	#container1 p{
 		width:800px;
 		background-color: orange;
 	}
-	strong{
+	#container1 strong{
 		color:red;
 	}
 /* 	id선택자 */
-	#a{
+	#container1 #a{
 		font-size:40px;
 	}
 	
-	.c{
+	#container1 .c{
 		color:blue;
 	}
 	
 /* 	전체선택자 */
-	*{margin: 10px; font-family: '굴림';}
+	#container1 *{margin: 10px; font-family: '굴림';}
 	
 /* 	다중선택 */
-	span,b,i{
+	#container1 span,#container1 b,#container1 i{
 		color:green;
 	}
+	
+/* 	자식선택자 */
+	#container1 .c > span{
+		background-color:blue; 
+	}
+/* 	인접선택자 */
+	#container1 h1 + p{
+		background-color: yellow;
+	}
+	#container1 h1 ~ p{
+		padding:20px;
+	}
+/* 	속성선택자 */
+/* 	span[title]{ */
+/* 		font-size:30px; */
+/* 	} */
+	#container1 span[title='순수이익입니다.']{
+		font-size:40px;
+	}
+/* 	가상선택자 */
+	#container1 a:link{
+		color:black;
+	}
+	#container1 a:visited{
+		color:green;
+	}
+	#container1 a:active{
+		color:yellow;
+		font-size:40px;
+	}
+	#container1 a:hover{
+		background-color: aqua;
+	}
+	#container1 p:hover{
+		background-color: red;
+	}
+	
+/* 	수도클래스선택자 */
+	#container2 p:first-letter{
+		font-size:40px;
+	}
+	#container2 p:first-line{
+		color:blue;
+	}
+	#container2 p:first-child{ /* 어떤 태그에 자식요소로 있는 p태그중에 첫번째 요소를 선택 */
+		background-color: yellow;
+	}
+	#container2 p:after{
+		content:"뒤에 가상의 요소를 생성한다.";
+		color:red;
+	}
+	
+/* 	하위선택자 */
+	#container2 p span{color:red;}
 </style>
 </head>
 <body>
-<h1>[클릭 e종목]"<strong id="a">'2분기 흑자전환'</strong> SK스퀘어, <strong>목표가 유지"</strong></h1>
-<p>
-대신증권은 14일 <span>SK스퀘어에</span> 대해 <b>"순자산가치(NAV)</b> 대비 할인율은 67%로 
-올해 1분기의 67% 수준을 유지했다. <i>내년</i>까지 추가로 2400억~4000억원의 주주환원이 전망된다"며 투자의견 매수와 목표주가 9만6000원을 유지했다.
-</p>
-<p class="c">
-이날 김회재 대신증권 연구원은 "올해 2분기 SK하이닉스 흑자전환에 따라 SK스퀘어의 지분투자 
-이익이 흑자로 전환했다. 주요 자회사 실적과 지표도 개선됐다"며 이같이 말했다. 
-2분기 SK스퀘어의 영업수익은 4700억원으로 지난해 동기 대비 13% 줄고, 영업이익은 7800억원으로 
-흑자전환했다.
-</p>
-<p class="c">
-이 기간 상거래의 영업수익은 1700억원을 기록해 지난해 같은 기간보다 32% 줄고, 영업손실은 
-183억원으로 적자가 지속됐다. 다만 마케팅 효율화로 수익성은 개선됐다. 지난 3월부터 4개월 
-연속 오픈마켓이 월별 흑자다.
-</p>
+<div id="container1">
+	<h1>[클릭 e종목]"<strong id="a">'2분기 흑자전환'</strong> SK스퀘어, <strong>목표가 유지"</strong></h1>
+	<p>
+	대신증권은 14일 <span>SK스퀘어에</span> 대해 <b>"순자산가치(NAV)</b> 대비 할인율은 67%로 
+	올해 1분기의 67% 수준을 유지했다. <i>내년</i>까지 추가로 2400억~4000억원의 주주환원이 전망된다"며 투자의견 매수와 목표주가 9만6000원을 유지했다.
+	</p>
+	<p class="c">
+	이날 김회재 <span>대신증권</span> 연구원은 "올해 2분기 SK하이닉스 흑자전환에 따라 SK스퀘어의 지분투자 
+	이익이 흑자로 전환했다. 주요 자회사 실적과 지표도 개선됐다"며 이같이 말했다. 
+	2분기 <span>SK스퀘어</span>의 영업수익은 4700억원으로 지난해 동기 대비 13% 줄고, 영업이익은 7800억원으로 
+	흑자전환했다.
+	</p>
+	<p class="c">
+	이 기간 상거래의 <span title="순수이익입니다.">영업수익</span>은 1700억원을 기록해 지난해 같은 기간보다 32% 줄고, 영업손실은 
+	183억원으로 적자가 지속됐다. 다만 <a href="https://blog.naver.com/andonghyun2/223377079572">마케팅</a> 효율화로 수익성은 개선됐다. 지난 3월부터 4개월 
+	연속 오픈마켓이 월별 흑자다.
+	</p>
+</div>
+<div id="container2">
+	<p>첫번째요소</p>
+	<h1>[클릭 e종목]"<strong id="a">'2분기 흑자전환'</strong> SK스퀘어, <strong>목표가 유지"</strong></h1>
+	<p>
+	대신증권은 14일 <span>SK스퀘어에</span> 대해 <b>"순자산가치(NAV)</b> 대비 할인율은 67%로 
+	올해 1분기의 67% 수준을 유지했다. <i>내년</i>까지 추가로 2400억~4000억원의 주주환원이 전망된다"며 투자의견 매수와 목표주가 9만6000원을 유지했다.
+	</p>
+	<p class="c">
+	이날 김회재 <span>대신증권</span> 연구원은 "올해 2분기 SK하이닉스 흑자전환에 따라 SK스퀘어의 지분투자 
+	이익이 흑자로 전환했다. 주요 자회사 실적과 지표도 개선됐다"며 이같이 말했다. 
+	2분기 <span>SK스퀘어</span>의 영업수익은 4700억원으로 지난해 동기 대비 13% 줄고, 영업이익은 7800억원으로 
+	흑자전환했다.
+	</p>
+	<p class="c">
+	이 기간 상거래의 <span title="순수이익입니다.">영업수익</span>은 1700억원을 기록해 지난해 같은 기간보다 32% 줄고, 영업손실은 
+	183억원으로 적자가 지속됐다. 다만 <a href="https://blog.naver.com/andonghyun2/223377079572">마케팅</a> 효율화로 수익성은 개선됐다. 지난 3월부터 4개월 
+	연속 오픈마켓이 월별 흑자다.
+	</p>
+</div>
 </body>
 </html>
 

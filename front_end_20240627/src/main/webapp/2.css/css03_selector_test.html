@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css03_selector_test</title>
+<style type="text/css">
+	p{background-color: pink;}
+	#a{color:red;}
+	.b{color:blue;}
+	*{padding:2px;}
+	p > strong{color:yellow;}
+	#c + p{color:green;} 
+	p[title]{font-size: 15pt;}
+</style>
+</head>
+<body>
+<h1><b>셀렉터</b> 작성 연습하기</h1>
+<div>
+<p>1. p태그에 배경색 pink적용하기</p>
+<p id="a">2. id로 선택하여<b>color:red</b>로 적용하기</p>
+<p class="b">3. class로 선택하여 <b>color:blue</b>로 적용하기</p>
+</div>
+<div>
+<p>4. 전체를 선택하여 <b>padding:2px</b> 적용하기</p>
+<p>
+5. p태그의 <strong>자식요소</strong>중 strong태그에  <b>color:yellow</b> 적용하기
+</p>
+<p id="c">6.id=c 인 속성을 가진 p태그 다음에 인접한p태그에 <b>color:green</b> 적용하기</p>
+<p>id=c인 속성을 가진 p태그 다음에 오는 p태그</p>
+<p title="attr">7.title속성을 가진 p태그 <b>font-size:15pt</b> 로 적용하기</p>
+</div>
+</body>
+</html>

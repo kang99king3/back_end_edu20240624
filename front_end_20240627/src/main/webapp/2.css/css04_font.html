@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css04_font.html</title>
+<style type="text/css">
+	.c{
+		font-size: 20px;
+		font-weight: bold;
+		font-style: italic;
+		font-variant: small-caps;
+		line-height: 50px;
+		font-family: "맑은 고딕" "굴림";
+	}
+	
+	h1{
+		background-color: yellow;
+		height: 100px;
+		text-align: center;
+/* 		vertical-align: middle; */
+		line-height: 100px; /* 행이 하나일때 위아래 정렬 효과 */
+	}
+	
+	/*  축약형 사용할때 순서 규칙
+		1. font: [font-weight / font-style / font-variant]
+		2. font: [font-size / line-height]
+		3. font: [font-family]
+		font: 1 2 3 순으로 작성해야 함
+	*/
+	.d{font:bold italic small-caps 20px/50px '맑은 고딕'; }
+</style>
+</head>
+<body>
+<h1>폰트 관련 속성</h1>
+<p class="c">
+	이날 김회재 <span>대신증권</span> 연구원은 "올해 2분기 SK하이닉스 흑자전환에 따라 SK스퀘어의 지분투자 
+	이익이 흑자로 전환했다. 주요 자회사 실적과 지표도 개선됐다"며 이같이 말했다. 
+	2분기 <span>SK스퀘어</span>의 영업수익은 4700억원으로 지난해 동기 대비 13% 줄고, 영업이익은 7800억원으로 
+	흑자전환했다.
+</p>
+<p class="d">
+이 기간 상거래의 <span title="순수이익입니다.">영업수익</span>은 1700억원을 기록해 지난해 같은 기간보다 32% 줄고, 영업손실은 
+183억원으로 적자가 지속됐다. 다만 <a href="https://blog.naver.com/andonghyun2/223377079572">마케팅</a> 효율화로 수익성은 개선됐다. 지난 3월부터 4개월 
+연속 오픈마켓이 월별 흑자다.
+</p>
+</body>
+</html>
