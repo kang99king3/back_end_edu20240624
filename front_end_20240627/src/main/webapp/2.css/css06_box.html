@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css06_box.html</title>
+<style type="text/css">
+	div{
+	/* 		background-color: #3CC8C8; */
+		background-color: rgb(100,150,100);
+	}
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.box3{
+ 		padding: 10px; 
+ 		text-align: center; 
+  		width: 500px; 
+ 		margin: 0 auto;/* 블럭요소 가운데 정렬할 경우 */
+	}
+	
+	.box1,.box2{
+		background-color: orange;
+		width: 300px;
+		height: 100px;
+/* 		margin: 20px; */
+		margin: 20px auto;/* 블럭요소 가운데 정렬할 경우 */
+		line-height: 100px;/*위아래 중간 위치에 정렬*/
+	}
+	
+	.box1{
+		padding: 20px;
+		width: 252px;
+		height: 52px;
+		line-height: 52px;
+		border: 4px solid black;
+		margin-left: -100px;
+	}
+	/* :hover ==> 마우스가 요소에 올라갔을때 선택하여 효과를 적용함*/
+	.box1:hover{
+		margin-left: auto;
+	}
+	
+</style>
+</head>
+<body>
+<div class="box3">
+	<div class="box1">너비 300px</div>
+	<div class="box2">너비 300px</div>
+</div>
+</body>
+</html>
