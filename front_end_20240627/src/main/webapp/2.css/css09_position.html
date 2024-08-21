@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css09_position.html</title>
+<style type="text/css">
+	#box{
+		width: 650px;
+		height: 400px;
+		background-color: yellow;
+		position: relative;
+	}
+	
+	#box > p{
+		width: 200px;
+		height: 200px;
+		border: 1px solid gray;
+		border-radius: 100px;
+		text-align: center;
+		line-height: 200px;
+		font-size: 30px;
+	}
+	
+	.myred{
+		background-color: red;
+		position: absolute;
+		left:200px;
+		top:10px;
+		z-index: 100;
+	}
+	.myblue{
+		background-color: blue;
+		position: absolute;
+		left:120px;
+		top:100px;
+		z-index: 50;
+	}
+	.mygreen{
+		background-color: green;
+		position: absolute;
+		left:300px;
+		top:100px;
+		z-index: 20;
+	}
+	
+	.myred:hover , .myblue:hover, .mygreen:hover{
+		z-index: 150; 
+		font-size: 35px !important;
+		color:white;
+		font-weight: bold;
+	}
+</style>
+</head>
+<body>
+<h1>position속성</h1>
+<div id="box">
+	<p class="myred">red</p>
+	<p class="myblue">blue</p>
+	<p class="mygreen">green</p>
+</div>
+</body>
+</html>
