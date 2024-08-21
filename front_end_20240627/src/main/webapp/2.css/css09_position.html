@@ -49,6 +49,35 @@
 		color:white;
 		font-weight: bold;
 	}
+	
+/* 	메뉴만들기 */
+	#menu_box li{
+		list-style: none;
+	}
+	
+	.sub_menu{
+ 		display: none; 
+		position: absolute;
+		left:20px;
+		top:2px;	
+		width: 150px;
+		z-index: 100;
+	}
+	
+	.main_menu > li{
+		position: relative;
+		width: 80px;
+		margin-bottom: 5px;
+/* 		background-color: orange; */
+	}
+	
+	.main_menu > li:hover > .sub_menu{
+		display: block;
+	}
+	.sub_menu > li:hover{
+		cursor: pointer;
+		background-color: yellow;
+	}
 </style>
 </head>
 <body>
@@ -58,5 +87,56 @@
 	<p class="myblue">blue</p>
 	<p class="mygreen">green</p>
 </div>
+<hr/>
+<h1>메뉴만들기</h1>
+<div id="menu_box">
+	<ul class="main_menu">
+		<li>
+			<b>메뉴01</b>
+			<ul class="sub_menu">
+				<li>하위메뉴1</li>
+				<li>하위메뉴2</li>
+				<li>하위메뉴3</li>
+			</ul>
+		</li>
+		<li>
+			<b>메뉴02</b>
+			<ul class="sub_menu">
+				<li>하위메뉴4</li>
+				<li>하위메뉴5</li>
+				<li>하위메뉴6</li>
+			</ul>
+		</li>
+		<li>
+			<b>메뉴03</b>
+			<ul class="sub_menu">
+				<li>하위메뉴7</li>
+				<li>하위메뉴8</li>
+				<li>하위메뉴9</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
