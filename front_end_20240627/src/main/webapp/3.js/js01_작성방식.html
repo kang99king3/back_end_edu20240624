@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js01_작성방식.html</title>
+<script type="text/javascript" src="js/test.js" ></script>
+<!-- <script type="text/javascript" src="js/test2.js" ></script> -->
+<!-- <script type="text/javascript" src="js/test3.js" ></script> -->
+<!-- <script type="text/javascript" src="js/test4.js" ></script> -->
+<!-- <script type="text/javascript" src="js/test5.js" ></script> -->
+<script type="text/javascript">
+	//함수선언: function키워드 사용 정의
+	function embedded(){
+		var txt="내부작성방식";
+// 		alert(txt);
+		console.log(txt);// 브라우저 디버깅기능에서 console창에 출력하는 기능제공
+	}
+</script>
+</head>
+<body>
+<h1>자바스크립트 구성</h1>
+<dl>
+	<dt onclick="var txt='inline방식입니다.'; alert(txt);">Core</dt>
+	<dd>문법(변수,제어문,객체,프로토타입,클로져...)</dd>
+	<dd>내장객체의 사용법</dd>
+	<dt onclick="embedded();">BOM</dt>
+	<dd>Window</dd>
+	<dd>location</dd>
+	<dd>Navigator/history/screen</dd>
+	<dt onclick="linkedFunc();">DOM</dt>
+	<dd>Document</dd>
+	<dd>Element</dd>
+	<dd>Attribute/Text/Node</dd>
+</dl>
+<script type="text/javascript">
+	var txt2="body끝부분에 작성할 수 도 있다.";
+	console.log(txt2);
+</script>
+</body>
+</html>
+
+
+
+
