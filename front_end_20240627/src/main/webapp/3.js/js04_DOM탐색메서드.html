@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js04_DOM탐색메서드.html</title>
+<script type="text/javascript">
+	function searchId(){
+		//ID로 탐색 후 배경색을 지정
+		var p=document.getElementById("idTest");//엘리먼트객체 1개 반환
+		console.log(typeof p);
+// 		객체명.맴버필드,   객체명.메서드()
+// 		style= {background-color:"", color:"",border:""}
+// 		font-size--> fontSize  : - 마이너스로 인식함  --> 카멜기법으로 작성해야 됨
+		p.style.backgroundColor="blue";
+		p.style.color='white'; 
+		p.textContent="<b>ID로 탐색했네..</b>";
+		p.innerHTML="<b>태그도 표현가능</b>";
+		console.log(p.textContent);
+	}
+	
+	function searchName(){
+		let inputs=document.getElementsByName("test02");
+		console.log(inputs.length);
+		
+// 		inputs[0].style.backgroundColor="blue";
+// 		inputs[1].style.backgroundColor="red";
+// 		inputs[2].style.backgroundColor="yellow";
+		for (var i = 0; i < inputs.length; i++) {
+			inputs[i].style.backgroundColor="yellow";
+		}
+// 		inputs.style.backgroundColor="yellow";//배열에 직접 기능적용(X), 인덱스로 접근해야함
+	}
+	
+	function searchTagName(){
+		let spans=document.getElementsByTagName("span");
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].style.backgroundColor="yellow";
+			spans[i].style.display="block";
+			spans[i].style.margin="10px";
+		}
+	}
+	
+	function searchClassName(){
+		let spans=document.getElementsByClassName("a");
+		spans[0].style.fontSize="40px";
+		spans[1].style.color="red";
+		
+		let txt=spans[2].textContent;//요소 내부에 text를 가져오기
+		console.log(txt);
+		let txtAdd="class로"+txt;//새로 값을 만들고
+		spans[2].textContent=txtAdd;//text값을 적용
+	}
+	function searchQuery(){
+		let spans=document.querySelectorAll("p:last-child > span");
+		spans[0].style.color="blue";
+	}
+</script>
+</head>
+<body>
+<h1>DOM탐색메서드의 종류</h1>
+<p>
+	1.getElementById("idName"):태그의 id속성 이름으로 탐색
+	 - 반환값은 엘리먼트 1개 <button onclick="searchId()">확인</button>
+</p>
+<p id="idTest">idTest</p>
+<p>
+	2.getElementsByName("name속성이름"): form요소에 사용되는 name속성으로 탐색
+	 - 반환값은 엘리먼트 여러개(배열) <button onclick="searchName()">확인</button>
+	<br/>
+	<input type="text" name="test02"/>
+	<input type="text" name="test02"/>
+	<input type="text" name="test02"/>
+</p>
+<p>
+	3.getElementsByTagName("tag이름"): 태그 이름으로 탐색
+	- 반환값은 엘리먼트 여러개(배열) <button onclick="searchTagName()">확인</button>
+	<br/>
+	<span>태그</span><span>이름</span><span>탐색</span>
+</p>
+<p>
+	4.getElementsByClassName("class이름"): class 이름으로 탐색
+	- 반환값은 엘리먼트 여러개(배열) <button onclick="searchClassName()">확인</button>
+	<br/>
+	<span class="a">class</span><span class="a">이름</span><span class="a">탐색</span>
+</p>
+<p>
+	5.querySelectorAll("selector표현식"): ~All --> 반환값은 여러개(배열)
+	  <br/>
+	  - querySelector("selector표현식"): 반환값이 1개
+	  <button onclick="searchQuery()">확인</button>
+	<br/>
+	<span>selector</span><span>쿼리</span><span>탐색</span>
+</p>
+</body>
+</html>     
+
+
+
+
+
+
+
+
+            
