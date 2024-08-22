@@ -37,6 +37,22 @@
 		let  :  변수표현 , 재선언X   재할당O  {}
 		const:  상수표현 , 재선언X   재할당X  {}
 	*/
+	
+	//변수의 타입
+	let val=5;//숫자(number)타입
+		val="문자열";//문자열(String)타입
+		val=[1,2,3,true,"A",];//Object타입(배열)
+		val=true;//boolean타입
+		val=function(){  // JS에서는 function함수--> 객체로 사용
+			var a="A";
+		};
+		val={"key1":5,
+			 "key2":10,
+			 "key3":function(){}};//JS에서는 {}문법으로 객체를 표현함---> 형식:json형식
+			 
+	console.log(typeof val);//typeof연산자: 변수의 타입을 확인
+	
+	// 타입에 대한 명확성 부족 ---> Type Script 등장!!!   const val:String = "타입스크립트";
 </script>
 </head>
 <body>
