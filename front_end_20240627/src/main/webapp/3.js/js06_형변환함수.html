@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js06_형변환함수.html</title>
+<script type="text/javascript">
+	function numTest(){
+		let inputVal=document.getElementById("num1");
+		//concatenation이 발생: 문자열을 만나면 모두 문자열로 형변환된다. +연산자를 만났을 경우
+		console.log(inputVal.value+20);
+		console.log(Number(inputVal.value)+20);//문자열을 형변환하여 연산
+	}
+	
+	function intTest(inputEle){//id속성을 통해서 요소객체를 파라미터로 전달받을 수 있다.
+		console.log(typeof inputEle);
+		let paramVal=parseInt(inputEle.value);// 입력값을 구해서 정수형으로 변환
+		console.log(paramVal+10);
+	}
+	
+	function floatTest(inputEle){
+		let paramVal=parseFloat(inputEle.value);
+		console.log(paramVal+5);
+	}
+</script>
+</head>
+<body>
+<h1>1.숫자형 형변환 Number()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 숫자형으로 변환</p>
+<input type="text" name="num" id="num1" value="1234"/>
+<button onclick="numTest()">확인</button>
+
+<h1>2.정수형 형변환 parseInt()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 정수형으로 변환</p>
+<input type="text" name="int" id="int1" />
+<button onclick="intTest(int1)">확인</button>
+
+<h1>3.실수형 형변환 parseFloat()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두 실수형으로 변환</p>
+<input type="text" name="float" id="float1" />
+<button onclick="floatTest(float1)">확인</button>
+</body>
+</html>
+
+
+

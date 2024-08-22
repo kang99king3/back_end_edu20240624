@@ -3,6 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>js05_DOM탐색메서드_test.html</title>
+<script type="text/javascript">
+	function idChk(){
+		//같은 엘리먼트에 여러 효과를 적용할 경우 아래와 같이 작성하면 
+		//dom탐색을 여러번 실행하게 되어 성능이 안좋다..
+// 		document.getElementById("a").style.backgroundColor="red";
+// 		document.getElementById("a").style.color="yellow";
+		var pA=document.getElementById("a");//한번 탐색해서 저장해두고 쓰자
+		var pB=document.getElementById("b");
+		var pC=document.getElementById("c");
+		
+		pA.style.backgroundColor="red";
+		pB.style.backgroundColor="blue";
+		pC.style.backgroundColor="green";
+	}
+	
+	function nameChk(){
+		var inputs=document.getElementsByName("nameval01");//[input,input]
+		console.log("id:"+inputs[0].value+"/pwd:"+inputs[1].value); // class input0{String value="id";} .value 접근가능
+		var msg="id:"+inputs[0].value+"/pwd:"+inputs[1].value;
+		alert(msg);
+	}
+	
+	function tagNameChk(){
+		var divs=document.getElementsByTagName("div");//[div,div,div]
+		divs[1].style.backgroundColor="yellow";
+	}
+</script>
 </head>
 <body>
 <h2>1.엘리먼트를 id속성을 사용하여 탐색하고 각각의 엘리먼트에 대해 배경색을 적용하세요.
@@ -15,8 +42,8 @@
 <h2>2.엘리먼트를 name속성을 사용하여 탐색하고 화면에서 입력한 값을 alert()대화창으로 출력하세요.
 	<br/><small>출력 내용 -  id:<span>**</span>/pwd:<span>**</span> </small>
 </h2>
-<label>id:</label><input type="text" name="nameval01" value="" ><br>
-패스워드:<input type="text" name="nameval01"><br>
+<label>id:</label><input type="text" name="nameval01" value=""><br>
+패스워드:<input type="text" name="nameval01" ><br>
 <input type="button" value="입력" onclick="nameChk()">
 <hr>
 <h2>3.엘리먼트를 tagname으로 탐색하고 div태그중 두번째 요소만 배경색을 yellow로 적용하세요.</h2>
