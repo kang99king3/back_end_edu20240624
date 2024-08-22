@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js03_변수와타입.html</title>
+<script type="text/javascript">
+	var variable=10;//전역변수: 여러 함수나 객체들에서 모두 접근해서 사용하는 변수(공용)
+	
+	function test01(){
+		variable=variable+5;
+		console.log(variable);
+	}
+	
+	function test02(){
+		var variable2=5;
+		console.log(variable2);
+	}
+	test01();
+	test02();
+// 	console.log(variable2);//지역변수는 선언한 해당블럭을 벗어나면 사용못함
+
+	//var 예약어의 문제점 
+	//1.변수 선언전에 변수를 사용하는데 오류가 안남
+	//  --> hoisting(hoist:올리다,말아올리다,끌어올리다)
+	//  --> 호이스팅현상: js를 실행하기 전에 선언된 변수들을 먼저 확인해서 맨 위쪽을 올려버림
+// 	var variable3;//최상단으로 올려버림
+	console.log(variable3);
+	var variable3=10;
+	console.log(variable3);
+	//2.재선언이 가능
+	var variable3=15;//재선언도 가능하네??
+		variable3=20;//재할당은 원래 가능한데...
+	console.log(variable3);
+		
+	/*                   선언   ,  할당  , 범위
+		var  :  변수표현 , 재선언O   재할당O  함수
+		let  :  변수표현 , 재선언X   재할당O  {}
+		const:  상수표현 , 재선언X   재할당X  {}
+	*/
+</script>
+</head>
+<body>
+<h1>변수의 선언규칙</h1>
+<p>1.대소문자구별</p>
+<p>2.영문자,_,$로 시작할 수 있다.</p>
+<p>3.영문자,_,$,숫자를 포함할 수 있다.</p>
+<p>4.키워드,예약어는 사용할 수 없다.</p>
+<h1>변수의 적용범위(scope)</h1>
+<p>1.전역변수</p>
+<p>2.지역변수</p>
+<h1>변수의 선언과 할당</h1>
+<p>1. var 예약어를 사용해서 선언(전통적인방식,오래전부터 계속 사용했던 방식)
+   <br/>ECMA Script(ES5: var 사용, ES6: let, const 추가) </p>
+<p>2. 값 할당때 타입: 변수의 타입은 할당하는 값의 타입에 따라 결정된다. </p>   
+</body>
+</html>
+
+
+
+
+
+
