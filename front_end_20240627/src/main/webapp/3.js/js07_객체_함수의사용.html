@@ -45,6 +45,57 @@
 		document.getElementsByTagName("h1")[1].onclick=()=>{
 			console.log("익명함수 활용");
 		}
+		
+		//1.객체 리터럴 방식: 작성형식이 json 데이터 형식
+		document.getElementsByClassName("a")[0].onclick=()=>{
+			console.log("객체리터럴방식");
+			//리터럴: 값 자체를 의미 --> var a=5; var b=a;
+			var jsonObj={
+					subject:"javascript",
+					credit:1,
+					printout:()=>jsonObj.subject+","+jsonObj.credit+"학점"
+					//화살표함수의 코드가 리턴만 있다면 {} 생략가능
+// 					printout:()=>{
+// 						return jsonObj.subject+","+jsonObj.credit+"학점";
+// 					}
+			}
+			//객체에 정의된 메서드를 호출
+			console.log(jsonObj.printout());
+			//함수 호출시 (1)이름만 쓰는 경우, (2)괄호()까지 쓰는 경우
+			//             기능유지상태   ,  기능 실행 상태  
+			printCredit(jsonObj.printout);//파라미터로 기능전달--> ()는 작성하면 안됨
+			
+			//객체의 값을 변경하는 경우
+			jsonObj.subject="JS";// update개념 : set
+			jsonObj["test"]="value";// insert개념 : add
+			delete jsonObj["credit"]; // del
+			
+			//객체 변경된 값 확인
+			console.log(jsonObj.subject+":"+jsonObj.credit+":"+jsonObj.test);
+			
+			//ES6에서 추가된 기능
+			//1.화살표함수
+			//jsonObj["arrowFunc"] = ()=>{}
+			  jsonObj["arrowFunc"] = (val1,val2)=>{console.log(val1+","+val2);}
+			
+			//2.구조분해할당 기능
+			let subject1=jsonObj.subject;
+			let test1=jsonObj.test;
+			
+			let {subject,test}=jsonObj;//jsonObj에 선언된 이름과 같은 이름의 변수에 할당
+			console.log("구조분해할당:"+subject+","+test);
+			
+			//3.템플릿 리터럴
+			// java : System.out.printf("%d숫자는 %d",5,5)
+			console.log(`구조분해할당:${subject},${test}`);
+		}//객체 리터럴방식 확인 종료.
+		
+		
+	}
+	
+	function printCredit(func){
+		console.log("printCredit()");
+		console.log(func());// 파라미터로 전달받은 함수(기능)를 실행한다.
 	}
 </script>
 </head>
