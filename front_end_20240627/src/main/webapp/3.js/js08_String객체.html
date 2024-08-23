@@ -21,16 +21,83 @@
 	
 	function strTest02(){
 		//동등연산자 ==(일반적인 비교) / ===(엄격한 비교) , 패턴으로 비교: 정규화표현식 (match())
+		let strVal=prompt("당신의 이름은?","");
 		
+		//숫자가 포함되었는지 확인
+		if(strVal.match(/[0-9]/)){  // [a-z], [0-9]{1} .....
+			alert("숫자가 포함되어 있음~~ 확인해주세요");
+		}else{
+			if(strVal=="이한경"){
+				console.log("이한경이 맞습니다.");
+				document.getElementById("name").innerHTML="<b>이한경입니다.</b>";
+			}else{
+				console.log("이한경이 아닙니다.");
+				document.getElementById("name").textContent=`${strVal}님은 이한경이 아닙니다.`;
+			}
+		}
 		
+		//동등연산자: 엄격한 비교 ===
+		var numVal=10;// 숫자형
+		if(numVal=="10"){ // 비교할때 자동형변환되서 비교를 한다.
+			console.log("==연산자사용:숫자10이 맞습니다.");
+		}
 		
+		if(numVal==="10"){ // 타입이 다르면 다르다고 비교해야 함
+			console.log("===연산자사용:숫자10이 맞습니다.");
+		}else{
+			console.log("===연산자사용:숫자10이 아닙니다.");
+		}
+		
+		//객체와의 비교(String)
+		var strLit="한경";//리터럴정의
+		var strObj=new String("한경");//new 객체 정의
+		if(strLit==strObj){
+			console.log("==연산자사용:같다");
+		}
+		if(strLit===strObj){
+			console.log("===연산자사용:같다");
+		}else{
+			console.log("===연산자사용:다르다");
+		}
+	}
+	
+	function strTest03(){
+		//"indexOf()메서드" , "substring()메서드" 각각 추출해서 console에 출력하기
+		var strVal="문자열 추출하기. 관련 메서드:indexOf()메서드, substring()메서드.";
+		var sIdx=strVal.indexOf(":");
+		var eIdx=strVal.lastIndexOf(".");
+		var result=strVal.substring(sIdx+1,eIdx);//"indexOf()메서드, substring()메서드"
+		var splitVal=result.split(",");//["indexOf()메서드"," substring()메서드"]
+		var strVal01=splitVal[0].trim();
+		var strVal02=splitVal[1].trim();//trim() 앞뒤공백제거
+		console.log(`${strVal01},${strVal02}`);
 	}
 </script>
 </head>
 <body>
 <h1>String 객체의 사용</h1>
 <h2>문자열합치기<button onclick="strTest01()">확인</button></h2>
-<h2>문자열비교하기<button onclick="strTest02()">확인</button></h2>
+<h2>문자열비교하기<button onclick="strTest02()">확인</button><span id="name"></span></h2>
+<h2>문자열검색하기:indexOf()/lastIndexOf():검색한 단어가 존재하지 않는다면 -1을 반환 </h2>
+<h2>문자열추출하기:substring():문자열을 시작인덱스와 , 종료인덱스로 추출<br/>
+				split(): 문자열에 토큰으로 나눠서 배열로 반환한다.("a,b,c,d"->[a,b,c,d])
+	<button onclick="strTest03()">확인</button>
+</h2>
+<hr/>
+<h2>키워드 나누기<button onclick="strTest04()">클릭</button></h2>
+<span id="key"></span>
+
+<script type="text/javascript">
+	function strTest04(){
+		//문제: 입력 키워드 최대 6개로 제한
+		//입력된 문자열 각각의 키워드를 추출해서 <span>요소에 출력하세요
+		// 출력하는 형식: "<br>키워드:수박<br/>키워드:바나나<br/>키워드:사과" -->span요소에 출력
+		var prop=prompt("쉼표로 구분하여 키워드를 입력하세요","예:수박,바나나,사과");
+	}
+	
+	// 계산기 기능 구현하기 : 참고 네이버 계산기 --> 사칙연산, 클리어, 백스페이스(하나씩 지우기)
+</script>
+
 </body>
 </html>
 
