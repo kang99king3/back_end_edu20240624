@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js07_객체_함수의사용.html</title>
+<script type="text/javascript">
+	//선언적 함수: function키워드를 사용하여 정의, 이름이 있다.
+	//           다른 객체나 함수에서 호출사용 --> 재사용 가능
+	//           파라미터 선언: 변수명만 선언, func(a,b){} ->호출할때 func(5,5);(O), func() (O);
+	//                                    파라미터를 내부코드에 사용하지 않는다면 func()가능
+	//           리턴값 정의할 수 있다. : return 키워드사용  , return ;
+	function func01(){
+		console.log("선언적함수");
+		let val=func01_2(5,10);
+		console.log(val);
+	}
+	
+	function func01_2(val1,val2){//파리미터 선언
+		console.log(val1+":"+val2);
+		return val1+":"+val2;
+	}
+	
+	//익명함수: 객체 내부에서 사용되고 종료 --> 이름이 없기때문에 다른 객체에서 호출X
+	//        변수에 할당해서 사용하면 호출 가능: 변수명() 
+	//        파라미터로 기능을 전달할때 사용할 수 있다.
+	//        ES5 2009년 -> ES6 2015년 
+	//        화살표 함수 : function(){}  ---> ()=>{}  함수의 코드를 간소화
+	
+	var i=0;// 전역변수
+	let func02=function(){
+		console.log("익명함수");
+// 		window.setInterval(test,1000);// 지연시간을 두고 기능을 반복시키는 메서드
+//             setInerval("test()",1000); // 가능함
+		setInterval(function(){       // 파라미터로 기능을 전달할 수 있다.
+			console.log(i++);
+		},1000);
+	}
+	//선언적 함수 
+	function test(){
+		console.log(i++);
+	}
+	
+	//onload 이벤트 활용 : 페이지가 로딩될때를 이벤트로 감지
+	window.onload=function(){// 페이지가 로딩되면 function을 실행해라
+		document.getElementsByTagName("h1")[1].onclick=()=>{
+			console.log("익명함수 활용");
+		}
+	}
+</script>
+</head>
+<body>
+<h1>선언적 함수</h1>
+<p>이름이 정의되어 있는 기본적인 함수
+   <button onclick="func01();">확인</button>
+</p>
+<h1>익명함수</h1>
+<p>이름이 없는 함수<button onclick="func02();">확인</button></p>
+<h1>자바스크립에서 객체 만들기</h1>
+<p class="a">1.객체 리터럴 방식</p>
+<p class="a">2.객체 생성자함수 방식</p>
+</body>
+</html>
+
+
+
+
+
+
+
