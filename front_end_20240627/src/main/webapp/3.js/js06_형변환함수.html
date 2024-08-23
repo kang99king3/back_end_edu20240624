@@ -38,8 +38,45 @@
 <p>문자열이 정수형태든 실수형태든 모두 실수형으로 변환</p>
 <input type="text" name="float" id="float1" />
 <button onclick="floatTest(float1)">확인</button>
+
+<h1>4.검증함수 eval()함수</h1>
+<p>문자열로 된 값을 자바스크립트로 해석해서 실행시켜주는 함수</p>
+<input type="text" name="evalue" id="evalue1" />
+<button onclick="evalTest(evalue1)">확인</button>
+<span>계산결과:</span><span id="result"></span>
+<script type="text/javascript">
+	function evalTest(evalEle){// evalEle 변수---> 문서에서 input 요소를 의미
+// 		let inputEval=document.getElementsByName("evalue");
+// 		inputEval.value;
+		let evalue=eval(evalEle.value);// "var a=10; console.log(a+10);"
+		console.log(evalue);
+		var resultEle=document.getElementById("result");
+		if(confirm("작성하신 코드가 맞나요? "+evalEle.value)){
+			let result=eval(evalEle.value);
+// 			document.getElementById("result").textContent=result;
+			resultEle.textContent=result;
+		}else{
+			evalEle.value="";// 입력했던 값을 삭제하게 됨
+			evalEle.focus();//선택한 요소를 포커스를 줌, 버튼이면 번트을 선택한 상태,
+			                //                      입력박스이면 커서가 들어간 상태
+// 			document.getElementById("result").textContent="";   
+			resultEle.textContent="";
+		}
+	}
+
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
