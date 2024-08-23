@@ -90,9 +90,85 @@
 			console.log(`구조분해할당:${subject},${test}`);
 		}//객체 리터럴방식 확인 종료.
 		
+		//2.객체 생성자 함수 방식
+		document.getElementsByClassName("a")[1].onclick=()=>{
+			let info=new Info();// new 예약어를 사용하여 객체 생성
+			console.log(`${info.subject},${info.credit},${info.printout()}`);
+			console.log(info.test);//(X) 그냥 접근 못함
+			console.log(info.getTest());
+		}
 		
+		//3.프로토타입 사용하기
+		document.getElementsByClassName("a")[2].onclick=()=>{
+			//Info 객체에 추가적인 기능을 구현하고 싶을때 
+			//  -> Info객체 내부에 직접적으로 작성하지 못하는 경우
+			Info.prototype.addFunc=function(){// 화살표함수 사용X
+				alert(`기능추가:${this.subject}`);// this를 이용해서 접근
+			}
+			
+			let info=new Info();
+			info.addFunc();// prototype으로 추가된 메서드를 실행한다.
+		}
+		
+		//클로저 기능 실행하기
+		document.getElementsByClassName("a")[3].onclick=()=>{
+// 			closureTest1();
+// 			var closureTestChild=closureTest2();// 내부 함수가 반환된 상태---> 내부함수를 실행한건 아니다.
+// 				closureTestChild();
+// 			closureTest2()();//부모함수실행,자식함수실행 순서로 실행됨
+			closureTest3();//지역변수 count값이 계속 증가됨
+		}
 	}
 	
+	//클로저: 함수 내부에서 함수를 구현해서 리턴하는 방식
+	//       부모함수, 자식함수 : 부모함수에서 정의한 지역변수의 상태를 유지시켜줄수 있는 방식
+// 	var count=0;// 1 , 2, 3.... 10
+	
+// 	function test1(){var count=0; count++; }// 지역변수일경우 count가 계속 초기화됨
+// 	function test2(){ count--;}
+	
+	function closureTest1(){
+		var count=0;//지역변수: 함수내부에서만 사용 --> 계속 초기화, 변경에 대한 상태 유지X
+		count++;
+		console.log(count);
+	}
+	
+	//클로저를 작성하는 방법
+	function closureTest2(){
+		var count=0;
+		return function(){  //익명함수를 리턴하고 있음
+			count++;
+			console.log(count);
+		}
+	}
+	
+	//클로저함수 완성
+	let closureTest3=function(){
+		var count=0;//전역변수처럼 변경상태가 유지됨
+		return function(){  //익명함수를 리턴하고 있음
+			count++;
+			console.log(count);
+		}
+	}();// ()를 추가로 작성하면 --> 외부함수가 실행됨
+	
+	//생성자 함수 
+	function Info(){
+		var test="일반변수"; //외부에서 접근할 수 없다.
+		//변수(메서드) 선언할 때 this예약어를 사용
+		this.subject="javascript";
+		this.credit=2;
+		this.printout=function(){  //객체안에서 정의할때 익명함수로 정의, 화살표함수(X)
+			return `${this.subject},${this.credit}학점`;
+		}
+		//private int a;
+		//public int getA(){return a;} 은닉화
+		this.getTest=function(){ // 외부에서 메서드를 통해서 접근 가능
+			return test;
+		}
+	}
+	
+	
+	//객체 리터럴방식 확인할때 사용하던 함수
 	function printCredit(func){
 		console.log("printCredit()");
 		console.log(func());// 파라미터로 전달받은 함수(기능)를 실행한다.
@@ -109,6 +185,8 @@
 <h1>자바스크립에서 객체 만들기</h1>
 <p class="a">1.객체 리터럴 방식</p>
 <p class="a">2.객체 생성자함수 방식</p>
+<p class="a">3.프로토타입 사용하기</p>
+<p class="a">4.클로저 사용하기</p>
 </body>
 </html>
 
