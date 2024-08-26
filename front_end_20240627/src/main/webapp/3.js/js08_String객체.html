@@ -110,6 +110,7 @@
 		<input type="button" value="7"/>
 		<input type="button" value="8"/>
 		<input type="button" value="9"/>
+		<input type="button" value="0"/>
 		<input type="button" value="+"/>
 		<input type="button" value="-"/>
 		<input type="button" value="/"/>
@@ -150,7 +151,19 @@
 			inputs[i].onclick=function(evt){//event객체를 파라미터로 받을 수 있다.
 				//button들 중에 실제 click 이벤트가 발생된 요소를 찾아야 된다.
 				console.log(evt.target.value);//evt:onclick객체, target:요소객체(input)
-				view.value+=evt.target.value;
+				
+				var inputVal=evt.target.value;//입력값을 저장
+				
+				if(inputVal=="="){//계산 결과출력
+					view.value=eval(view.value);//문자열을 자바스크립트 코드 실행
+				}else if(inputVal=="C"){//전체 삭제
+					view.value="";
+				}else if(inputVal=="←"){//부분 삭제
+					// "50+30": 전체길이에서 -1한 값으로 종료인덱스를 설정하자.
+					view.value=view.value.substring(0,view.value.length-1);
+				}else{
+					view.value+=inputVal;//계산과정을 출력기능					
+				}
 			}
 		}
 	}

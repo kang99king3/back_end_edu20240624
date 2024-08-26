@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js09_Array객체</title>
+</head>
+<body>
+<h1>배열객체</h1>
+<ol>
+	<li>다중배열</li>
+	<li>join()</li>
+	<li>배열저장/접근</li>
+	<li>slice():배열의 값을 부분적으로 추출해서 새로운 배열로 생성</li>
+	<li>배열탐색하기:indexOf()/lastIndexOf()</li>
+	<li>concat():배열과 배열을 더할때</li>
+	<li>splice():배열요소를 검색하여 삭제/바꾸기</li>
+</ol>
+<script type="text/javascript">
+	//배열을 선언하는 방법
+	var arrayObj=new Array("v1","v2","v3");//객체로 생성하는 방법
+	var arrayLit=["v1","v2","v3"];//리터럴 방식
+	//int[] a=new int[3];//자릿수까지 정의하면 java는 자동초기화 지원 : [0,0,0]
+	//new Array(3); // [ , , ] JS에서는 자동 초기화 지원X
+	
+	//타입이 서로 다른 값을 저장 가능함
+	var arrayObj02=["v1",7,true];
+	
+	//배열을 선언하는 방법2
+	var array03=new Array();//배열 선언
+	var array04=new Array(10);//배열 선언, 자릿수 정의, 초기값X
+	var array05=new Array(2,3,4,5);//선언,정의,초기화 진행
+	array04[0]="배열1";//값 저장(set)
+	var aVal=array04[0];//값을 가져옴(get)
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
