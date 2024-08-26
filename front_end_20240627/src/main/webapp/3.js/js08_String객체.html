@@ -86,16 +86,75 @@
 <hr/>
 <h2>키워드 나누기<button onclick="strTest04()">클릭</button></h2>
 <span id="key"></span>
-
+<hr>
+<fieldset>
+	<label>최대입력수:</label>
+	<input type="number" id="num" min="1" />
+	<button onclick="numCount()">설정</button>
+	<br/>
+	<small>사용자가 최대입력수를 입력하고 설정버튼을 클릭하면 적용:설정버튼의 폰트색을 red로 변경</small>
+</fieldset>
+<hr/>
+<h2>계산기 구현하기</h2>
+<div>
+	<fieldset>
+		<input id="view" />
+	</fieldset>
+	<fieldset>
+		<input type="button" value="1"/>
+		<input type="button" value="2"/>
+		<input type="button" value="3"/>
+		<input type="button" value="4"/>
+		<input type="button" value="5"/>
+		<input type="button" value="6"/>
+		<input type="button" value="7"/>
+		<input type="button" value="8"/>
+		<input type="button" value="9"/>
+		<input type="button" value="+"/>
+		<input type="button" value="-"/>
+		<input type="button" value="/"/>
+		<input type="button" value="*"/>
+		<input type="button" value="C"/>
+		<input type="button" value="←"/>
+		<input type="button" value="="/>
+	</fieldset>
+</div>
 <script type="text/javascript">
 	function strTest04(){
 		//문제: 입력 키워드 최대 6개로 제한
 		//입력된 문자열 각각의 키워드를 추출해서 <span>요소에 출력하세요
-		// 출력하는 형식: "<br>키워드:수박<br/>키워드:바나나<br/>키워드:사과" -->span요소에 출력
+		//출력하는 형식: "<br>키워드:수박<br/>키워드:바나나<br/>키워드:사과" -->span요소에 출력
 		var prop=prompt("쉼표로 구분하여 키워드를 입력하세요","예:수박,바나나,사과");
+		console.log(prop);
+		var propArray=prop.split(",");//["수박","바나나","사과"]
+		
+		if(propArray.length>6){
+			alert("6개까지만 입력 가능합니다.");
+		}else{
+			var propVal="";//원하는 문자열 형식으로 저장할 변수
+			for(var i = 0;i<propArray.length;i++){
+	// 			propVal+="<br/>키워드:"+propArray[i];
+				propVal+=`<br/>키워드:${propArray[i]}`;
+			}
+	// 		document.getElementById("key").textContent=propVal;
+			document.getElementById("key").innerHTML=propVal;
+		}
 	}
 	
-	// 계산기 기능 구현하기 : 참고 네이버 계산기 --> 사칙연산, 클리어, 백스페이스(하나씩 지우기)
+	//  계산기 기능 구현하기 : 참고 네이버 계산기 --> 사칙연산, 클리어, 백스페이스(하나씩 지우기)
+	onload=function(){
+		//body에 존재하는 input요소들을 모두 dom탐색하자
+		var inputs=document.querySelectorAll("fieldset > input[type=button]");
+		var view=document.getElementById("view");//계산결과를 보여줄 박스
+		for (var i = 0; i < inputs.length; i++) {
+			inputs[i].onclick=function(evt){//event객체를 파라미터로 받을 수 있다.
+				//button들 중에 실제 click 이벤트가 발생된 요소를 찾아야 된다.
+				console.log(evt.target.value);//evt:onclick객체, target:요소객체(input)
+				view.value+=evt.target.value;
+			}
+		}
+	}
+		
 </script>
 
 </body>
