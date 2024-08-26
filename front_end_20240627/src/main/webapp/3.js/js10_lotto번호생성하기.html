@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js10_lotto번호생성하기</title>
+<script type="text/javascript">
+	//로또번호: 1~45까지 랜덤하게 생성하는 기능
+	//random():0~1사이의 실수를 랜덤하게 생성 --> 0.00000...~0.999999.. 
+	function makeBall(){
+// 		new Math();(X)
+		return Math.floor(Math.random()*45+1);//1~45숫자 반환
+	}
+	
+	//생성된 번호를 배열에 저장하는 기능
+	function lottoBalls(){
+		var balls=new Array();//생성된 번호를 저장할 배열 생성
+		var count=0;
+		while(count<7){
+			var ball=makeBall();//숫자 하나 생성
+			if(balls.indexOf(ball)==-1){//존재하지 않으면 -1을 리턴한다.
+				balls.push(ball);//생성된 숫자를 배열에 넣기
+				count++;
+			}
+		}
+		console.log(balls.toString());
+		return balls;
+	}
+	
+	function lottoPrint(){
+		//실습문제: 정렬된 당첨번호 6개와 보너스 번호 1개로 나눠서 화면에 출력
+		//        [2,3,1,4,5,6,7] -> [2,3,1,4,5,6] , [7]
+		//                           [1,2,3,4,5,6] , [7]
+		//출력형식: 로또번호: 1-2-3-4-5-6     보너스번호: 7  
+		//배열관련 메서드를 활용해서 구현
+		//6개1개로 나눠서 출력, 정렬, 포맷(형식)
+		var balls7=lottoBalls();
+		
+	}
+</script>
+</head>
+<body>
+<fieldset>
+	<legend>로또번호 생성하기</legend>
+	<span>로또번호:</span>
+	<span>1-5-10-15-20-30</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	<span>보너스번호:</span>
+	<span>40</span>
+	<button onclick="lottoPrint()">생성</button>
+</fieldset>
+</body>
+</html>
