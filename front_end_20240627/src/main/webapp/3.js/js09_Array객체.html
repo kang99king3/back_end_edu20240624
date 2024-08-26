@@ -3,17 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <title>js09_Array객체</title>
+<script type="text/javascript">
+	function multiArray(){
+		//java: int[][] a=new int[3][3];
+		//JS: 리터럴 방식
+		var arrLit=[[1,2,3,4],[5,6,7],[8,9]];
+		
+		//JS: 객체 방식
+		var arrObj=new Array(3);
+		arrObj[0]=new Array(3);
+		arrObj[1]=new Array(3);
+		arrObj[2]=new Array(3);
+		for (var i = 0; i < arrObj.length; i++) {
+			arrObj[i]=new Array(3);
+		}
+		
+		console.log(arrLit[0][1]);//배열에 값가져오기
+		console.log(arrLit[0]);//배열가져오기
+	}
+	//join():배열에 값들 사이에 특정문자를 넣어서 문자열로 반환
+	function joinTest(){
+		var fruitArray=["apple","peach","lemon","lime"];
+		console.log(fruitArray.join("-"));
+		console.log(typeof fruitArray.join("-"));
+	}
+	
+	//sort(): 배열의 값을 정렬한다.
+	function sortTest01(){
+		var arrayTest=["a","b","e","d","c"];
+		arrayTest.sort();//사전식 정렬이 기본...
+		console.log(arrayTest.toString());//toString():문자열로 변환
+		arrayTest.reverse();//역순으로 정렬
+		console.log(arrayTest.toString());
+	}
+	
+	//sort():기본이 사전식정렬이기 때문에 크기순 정렬X
+	function sortTest02(){
+		var arrayTest=[3,2,10,5,4,11,20,15];
+// 		arrayTest.sort(compareNum);//함수의 이름만 작성해야 기능을 전달
+// 		arrayTest.sort(function(a,b){return a-b;});//익명함수로 전달
+		arrayTest.sort((a,b)=>a-b);//화살표함수로 전달(리턴코드만 있다면 {}생략)
+		console.log(arrayTest.toString());
+	}
+	
+	//크기를 비교할 수 있는 기능 구현 --> 크기순 정렬을 할 수 있도록 sort()가...
+	function compareNum(a,b){//숫자 a와b를 받아서 a-b > 0, a-b < 0
+// 		return a-b;//오름차순
+		return b-a;//내림차순
+	}
+	
+	//배열의 접근 관련 메서드 3가지
+	//push():배열에 값을 저장할때 사용. 자동으로 인덱스 증가하면서 값이 저장된다.(java에서 List객체: list.add("value"))
+	//shift():배열에서 첫번째 요소의 값을 잘라내서 가져옴(원본배열이 변경)
+	//pop():배열에서 마지막 요소의 값을 잘라내서 가져옴(원본배열이 변경)
+	function pushAndShift(){
+		var queue=new Array();//선언
+		queue.push("first");
+		queue.push("second");
+		queue.push("third");
+		console.log(queue.toString()+":"+queue.length);
+		
+		var sVal=queue.shift();
+		console.log(`가져온값:${sVal},기존배열:${queue.toString()}`);
+		
+		var pVal=queue.pop();
+		console.log(`가져온값:${pVal},기존배열:${queue.toString()}`);
+	}
+	//slice()메서드
+	//문자열에 경우 subString(sindex,eindex) 기능
+	//배열의 값이 객체가 아닐경우에는 원본배열 변경하지 않는다.
+	//배열의 값이 객체일경우 참조복사한다.(얕은 복사)
+	function sliceTest(){
+		var arrayLit=[1,2,3,4,5];//값이 객체X
+		var arrayObj=new Array(4);//선언, 자릿수 정의
+			arrayObj[0]=new Array(1,2);//[[1,2]]
+			arrayObj[1]=new Array(3,4);
+			arrayObj[2]=new Array(5,6);
+			arrayObj[3]=new Array(7,8);//[[1,2],[3,4]....]
+		
+		var arrayObj02=arrayObj.slice(1,3);// [[3,4],[5,6]]
+		console.log(arrayObj02);//값을 추출해서 새로운 배열로 반환
+		
+		arrayObj02[1][0]=9;//추출한 배열에서 값을 변경하자
+		console.log(arrayObj);//복사한 배열에서 값을 변경하면 원본 배열도 변경된다.
+		
+		//얕은 복사, 깊은 복사
+		var aa=[[1,2,3],[4,5],[6,7]];//리터럴 방식 
+		//얕은 복사
+		var cc=aa;
+		cc[0][0]=20;
+		
+		//깊은복사
+		//     [[1,2,3]]
+		var bb=[[aa[0][0],aa[0][1],aa[0][2]],[aa[1][0],aa[1][1]]];
+		bb[0][0]=10;
+		console.log(aa.toString());
+		
+		//ES6추가 문법:spread 연산자
+		//     a[0]:[1,2,3]
+		var dd=[[...aa[0]],[...aa[1]],[...aa[2]]];
+		
+		//아규먼트의 길이값이 정의되지 않은 상황에서 사용: 아규먼트를 배열로 보자.
+		spreadTest(1,2,3,4,5,6,7,8);
+	}
+	//파라미터의 개수가 가변적일 경우 사용할 수 있다.
+	function spreadTest(...test){//test라는 배열로 받을 수 있다. 
+		for (var i = 0; i < test.length; i++) {
+			console.log(test[i]);
+		}
+	}
+	
+	//concat()
+// 	aa[0].concat(bb[0],cc[1])----> [aa,bb,cc]
+
+	/* splice(index)
+	   파라미터1개:파라미터의 인덱스부터 끝까지 삭제한다.(삭제기능)
+	   파라미터2개:시작인덱스부터 해당 길이값만큰 삭제한다.(삭제기능)
+	   파라미터3개이상: (시작인덱스,길이,변경할 값,변경할 값,변경할 값,....) (삭제,변경)
+	*/
+	function spliceTest(){
+		
+	}
+</script>
 </head>
 <body>
 <h1>배열객체</h1>
 <ol>
-	<li>다중배열</li>
-	<li>join()</li>
-	<li>배열저장/접근</li>
-	<li>slice():배열의 값을 부분적으로 추출해서 새로운 배열로 생성</li>
+	<li onclick="multiArray()">다중배열</li>
+	<li onclick="joinTest()">join()</li>
+	<li>
+		<ol>
+			<li onclick="sortTest01()">sort():사전식정렬</li>
+			<li onclick="sortTest02()">sort():숫자(크기)정렬</li>
+			<li>reverse():역순정렬</li>
+		</ol>
+	</li>
+	<li onclick="pushAndShift()">배열저장/접근</li>
+	<li onclick="sliceTest()">slice():배열의 값을 부분적으로 추출해서 새로운 배열로 생성</li>
 	<li>배열탐색하기:indexOf()/lastIndexOf()</li>
 	<li>concat():배열과 배열을 더할때</li>
-	<li>splice():배열요소를 검색하여 삭제/바꾸기</li>
+	<li onclick="spliceTest()">splice():배열요소를 검색하여 삭제/바꾸기</li>
 </ol>
 <script type="text/javascript">
 	//배열을 선언하는 방법
