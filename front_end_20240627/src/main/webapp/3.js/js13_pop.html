@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js13_pop.html</title>
+<script type="text/javascript">
+	//opener속성: open()를 이용해서 페이지를 열어준 부모 페이지를 나타냄
+	onload=function(){
+		//부모창으로 이동.DOM탐색하는 코드는 동일
+		var val=
+			window.opener.document.getElementsByName("val01")[0].value;
+		console.log(val);
+		document.getElementById("val").textContent=val;
+		
+		//창닫기 
+		//close():페이지를 닫아주는 기능
+		document.getElementsByTagName("button")[1].onclick=function(){
+			window.self.close();// self:자신의 창, top, parent..
+		}
+	}
+	
+	function childVal(){
+		var val=document.getElementsByName("childVal")[0].value;
+		//부모페이지에 접근해서 dom탐색후 값을 전달한다.
+		window.opener.document.getElementsByName("val02")[0].value=val;
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>난 팝업창이다~~</h1>
+<span id="val"></span>
+<input type="text" name="childVal"/>
+<button onclick="childVal()">전달</button>
+<button>창닫기</button>
+</body>
+</html>
+
+
+

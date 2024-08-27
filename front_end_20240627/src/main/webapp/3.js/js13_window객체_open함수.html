@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js13_window객체_open함수</title>
+<script type="text/javascript">
+	window.onload=function(){
+		document.querySelector("#btn").onclick=function(){
+			// open(url,title,prop):
+			//      페이지주소, 창의 제목, 팝업창의 속성
+			var url="js13_pop.html";//팝업창에 표현할 페이지 주소
+			var title="팝업창페이지";
+			var prop="width=400px,height=400px,top=300px,left=1000px";
+			window.open(url,title,prop);
+		}
+	}
+	
+</script>
+</head>
+<body>
+<h1>팝업창 만들기</h1>
+<input type="text" name="val01" value=""/>
+<button id="btn">팝업창</button>
+<h1>팝업창에서 전달된 값</h1>
+<input type="text" name="val02"/>
+</body>
+</html>
+
+
+
+
