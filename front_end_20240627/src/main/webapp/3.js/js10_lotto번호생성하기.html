@@ -33,8 +33,21 @@
 		//출력형식: 로또번호: 1-2-3-4-5-6     보너스번호: 7  
 		//배열관련 메서드를 활용해서 구현
 		//6개1개로 나눠서 출력, 정렬, 포맷(형식)
-		var balls7=lottoBalls();
-		
+		var balls7=lottoBalls();//[1,3,45,2,6,4,22]
+		//pop(): 뒤에서 한개 잘라내기해서 가져오는 기능
+		var bonus=balls7.pop();//원본배열:[1,3,45,2,6,4] , 22
+		//sort(): 기본기능은 사전식,오름차순 정렬 --> 크기순 정렬, 오름차순
+		balls7.sort((a,b)=>a-b);
+		//출력형식: "1-2-3-4-5-6" -> join("-")
+		var balls6=balls7.join("-");
+		console.log(balls6);
+		//DOM탐색에 개념을 모르면....
+// 		var spans=document.getElementsByTagName("span");
+		var spans=document.querySelectorAll("fieldset > span");
+		spans[1].innerHTML=`<strong>${balls6}</strong>`;
+		spans[3].innerHTML=`<strong>${bonus}</strong>`;
+		// set개념: Element.속성="값" , get개념: var attributeVal=Element.속성
+// 		var spanBalls6=spans[1].innerHTML;
 	}
 </script>
 </head>

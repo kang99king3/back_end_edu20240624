@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	#lottolist{
+	          width:400px; 
+	          text-align: center;
+	          font: 20pt bold ; 
+	          }
+	          
+	#lottolist td{
+
+					border: 1px;
+					border-style:solid;
+					border-color:  silver;
+					border-bottom-color: red;
+				 }  
+		 
+	#lotto{width:400px; 
+		   font: 20pt bold ; 
+		   color: red; 
+		   background-color:yellow;
+		   text-align: center;
+		   }	
+	   		         
+</style>
+<script type="text/javascript">
+	var lotto=new Array(6);//로또 번호 배열
+	var user=null;//사용자 배열
+	
+	//장수 설정을위한 배열 만들기
+	function userBall(num){
+		user=new Array(num);
+		var count=0;
+		while(true){
+			var ulotto=new Array(6);
+			makeLotto(ulotto);
+			user[count++]=ulotto;
+			if(count==num){
+				break;
+			}
+		}
+	}
+	
+	//로또한장만들기
+	function makeLotto(lottos){
+		var count=0;
+		while(true){
+			var ball=makeBall();
+			if(isCheck(lottos, ball)){
+				lottos[count++]=ball;
+			}
+			if(count==6){
+				break;
+			}
+		}
+	}
+	
+	//로또 번호가 같은 번호가 있는 지 확인
+	function isCheck(lottos,ball){
+		var bool=true;
+		for ( var i = 0; i < lottos.length; i++) {
+			if(lottos[i]==ball){
+				bool=false;
+				break;
+			}
+		}
+		return bool;
+	}
+	
+	//랜덤으로 볼 생성하기
+	function makeBall(){
+		return ~~(Math.random()*45)+1;
+	}
+	
+	//생성 된 로또 번호 출력하기
+	function printview(aa){
+		document.getElementById("lotto").innerHTML="";
+		var testTbody=document.getElementById("test");
+		testTbody.innerHTML="";
+		makeLotto(lotto);
+		userBall(parseInt(aa));
+		
+		for ( var i = 0; i < lotto.length; i++) {
+			var lnum=document.createTextNode(lotto[i]+" ");
+			document.getElementById("lotto").appendChild(lnum);
+		}
+		
+		for ( var j = 0; j < user.length; j++) {
+			var tr=document.createElement("tr");
+			for ( var k = 0; k < user[0].length; k++) {
+				var td=document.createElement("td");
+				var txt=document.createTextNode(user[j][k]);
+				td.appendChild(txt);
+				tr.appendChild(td);
+				if(win(lotto,user[j][k])){//숫자가 맞으면 true: 배경색을 orange로 채운다
+					td.setAttribute("bgcolor", "orange");
+					/*var attrs=document.createAttribute("bgcolor");
+					attrs.nodeValue="orange";
+					td.setAttributeNode(attrs); 익스플로러 버전*/
+				}
+			}
+			testTbody.appendChild(tr);
+		}
+	}
+	
+	//당첨확인하기
+	function win(lottos,userNum){
+		var bool=false;
+		for ( var i = 0; i < lottos.length; i++) {
+			if(lottos[i]==userNum){
+				bool=true;
+			}
+		}
+		return bool;
+	}
+	
+</script>
+</head>
+<body>
+<form>
+로또게임-구매 매수를 입력하세요 <input type="text" name="numvalue">
+<input type="button" value="go!" onclick="printview(numvalue.value)"><br>
+</form>
+로또 번호<br>
+<div id="lotto"></div>
+<table id="lottolist" border="1">
+	<tr><td colspan="6">당첨 번호 </td></tr>
+	<tbody id="test"></tbody>
+</table>
+</body>
+</html>

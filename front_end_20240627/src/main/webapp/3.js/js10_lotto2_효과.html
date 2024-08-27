@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#lottoBox{
+		width:600px;
+		height: 600px;
+		border:2px solid red;
+/* 		overflow: hidden; */
+	}
+	.ball{
+		width: 80px;
+		height: 80px;
+		border-radius: 40px;
+		border:1px solid black;
+		text-align: center;
+		line-height: 80px;
+		transition:1s transform;
+		transform:translate(50px);
+		position: absolute;
+	}
+	
+	.selball{
+		width: 80px;
+		height: 80px;
+		border-radius: 40px;
+		border:1px solid black;
+		text-align: center;
+		line-height: 80px;
+		position: absolute;
+		transition:1s transform;
+	}
+</style>
+<script type="text/javascript">
+	var balls;
+	window.onload=function(){
+		balls=document.getElementsByClassName("ball");
+		var count=1;
+		var ballPx=700;
+		for(var i=0;i<balls.length;i++){
+			balls[i].innerHTML=i+1;           // translate(20px,20px)
+			balls[i].style.transform="translate("+rnum()+"px,"+rnum()+"px)";
+			balls[i].style.background="rgb("+rnum02()+","+rnum02()+","+rnum02()+")";
+			
+			balls[i].onclick=function(){
+				if(count<=6){
+					document.getElementById("lottoNumber").innerHTML+=this.innerHTML+"&nbsp;";					
+					this.className="selball";
+					this.style.transform="translate("+ballPx+"px,0px)";
+					count++;
+					ballPx+=100;
+				}else{
+					alert("더이상 선택할 수 없습니다.");
+				}
+			}
+		}
+		
+	
+	}
+	
+	
+	function rnum(){
+		return ~~(Math.random()*500);
+	}
+	function rnum02(){
+		return ~~(Math.random()*256);
+	}
+	
+	
+	function lottoShuffle(){
+		var balls=document.getElementsByClassName("ball");
+		setInterval(aa
+		, 500);
+	}
+	
+	function aa() {
+		for(var i=0;i<balls.length;i++){
+			balls[i].style.transform="translate("+rnum()+"px,"+rnum()+"px"+")";
+		}
+	}	
+</script>
+</head>
+<body>
+<fieldset>
+	<legend>로또번호만들기</legend>
+	<span>로또번호:</span><span id="lottoNumber"></span>
+	<span>보너스번호:</span><span></span>
+	<button onclick="lottoShuffle()">로또섞기</button>
+</fieldset>
+<div id="lottoBox">
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div><div class="ball"></div>
+	<div class="ball"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
