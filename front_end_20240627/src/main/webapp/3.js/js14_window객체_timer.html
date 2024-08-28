@@ -15,9 +15,13 @@
 	
 	window.onload=()=>{
 		// setInterval(기능,시간[ms])
-		setInterval(timeView,1000);
+		var timeViewInterval=setInterval(timeView,1000);
+		
+		//멈춤버튼을 클릭했을때 setInerval을 정지시키자..
+		document.getElementsByTagName("button")[0].onclick=()=>{
+			window.clearInterval(timeViewInterval);
+		}
 	}
-	
 	
 	//현재시간을 출력하는 기능
 	function timeView(){
@@ -42,11 +46,23 @@
 		var inputAlarm=inputAlarmObj.value;//알람설정시간 가져오기
 		var aTime=inputAlarm*1000;//1초 == 1000ms 환산
 		
+		//사용자가 알람이 설정됐다는걸 알게 하기위해 설정버튼의 폰트색을 red로 적용 
+		document.getElementById("on").style.color="red";
+		
 		setTimeout(()=>{
+			//알람이 울리는 코드
 			var musicObj='<embed src="Kalimba.mp3" hidden="hidden" />';
 			document.getElementById("song").innerHTML=musicObj;
-			
+			document.getElementById("off").disabled=""; //비활성화->활성화
 		},aTime);
+	}
+	
+	//알람끄기
+	function finishAlarm(){
+		document.getElementById("song").innerHTML="";
+		document.getElementById("off").disabled="disabled";
+		document.getElementById("on").style.color="black";
+		document.getElementById("setAlarm").style.display="none";
 	}
 </script>
 <style type="text/css">
@@ -92,13 +108,14 @@
 </style>
 </head>
 <body>
+<button>시간 멈춤(clearInterval확인용구현)</button>
 <div id="clock">
 	<div id="btn" onclick="view()">알람</div>
 	<div id="se">time</div>
 	<div id="setAlarm">
 		<input type="number" id="alarm"/><b>초 후</b>
 		<button id="on" onclick="setAlarm()">설정</button>
-		<button id="off">끄기</button>
+		<button id="off" onclick="finishAlarm()" disabled="disabled" >끄기</button>
 	</div>
 </div>
 <div id="song"></div>
