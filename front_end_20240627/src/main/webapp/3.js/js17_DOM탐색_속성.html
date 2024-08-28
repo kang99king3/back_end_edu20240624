@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js17_DOM탐색_속성.html</title>
+<script type="text/javascript">
+	/*
+		DOM객체의 종류
+		- Document: 문서에 접근할 때 사용 -> 문서객체
+		- Element: tag, 요소, 엘리먼트로 불림 -> 태그객체
+										  -> DOM탐색메서드:getElementBy...직접선택방식
+		- Attribute: 속성을 객체로 정의 -> id,class,title,style,selected,checked,value
+		- Text: text를 객체로 정의 -> <p>text</p> -> text객체
+		- Node: html을 구성하는 모든 요소를 정의
+		var ele=new Element();(X) -> 메서드를 통해 객체를 얻어오는 방식
+		 
+		객체를 생성하는 방법
+		1.DOM탐색 메서드를 이용(직접선택)
+		2.DOM탐색 속성을 이용(간접선택: 관계성)
+		 - parentNode속성: 타켓 요소의 부모요소를 구하는 속성 : 반환타입 Node	
+		 - parentElement속성: 동일한 기능 : 반환타입 Element
+		 
+		 - childNodes속성: 타켓 요소의 자식요소를 구하는 속성 : 반환타입 Nodes 
+		 - children속성: 동일한 기능 : 반환타입 Element
+		 
+		 - previousSibling/nextSibling : 형제 요소를 구함 : 반환타입 Node
+		 - previousElementSibling/nextElementSibling : 기능동일 : 반환타입 Element
+	
+		 3.create 메서드를 이용하는 방법
+		 - createElement(): Tag
+		 - createAttribute(): 속성
+		 - createTextNode(): text
+		 */
+		 //parent관련 속성
+		 function searchPar(){
+			 var child02=document.getElementsByTagName("p")[1];//target탐색
+			 console.log(child02.nodeName);// 요소객체의 이름반환
+			 console.log(child02.tagName);// 태그객체의 이름반환
+			 
+			 var divNode=child02.parentNode;//부모요소 구하기
+			 console.log(divNode.nodeName);
+			 
+			 var divEle=child02.parentElement;//부모엘리먼트 구하기
+			 console.log(divEle.nodeName);
+			 
+			 divEle.style.backgroundColor="yellow";
+		 }
+</script>
+</head>
+<body>
+<div>
+	<p>child01</p>
+	<p>child02</p>
+	<p>child03</p>
+</div>
+<button onclick="searchPar()">부모탐색</button>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -31,8 +31,49 @@
 <script type="text/javascript">
 	function allSel(chkAllObj){
 		console.log(chkAllObj.checked);//전체선택 체크박스의 체크여부를 확인할수있다
+	
+		//체크박스 여러개를 탐색
+		var chks=document.getElementsByName("chk");//[chk,chk,chk,chk]
+		//chkAllObj.checked ---> true/false
+		chks.forEach((chk)=>{
+			chk.checked=chkAllObj.checked;
+		});
 	}
 	
+	//체크박스들의 체크여부를 확인해서 4개의 박스에 배경색을 적용
+	function sel(){
+		//체크박스여러개 탐색
+		var chks=document.getElementsByName("chk");
+		chks.forEach((chk)=>{
+			if(chk.checked){//true/false
+				document.getElementById(chk.value).style.backgroundColor=chk.value;
+			}else{
+				document.getElementById(chk.value).style.backgroundColor="white";
+			}
+		});
+	}
+	
+	//초기화 작업
+	function clearDiv(){
+		var divs=document.getElementsByTagName("div");
+// 		console.log(divs[0].style.backgroundColor);
+		//DOM탐색 메서드를 통해서 반환된 배열객체
+		//---> 유사배열객체로 실제 배열하고는 다르다.
+		// Array.forEach() --> 
+// 		divs.forEach(function(div){ // forEach()사용(X)
+// // 			div.style.backgroundColor="white";
+// 			div.title="white";
+// 		});
+
+		for (var i = 0; i < divs.length; i++) {
+			divs[i].style.backgroundColor="white";
+		}
+		
+		//form요소 구성요소중에 초기화기능: 
+		// input type="reset" ---> reset()
+		// document객체의 속성: body,forms.....
+		document.forms[0].reset();// form요소 내부의 요소들을 초기화한다.
+	}
 </script>
 </head>
 <body>
