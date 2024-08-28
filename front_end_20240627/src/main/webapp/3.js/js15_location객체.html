@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js15_location객체.html</title>
+<script type="text/javascript">
+	function locTest(){
+// 		location.href="js13_pop.html";
+// 		location.assign("js13_pop.html");//href와 동일한 효과 제공
+// 		location.reload();//새로고침 효과
+// 		location.replace("js13_pop.html");//페이지이동 -> 이력이 남지 않는다.
+		
+		//브라우저의 target: top, parent, self, name속성이름
+		//top.location.href="url"
+		subframe.location.href="js13_pop.html";
+	}
+</script>
+</head>
+<body>
+<h1>Location객체</h1>
+<script type="text/javascript">
+	document.write("hash:"+location.hash+"<br/>");
+	document.write("search:"+location.search+"<br/>");
+	document.write("host:"+location.host+"<br/>");
+	document.write("port:"+location.port+"<br/>");
+	document.write("pathname:"+location.pathname+"<br/>");
+	document.write("protocol:"+location.protocol+"<br/>");
+	document.write("href:"+location.href+"<br/>");
+</script>
+<a href="js13_pop.html">전송</a>
+<button onclick="locTest()">전송</button>
+<iframe name="subframe" src="js09_Array객체.html" 
+						width="500px" height="500px"></iframe>
+</body>
+</html>
+
+
+
+
+

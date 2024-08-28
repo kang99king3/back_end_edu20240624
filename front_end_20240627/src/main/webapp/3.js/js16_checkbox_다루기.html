@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js16_checkbox_다루기.html</title>
+<style type="text/css">
+	#red,#yellow,#blue,#black{
+		width:150px;
+		height: 150px;
+		border: 1px solid gray;
+		color:gray;
+		text-align: center;
+		line-height: 150px;
+		position: absolute;
+	}
+	#yellow{
+		left:160px;
+	}
+	#blue{
+		top:160px;
+	}
+	#black{
+		left:160px;
+		top:160px;
+	}
+	#base{
+		position: absolute;
+		top:320px;
+	}
+</style>
+<script type="text/javascript">
+	function allSel(chkAllObj){
+		console.log(chkAllObj.checked);//전체선택 체크박스의 체크여부를 확인할수있다
+	}
+	
+</script>
+</head>
+<body>
+<div id="red">red</div>
+<div id="yellow">yellow</div>
+<div id="blue">blue</div>
+<div id="black">black</div>
+<div id="base">
+	<form>
+		<input type="checkbox" name="all" onclick="allSel(this)"/>전체선택<br/>
+		<input type="checkbox" name="chk" value="red"/>빨강<br/>
+		<input type="checkbox" name="chk" value="yellow"/>노랑<br/>
+		<input type="checkbox" name="chk" value="blue"/>파랑<br/>
+		<input type="checkbox" name="chk" value="black"/>검정<br/>
+		<button type="button" onclick="sel()">선택</button>
+		<button type="button" onclick="clearDiv()">초기화</button>
+	</form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
