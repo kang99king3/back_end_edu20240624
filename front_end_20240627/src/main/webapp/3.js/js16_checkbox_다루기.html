@@ -29,6 +29,23 @@
 	}
 </style>
 <script type="text/javascript">
+	//1번 문제: 선택에 대한 유효값 처리 - "최소한 하나 이상 체크하세요!" 경고창 띄우기
+	//         sel()함수에서 구현
+
+	//2번 문제: 전체 선택 체크박스를 클릭하면 chk박스모두 클릭이되는데
+	//         이중에 일부 박스에 체크를 해제했을때  
+	//         전체선택 박스도 해제되도록 구현 
+	//         일부 박스를 체크했을때 모두 체크가 되는 경우면 전체선택박스도 체크되도록 구현
+	//* 4개의 chk박스들 중에 click이벤트가 발생될때 위 내용의 대한 코드가 실행되도록 구현
+	onload=function(){
+		var chks=document.getElementsByName("chk");
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].onclick=function(){ //chk박스들중에 클릭이벤트가 발생하면...
+				
+			}
+		}
+	}
+	
 	function allSel(chkAllObj){
 		console.log(chkAllObj.checked);//전체선택 체크박스의 체크여부를 확인할수있다
 	
@@ -41,7 +58,9 @@
 	}
 	
 	//체크박스들의 체크여부를 확인해서 4개의 박스에 배경색을 적용
+	
 	function sel(){
+		
 		//체크박스여러개 탐색
 		var chks=document.getElementsByName("chk");
 		chks.forEach((chk)=>{
@@ -74,6 +93,8 @@
 		// document객체의 속성: body,forms.....
 		document.forms[0].reset();// form요소 내부의 요소들을 초기화한다.
 	}
+	
+	
 </script>
 </head>
 <body>
