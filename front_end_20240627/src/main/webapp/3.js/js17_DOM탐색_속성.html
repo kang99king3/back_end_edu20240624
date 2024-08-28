@@ -45,6 +45,45 @@
 			 
 			 divEle.style.backgroundColor="yellow";
 		 }
+		 //child관련 속성
+		 function searchChi(){
+			 var div = document.querySelectorAll("div")[0];//target요소
+			 
+			 //Node를 반환하는 속성을 이용할 경우: 자식위치에 있는 모든 요소가 반환
+			 var divChildNodes=div.childNodes;//['text',p,'text',p....]
+			 console.log(divChildNodes);
+			 
+			 //Element를 반환하는 속성을 이용할 경우:자식위치에 모든 태그요소가 반환
+			 var divChildElements=div.children;//[p,p,p]
+			 console.log(divChildElements);
+			 divChildElements[0].style.color="red";
+			 divChildElements[1].textContent="자식요소02";
+		 }
+		 
+		 //firstChild,lastChild : 자식요소중에 첫번째/마지막번째 요소를 탐색
+		 function first_LastChi(){
+			 var div=document.querySelectorAll("div")[0];//target요소
+			 var firstChi=div.firstChild;//node반환
+			 var firstChiEle=div.firstElementChild;//element반환
+			 console.log(firstChi.nodeName+","+firstChiEle.textContent);
+			 
+			 var lastChi=div.lastChild;
+			 var lastChiEle=div.lastElementChild;
+			 console.log(lastChi.nodeName+","+lastChiEle.textContent);
+		 }
+		 
+		 function siblingTest(){
+			 var child02=document.getElementsByTagName("p")[1];
+			 
+			 //Node반환
+			 var preP=child02.previousSibling;//target 앞에 오는 node
+			 var nextP=child02.nextSibling;//target 뒤에 오는 node
+			 console.log(preP.nodeName+":"+nextP.nodeName);
+			 //Element반환
+			 var prePEle=child02.previousElementSibling;
+			 var nextPEle=child02.nextElementSibling;
+			 console.log(prePEle.textContent+":"+nextPEle.textContent);
+		 }
 </script>
 </head>
 <body>
@@ -54,6 +93,9 @@
 	<p>child03</p>
 </div>
 <button onclick="searchPar()">부모탐색</button>
+<button onclick="searchChi()">자식탐색</button>
+<button onclick="first_LastChi()">자식탐색2</button>
+<button onclick="siblingTest()">형제탐색</button>
 </body>
 </html>
 
