@@ -42,9 +42,17 @@
 		var chks=document.getElementsByName("chk");
 		for (var i = 0; i < chks.length; i++) {
 			chks[i].onclick=function(){ //chk박스들중에 클릭이벤트가 발생하면...
-				
+				//체크박스총개수==체크된 박스의 개수
+				if(chks.length==isCheckCount(chks)){
+					document.getElementsByName("all")[0].checked=true;
+				}else{
+					document.getElementsByName("all")[0].checked=false;
+				}
 			}
 		}
+		
+		//checked: 체크된 상태
+// 		document.querySelectorAll("input[name=chk:checked]");//체크된 input요소만 구하기
 	}
 	
 	function allSel(chkAllObj){
@@ -58,19 +66,41 @@
 		});
 	}
 	
-	//체크박스들의 체크여부를 확인해서 4개의 박스에 배경색을 적용
+	function isCheckCount(chks){//chks: 체크박스 객체 리스트
+		var count=0;//체크된 체크박스의 개수
+		for (var i = 0; i < chks.length; i++) {
+			if(chks[i].checked){//체크여부 판단
+				count++;
+			}
+		}
+		return count;
+	}
 	
+	//체크박스들의 체크여부를 확인해서 4개의 박스에 배경색을 적용
 	function sel(){
 		
 		//체크박스여러개 탐색
 		var chks=document.getElementsByName("chk");
-		chks.forEach((chk)=>{
-			if(chk.checked){//true/false
-				document.getElementById(chk.value).style.backgroundColor=chk.value;
-			}else{
-				document.getElementById(chk.value).style.backgroundColor="white";
-			}
-		});
+		
+// 		var count=0;//체크된 체크박스의 개수
+// 		for (var i = 0; i < chks.length; i++) {
+// 			if(chks[i].checked){//체크여부 판단
+// 				count++;
+// 			}
+// 		}
+		var count=isCheckCount(chks);
+		
+		if(count==0){
+			alert("최소 하나 이상 체크하세요");
+		}else{
+			chks.forEach((chk)=>{
+				if(chk.checked){//true/false
+					document.getElementById(chk.value).style.backgroundColor=chk.value;
+				}else{
+					document.getElementById(chk.value).style.backgroundColor="white";
+				}
+			});
+		}
 	}
 	
 	//초기화 작업

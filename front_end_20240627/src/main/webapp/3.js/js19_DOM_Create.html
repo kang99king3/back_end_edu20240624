@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js19_DOM_Create</title>
+<script type="text/javascript">
+	// Element객체 생성하기: document.createElement("div") -> element객체 반환
+	//      - setAttribute() : div.setAttribute("id","hk");// 속성객체를 재사용 X
+	//      - setAttributeNode() : div.setAttributeNode(Attr객체);// 객체를 추가할때
+	
+	// Attribute객체 생성하기: document.createAttribute("속성이름");//Attribute 객체 반환
+	//      - nodeValue: 속성값을 정의: attr.nodeValue="hk";
+	
+	// Text객체 생성하기: document.createTextNode("text"); // Text객체 반환
+	// ele.textContent="text" 방식이 달라요...
+	
+	function eleCreate(){
+		//innerHTML활용
+// 		document.getElementById("main").innerHTML
+// 		+="<div style='color:red;'>"+"엘리먼트"+"</div>";
+
+		var div=document.createElement("div");//1.<div></div> 객체생성
+		var styleAttr=document.createAttribute("style");//2.style="" 객체생성
+		var txt=document.createTextNode("엘리먼트");//3."엘리먼트"객체 생성
+		
+		//속성적용하기
+		styleAttr.nodeValue="color:red;";//styleAttr-> style="color:red;"
+		
+// 		div.setAttribute("name","value"); //현재 코드에서는 (X)
+		div.setAttribute("color","red");//속성객체를 사용하지 않는다면...
+		div.setAttributeNode(styleAttr);//<div style="color:red;"></div>
+		
+		//text넣기
+// 		div.textContent="엘리먼트";// 리터럴값 넣을때
+		div.appendChild(txt);//appendChild(Node객체) -> <div style="color:red;">엘리먼트</div>
+		
+		//body에 엘리먼트 객체를 추가
+		document.getElementById("main").appendChild(div);
+	}
+</script>
+</head>
+<body>
+<h1>요소 생성하기</h1>
+<button onclick="eleCreate()">엘리먼트 생성하기</button>
+<div id="main"></div>
+</body>
+</html>
+
+
+
+

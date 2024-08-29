@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js20_DOM_속성활용</title>
+<style type="text/css">
+	a{
+		text-decoration: none;
+		font-size: 40px;
+	}
+	img{
+		width: 300px;
+		height: 200px;
+		vertical-align: middle; /* img, td, ... */
+	}
+</style>
+<script type="text/javascript">
+	function creatImg(){
+		//라디오버튼들을 탐색해서 객체로 가져오기
+		var rdos=document.getElementsByName("rbtn");//[rdo,rdo,rdo]
+		
+		var val="";//이미지의 경로
+		//1번방법: for문을 이용해서 하나하나 다 찾아봐야한다.
+		for (var i = 0; i < rdos.length; i++) {
+			if(rdos[i].checked){
+				val=rdos[i].value;// value="img/0.jpg.."
+				break;
+			}
+		}
+		//2번방법: selector표현식으로 간단히 체크된 요소만 찾는다.
+		val=document.querySelector("input:checked").value;
+		console.log(val);
+		
+		//img태그를 생성하자
+		var img = document.createElement("img");//<img>생성
+		img.setAttribute("src",val);// <img src="img/0.jpg"/>
+		console.log(img);
+		
+		var imgView=document.getElementById("imgview");//img요소를 출력할 박스
+		imgView.innerHTML="";//내부요소 비우기
+		imgView.appendChild(img);//비우고 추가하기
+	}
+	
+	/*
+		속성에 관련된 메서드 정리
+		1.setAttribute("name","value"): 속성을 엘리먼트에 추가(리터럴)
+		2.setAttributeNode(Attr name): 속성을 엘리먼트에 추가(객체)
+		3.getAtrribute("속성이름"): 속성의 값을 가져온다.
+		4.hasAttribute("속성이름"): 속성이 존재하는지 여부 (true/false)
+	*/
+	onload=function(){
+		var anchs=document.getElementsByTagName("a");//[a,a]
+		var img=document.getElementsByTagName("img")[0];//[img] -> img
+		console.log("이미지태그:"+img.tagName);//nodeName, tagName 요소의 이름을 반환
+		console.log("img요소에 alt속성이 있는지 여부:"+img.hasAttribute("alt"));
+		
+		var count=0;
+		//왼쪽 a태그를 클릭했을때
+		anchs[0].onclick=function(){
+			var imgTitle=img.getAttribute("title");
+			if(imgTitle=="img0"){
+				alert("첫번째 이미지입니다.");
+			}else{
+				img.setAttribute("src","img/"+(--count)+".jpg");// 0.jpg 1.jpg 2.jpg
+				img.setAttribute("title","img"+count);// --count , count-- 차이점
+			}
+		}
+		//오른쪽 a태그를 클릭했을때 
+		anchs[1].onclick=function(){
+			var imgTitle=img.getAttribute("title");
+			if(imgTitle=="img2"){
+				alert("마지막 이미지입니다.");
+			}else{
+				img.setAttribute("src","img/"+(++count)+".jpg");// 0.jpg 1.jpg 2.jpg
+				img.setAttribute("title","img"+count);// --count , count-- 차이점
+			}
+		}
+	}
+		
+</script>
+</head>
+<body>
+<h1>선택된 목록에 해당하는 이미지 보여주기</h1>
+<input type="radio" name="rbtn" value="img/0.jpg"/><label>자장면</label>
+<input type="radio" name="rbtn" value="img/1.jpg"/><label>치킨</label>
+<input type="radio" name="rbtn" value="img/2.jpg"/><label>떡볶이</label>
+<button onclick="creatImg()">이미지생성</button>
+<div id="imgview"></div>
+<h1>화살표 방향에 따라 이미지가 바뀌는 기능</h1>
+<div>
+	<a href="#" id="lt">◀</a>
+	<img src="img/0.jpg" title="img0" alt="음식사진"/>
+	<a href="#" id="rt">▶</a>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -3,6 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <title>js18_DOM탐색_속성_TEST</title>
+<script type="text/javascript">
+	function testSearch(){
+		//1. 
+		var div=document.getElementById("a").parentNode;
+		console.log(div.nodeName);
+		div.style.backgroundColor="red";
+		
+		//2.
+		var divB=document.getElementById("b");
+		console.log(divB.childNodes.length);
+		divB.childNodes[3].style.fontSize="20pt";
+	}
+	
+	function testSibling(){
+		var span=document.getElementsByClassName("sub")[0];//[span,span]
+		//span ->      ul      -> li[0]
+		span.nextElementSibling.firstElementChild.textContent="첫번째요소";
+	}
+	//추가 내용 정리
+	// DOM탐색메서드: getElement~ 메서드는 유사배열반환(HTMLCollection타입)
+	//              일반for문을 사용해야 함. -> forEach(),map()....(X)
+	//              querySelector(),querySelectorAll() : 유사배열(nodeList타입)
+	//              -> forEach(),map()....(O)
+	// document.getEle....작성 
+	// document객체에는 getElement~, querySelector~ 지원
+	// Element객체에서는 querySelector지원
+	// 작성: document.getElementById().getElementByClassName(); (X)
+	//      document.getElementById().querySelector(); (O)
+	
+	onload=function(){
+		//target에 따라 탐색하는 엘리먼트 대상이 달라지게 구현  ----> 간접탐색필요
+		var span=document.getElementsByClassName("sub");//[span,span]
+		for (var i = 0; i < span.length; i++) {
+			span[i].onclick=(event)=>{// 이벤트에 콜백함수에 파라미터로 이벤트 객체를 받을 수 있다.
+				//실제로 이벤트가 발생된 타켓을 구해서 적용한다.
+				event.target.nextElementSibling.firstElementChild.textContent="첫번째요소";
+			}
+		}
+		
+	}
+	
+</script>
 </head>
 <body>
 <h1>1. test01태그(id='a')를 포함한 div태그의 배경색을 적용하세요(parentNode속성사용)</h1>

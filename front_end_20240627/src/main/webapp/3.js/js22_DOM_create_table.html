@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js22_DOM_create_table.html</title>
+<script type="text/javascript">
+	// 1. 10개까지만 입력되도록 처리(경고창:10개까지만 추가가 가능합니다.)
+	// 2. 입력이 안된 목록 알려주기(경고창:모두 입력해야 합니다.(id,pw,addr,phone))
+	
+	function tableVal(){
+		var inputs=document.querySelectorAll("form[name=formTest] input[name]");
+		console.log(inputs[0].value);
+		
+		//4개의 입력값 --> 하나에 행에 표현 --> tr객체 하나필요, td객체 4개필요
+		var tr=document.createElement("tr");//<tr><td></td><td></td>..</tr>
+		for (var i = 0; i < inputs.length; i++) {
+			var td=document.createElement("td");//<td></td>
+			td.textContent=inputs[i].value; //<td>value</td>
+			tr.appendChild(td);// <tr><td>value</td></tr>
+		}
+		
+		//완성된 tr을 tbody에 추가한다.
+		document.getElementById("addtr").appendChild(tr);
+	}
+		
+</script>
+</head>
+<body>
+<form name="formTest">
+	<table border="1">
+		<caption>회원정보입력</caption>
+		<col width="100px"><col width="300px">
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" name="id"/></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type="password" name="pw"/></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="addr"/></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="tel" name="phone"/></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="추가" onclick="tableVal()"/></td>
+		</tr>
+	</table>
+</form>
+<div id="addTable">
+	<table border="1" id="ctb">
+		<caption>회원정보목록</caption>
+		<col width="100px">
+		<col width="100px">
+		<col width="300px">
+		<col width="200px">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>주소</th>
+				<th>전화번호</th>
+			</tr>
+		</thead>
+		<tbody id="addtr">
+		
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

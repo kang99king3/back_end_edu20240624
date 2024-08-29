@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js21_DOM_add.html</title>
+<script type="text/javascript">
+	/*
+		innerHTML : "<b>텍스트형식</b>"의 HTML요소를 태그 내부에 표현
+		textContent : "텍스트형식" 텍스트요소를 태그 내부에 표현(텍스트로만 표현가능)
+		appendChild(Node 객체) : 자식요소에 마지막에 추가(객체를 대상)
+		insertBefore(Node new, Node old) : 자식요소 중에 타겟을 지정해서 그 앞에 추가(객체대상)
+		
+		--주의사항
+		  div.appendChild("<p>text</p>") (X)
+		  
+		  var p=document.getElementById("id");// 탐색해서 생성된 객체
+		  var p=document.createElement("p");//새로 생성한 객체
+		  div.appendChild(p); (O)
+		
+		  div.innerHTML="<p>text</p>";
+	*/
+	var count=0;
+	function addElement(){
+		var fieldset=document.getElementById("addEle");//부모태그: 타켓 지정
+		
+		var p=document.createElement("p");//p태그 새로 생성
+		//문자열로 text를 추가할 경우 
+		p.textContent=(count++)+" 자식태그들중에 마지막에 추가된다.";
+		
+		//Text객체로 생성하기
+// 		var txt=document.createTextNode((count++)+" 자식태그들중에 마지막에 추가된다.");
+// 		p.textContent=txt;// 객체형식으로 p태그에 저장된다. -> text로 표현 안됨
+//      Text객체로 추가할 경우
+// 		p.appendChild(txt);
+		
+		fieldset.appendChild(p);
+	}
+	
+	function addBeforeElement(){
+		var fieldset=document.getElementById("addEle");//부모태그: 타켓 지정
+		
+		//새로 추가해줄 요소 생성
+		var newP=document.createElement("p");
+		newP.textContent=(count++)+"엘리먼트의 앞에 추가한다.";// <p>text</p>
+		
+		var oldDiv=document.querySelector("#addEle > div");
+		
+		//oldDiv 요소 앞에 newP요소를 추가한다.
+		fieldset.insertBefore(newP,oldDiv);
+	}
+	
+	function moveEle(){
+		//문서에 존재하는 요소를 객체탐색해서 append하면 객체가 이동한다.
+		var moveDiv=document.getElementById("addEle").lastElementChild;
+		document.getElementById("addEle2").appendChild(moveDiv);
+	}
+</script>
+</head>
+<body>
+<h1>태그추가하기</h1>
+<button onclick="addElement()">append()실행</button>
+<button onclick="addBeforeElement()">insertBefore()실행</button>
+<button onclick="moveEle()">요소이동</button>
+<fieldset id="addEle">
+	<legend>부모태그</legend>
+	
+	<div>div태그</div>
+</fieldset>
+<fieldset id="addEle2">
+	<legend>이동할 요소박스</legend>
+</fieldset>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
