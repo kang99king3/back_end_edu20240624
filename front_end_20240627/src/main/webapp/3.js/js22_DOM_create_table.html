@@ -9,18 +9,52 @@
 	
 	function tableVal(){
 		var inputs=document.querySelectorAll("form[name=formTest] input[name]");
-		console.log(inputs[0].value);
+		//input요소에 입력된 내용이 없다면 문자열타입 ""  : "", null, undefined
+		console.log(typeof inputs[0].value);
 		
-		//4개의 입력값 --> 하나에 행에 표현 --> tr객체 하나필요, td객체 4개필요
-		var tr=document.createElement("tr");//<tr><td></td><td></td>..</tr>
-		for (var i = 0; i < inputs.length; i++) {
-			var td=document.createElement("td");//<td></td>
-			td.textContent=inputs[i].value; //<td>value</td>
-			tr.appendChild(td);// <tr><td>value</td></tr>
+		var count=0;
+		var msg="";//입력이 안된 목록을 문자열로 저장
+		inputs.forEach((input)=>{
+			//입력박스에 입력 여부 확인
+			if(input.value==null||input.value==""||input.value==undefined){
+				count++; //입력안된 input요소가 있으면 count올림
+				// <input type="text" name="id" value="hk"/>
+// 				msg+=`${input.name} `;
+				//   input.    td    .      th              . 아이디     +" "
+				msg+=input.parentNode.previousElementSibling.textContent+" ";
+			}
+		});
+	
+		console.log(msg);
+		
+// 		var tbodyTrCount=document.getElementById("addtr").children.length;
+		//childElementCount속성: 자식요소의 개수를 반환 속성
+		var tbodyTrCount=document.getElementById("addtr").childElementCount;
+		console.log(tbodyTrCount);
+		
+		
+		if(count>0){
+// 			alert("모두 입력하세요~~("+msg+")");
+			alert(`모두 입력하세요~~(${msg})`);
+		}else{
+			if(tbodyTrCount<10){
+				//4개의 입력값 --> 하나에 행에 표현 --> tr객체 하나필요, td객체 4개필요
+				var tr=document.createElement("tr");//<tr><td></td><td></td>..</tr>
+				for (var i = 0; i < inputs.length; i++) {
+					var td=document.createElement("td");//<td></td>
+					td.textContent=inputs[i].value; //<td>value</td>
+					tr.appendChild(td);// <tr><td>value</td></tr>
+				}
+				
+				//완성된 tr을 tbody에 추가한다.
+				document.getElementById("addtr").appendChild(tr);
+				
+			}else{
+				alert("10개까지만 추가가 가능합니다.");
+			}
 		}
 		
-		//완성된 tr을 tbody에 추가한다.
-		document.getElementById("addtr").appendChild(tr);
+		
 	}
 		
 </script>
@@ -67,7 +101,7 @@
 			</tr>
 		</thead>
 		<tbody id="addtr">
-		
+			
 		</tbody>
 	</table>
 </div>
