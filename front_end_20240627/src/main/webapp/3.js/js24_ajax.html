@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>js24_ajax</title>
 <script type="text/javascript">
+// 실습: XML 데이터로 파싱하는 방법 구현
+
 	function ajaxGet(){
 		//비동기처리 지원 객체 생성
 		var xhr=new XMLHttpRequest();
@@ -21,23 +23,124 @@
 			if(xhr.readyState === 4 && xhr.status === 200){
 // 				xhr.responseText : 응답한 데이터를 텍스트 반환
 //              -응답데이터를 처리
+//               JSON.parse('{"a":1,"b":2}'): Json형태의 문자열 --> JS객체로 변환 : 받을 때 사용
+//               JSON.stringify({"a":1,"b":2}):JS객체 --> Json형태의 문자열 변환: 보낼 때 사용
+				var data=xhr.responseText;//Text데이터
+					data=JSON.parse(xhr.responseText);// JS객체변환
+					
+				console.log(data.id+":"+data.name); //{id:hk,name:한경}객체
+				//rendering을 하자: CSR개념 --> SPA구현
+				var resultView=document.querySelector("#result");
+				resultView.innerHTML="<p>"+data.id+"</p>"
+				  					+"<p>"+data.name+"</p>"
+				  					+"<p>"+data.addr+"</p>";
+// 				 react -> 표현 문법: JSX
+// 				  ()=>{
+// 					return (
+// 						<div>
+// 							<div>${data.id}</div>
+// 							<div>${data.name}</div>
+// 							<div>${data.addr}</div>
+// 						</div>
+// 					);
+// 				}  					
+			}
+		}
+			
+		//요청을 서버로 전송하자
+		xhr.send();
+	}
+	
+	function ajaxPost(){
+		//비동기처리 지원 객체 생성
+		var xhr=new XMLHttpRequest();
+		
+		//전송할 데이터는 json형식의 텍스트로 변환
+		var params = JSON.stringify({num:1,id:"hk"});
+		
+		//요청실행 위한 정보 설정:(요청방식,요청 주소, 비동기여부(true:비동기,false:동기)
+		xhr.open("POST","data.json",true);
+		
+		//헤더 설정: 데이터 형식을 설정함(post방식일 경우 설정)
+		xhr.setRequestHeader("Content-type","application/json;charset=UTF-8");
+		
+		//요청이 완료된 후에 처리할 작업을 정의
+		//- 요청 결과에 대한 처리 변화를 지정한다.
+		xhr.onreadystatechange=function(){
+			// readyState가 4이면 완료, status가 200이면 성공을 의미
+			if(xhr.readyState === 4 && xhr.status === 200){
+// 				xhr.responseText : 응답한 데이터를 텍스트 반환
+//              -응답데이터를 처리
 //               JSON.parse(): Json형태의 문자열 --> JS객체로 변환 : 받을 때 사용
 //               JSON.stringify():JS객체 --> Json형태의 문자열 변환: 보낼 때 사용
 				var data=xhr.responseText;//Text데이터
 					data=JSON.parse(xhr.responseText);// JS객체변환
 					
 				console.log(data.id+":"+data.name); //{id:hk,name:한경}객체
-				
+				//rendering을 하자: CSR개념 --> SPA구현
+				var resultView=document.querySelector("#result");
+				resultView.innerHTML="<p>"+data.id+"</p>"
+				  					+"<p>"+data.name+"</p>"
+				  					+"<p>"+data.addr+"</p>";
 			}
 		}
-		
+			
 		//요청을 서버로 전송하자
-		xhr.send();
+		xhr.send(params);// POST요청일 경우 send()에 전달하여 전송한다.
 	}
+	
+	//-----promise 사용하기 
+	function promiseTest(method,url,data=null){ // promiseTest(post,...json)
+		return new Promise((resolve,reject)=>{
+			var xhr=new XMLHttpRequest();
+			var params="num=1&id=hk";
+			xhr.open(method,url,true);
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState ===4){
+					if(xhr.status>=200 && xhr.status <300){
+						//응답 데이터를 처리
+						resolve(xhr.responseText);
+					}else{
+						//요청 실패의 경우 처리
+						reject(new Error("요청실패:"+xhr.status));
+					}
+				}
+			};
+			
+			xhr.send();
+		});
+	}
+	//poromise는 구현할때 관리하는 방법을 제공
+	function ajaxPromise(){
+		promiseTest("GET","data.json")
+			.then((response) => {
+				const data=JSON.parse(response);
+				console.log(data);
+			})
+			.catch(error=>{
+				console.error("실패:"+error);
+			});
+	}
+	
+	// promise기반의 ajax처리 API
+	fetch('data.json')
+		.then(response =>{
+			
+		})
+		.then(str=>{
+			
+		})
+		.catch(error=>{
+				console.error("실패:"+error);
+			});
+
 </script>
 </head>
 <body>
 <button onclick="ajaxGet()">GET방식</button>
+<button onclick="ajaxPost()">POST방식</button>
+<button onclick="ajaxPromise()">Promise</button>
+<div id="result"></div>
 </body>
 </html>
 
