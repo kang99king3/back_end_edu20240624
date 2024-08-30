@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js24_ajax</title>
+<script type="text/javascript">
+	function ajaxGet(){
+		//비동기처리 지원 객체 생성
+		var xhr=new XMLHttpRequest();
+		
+		//get방식에 경우는 주로 조회용으로 요청 : 검색어 --> 해당내용 조회
+		var params="num=1&id=hk";
+		
+		//요청실행 위한 정보 설정:(요청방식,요청 주소, 비동기여부(true:비동기,false:동기)
+		xhr.open("GET","data.json?"+params,true);
+		
+		//요청이 완료된 후에 처리할 작업을 정의
+		//- 요청 결과에 대한 처리 변화를 지정한다.
+		xhr.onreadystatechange=function(){
+			// readyState가 4이면 완료, status가 200이면 성공을 의미
+			if(xhr.readyState === 4 && xhr.status === 200){
+// 				xhr.responseText : 응답한 데이터를 텍스트 반환
+//              -응답데이터를 처리
+//               JSON.parse(): Json형태의 문자열 --> JS객체로 변환 : 받을 때 사용
+//               JSON.stringify():JS객체 --> Json형태의 문자열 변환: 보낼 때 사용
+				var data=xhr.responseText;//Text데이터
+					data=JSON.parse(xhr.responseText);// JS객체변환
+					
+				console.log(data.id+":"+data.name); //{id:hk,name:한경}객체
+				
+			}
+		}
+		
+		//요청을 서버로 전송하자
+		xhr.send();
+	}
+</script>
+</head>
+<body>
+<button onclick="ajaxGet()">GET방식</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
