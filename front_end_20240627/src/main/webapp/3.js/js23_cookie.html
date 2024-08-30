@@ -10,12 +10,14 @@
 							     response 
 	-cookie: 클라이언트 측에 저장되고, 용량이 적은 데이터, script로 원하는 정보를 보관,유지
 		    서버로 전송됨, 용량은 4kb 제한, 도메인 하나당 저장 쿠키 약 20개 정도
+		    
 	-저장형식: 문자열타입 -> "key이름:value;id=hk;name=hankyung;.."
 	                    : key:value형태로 저장하며, ;으로 구분하게된다.	
+	                    
 	-저장설정내용: key,value,expires 기본으로 설정
 			 - expires: 설정단위 UTC기준(세계표준시)으로 Date객체를 이용해서 설정
 	         - domain : 쿠키사용범위(주도메인: https://www.naver.com 
-	        		 			 서브도메인: https://www.cafe.naver.com
+	        		 			  서브도메인: https://www.cafe.naver.com
 	        		 			  주/서브도메인접근:  .naver.com)
 	         - path : 쿠키사용범위(/admin/a/b, /admin/config) 
 	         - secure :  https로만 접근할 수 있는지 여부 - true/false
@@ -26,6 +28,15 @@
 
 	function setCookieTest(){
 		setCookie("user","hk",1);
+	}
+			 
+	function removeCookieTest(){
+		removeCookie("user");
+	}		 
+	
+	function getCookieTest(){
+		var val=getCookie("user");
+		console.log(`저장된 쿠키값:${val}`);
 	}
 	
 	//setCookie() 구현 :   setCookie(a,b,c)
@@ -61,11 +72,30 @@
 // 		document.forms
 // 		document.body...
 	}
+	
+	//cookie="user":"hk" 유효기간설정  
+	//---->  user라는 이름의 값을 확인해서 상태유지활용
+	//원하는 cookie값 가져오는 기능
+	//"user=hk;name=kkk"
+	function getCookie(cookieName){
+		
+		return "cookieName에 해당하는 값 리턴";
+	}
+	
+	//cookie 삭제하는 기능: expires 유효기간을 재설정
+	function removeCookie(name){
+		var date=new Date();
+		date.setDate(date.getDate()-1);// 현재날짜의 1일전으로 셋팅->유효기간이 지남
+		document.cookie=name+"=;expires="+date.toUTCString();
+// 		document.cookie=name+"=;max-age=0";
+	}
 </script>
 </head>
 <body>
 <h1>쿠키사용하기</h1>
 <button onclick="setCookieTest()">쿠키추가</button>
+<button onclick="removeCookieTest()">쿠키삭제</button>
+<button onclick="getCookieTest()">쿠키가져오기</button>
 </body>
 </html>
 

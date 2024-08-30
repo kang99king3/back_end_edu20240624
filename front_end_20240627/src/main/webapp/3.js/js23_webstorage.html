@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js23_webstorage.html</title>
+<script type="text/javascript">
+	/*
+		Web Storage
+		- sessionStorage : 웹페이지가 열려 있는 동안 값을 유지
+						   데이터를 서버로 전송하지 않는다.
+						   저장공간이 쿠키보다 크다(최대 5MB)
+						   
+		- localStorage   : 웹페이지가 종료되도 값을 유지
+						   유효기간 없이 데이터를 저장한다.
+						   삭제할때는 케시를 삭제하거나, javascript로 삭제한다.
+						   데이터를 서버로 전송하지 않는다.
+						   저장공간 최대 5MB
+	*/
+	onload=function(){
+			var btns=document.getElementsByTagName("button");
+			
+			//set
+			btns[0].onclick=()=>{
+				sessionStorage.setItem("id2","hk2");
+			}
+			//get
+			btns[1].onclick=()=>{
+				var val=sessionStorage.getItem("id2");
+				console.log(val);
+			}
+			//remove
+			btns[2].onclick=()=>{
+				sessionStorage.removeItem("id2");
+			}
+			//clear
+			btns[3].onclick=()=>{
+				sessionStorage.clear();
+			}
+			
+			//LocalStorage 사용하기
+			//set
+			btns[4].onclick=()=>{
+				localStorage.setItem("id2","hk2");
+			}
+			//get
+			btns[5].onclick=()=>{
+				var val=localStorage.getItem("id2");
+				console.log(val);
+			}
+			//remove
+			btns[6].onclick=()=>{
+				localStorage.removeItem("id2");
+			}
+			//clear
+			btns[7].onclick=()=>{
+				localStorage.clear();
+			}
+		}
+</script>
+</head>
+<body>
+<h1>SessionStorage</h1>
+<button>SetSession</button>
+<button>GetSession</button>
+<button>RemoveSession</button>
+<button>ClearSession</button>
+<h1>LocalStorage</h1>
+<button>SetLocal</button>
+<button>GetLocal</button>
+<button>RemoveLocal</button>
+<button>ClearLocal</button>
+</body>
+</html>
+
+
+
+
+
