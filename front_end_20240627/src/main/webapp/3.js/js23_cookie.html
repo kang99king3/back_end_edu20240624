@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js23_cookie</title>
+<script type="text/javascript">
+/*
+	웹서비스 동작 방식:     클라이언트  ------------    서버
+                                 request 
+							     response 
+	-cookie: 클라이언트 측에 저장되고, 용량이 적은 데이터, script로 원하는 정보를 보관,유지
+		    서버로 전송됨, 용량은 4kb 제한, 도메인 하나당 저장 쿠키 약 20개 정도
+	-저장형식: 문자열타입 -> "key이름:value;id=hk;name=hankyung;.."
+	                    : key:value형태로 저장하며, ;으로 구분하게된다.	
+	-저장설정내용: key,value,expires 기본으로 설정
+			 - expires: 설정단위 UTC기준(세계표준시)으로 Date객체를 이용해서 설정
+	         - domain : 쿠키사용범위(주도메인: https://www.naver.com 
+	        		 			 서브도메인: https://www.cafe.naver.com
+	        		 			  주/서브도메인접근:  .naver.com)
+	         - path : 쿠키사용범위(/admin/a/b, /admin/config) 
+	         - secure :  https로만 접근할 수 있는지 여부 - true/false
+	
+	-유효기간 설정: 쿠키 설정할때 유효기간을 설정하지 않으면 브라우저가 종료될때 삭제됨 
+	             설정방법은 expires, max-age 두가지방법이 있음
+*/
+
+	function setCookieTest(){
+		setCookie("user","hk",1);
+	}
+	
+	//setCookie() 구현 :   setCookie(a,b,c)
+	function setCookie(name,value,expires,domain,path,secure){
+		var cookies="";
+		
+		//인코딩처리 3가지
+		//escape() : ASCII코드로 변환, 나머지 유니코드 변환 --> 이제 안씀
+		//encodeURI(): 주소전체를 인코딩할때 사용
+		//             일반 문자는 인코딩처리, 주소와 관련 특수문자는 제외
+		//            http://www.hankyung.com/user?id=aa&name=bb
+		//encodeURIComponent():모든 문자/특수문자등등을 인코딩 처리함
+		//                     파라미터를 처리할때 사용
+		// "name=value"
+		cookies+=name+"="+encodeURIComponent(value);//인코딩처리해서 저장
+		
+		var date = new Date();
+		date.setDate(date.getDate()+expires);// 2024.08.30 --> 30+5 
+		cookies+=";expires="+date.toUTCString();//유효기간설정:세계표준시로 설정
+// 		cookies+=";max-age="+(1000*1*60*60*24);// ms단위로 설정
+		
+		if(domain){
+			cookies+=";domain="+domain;
+		}
+		if(path){
+			cookies+=";path="+path;
+		}
+		if(secure){
+			cookies+=";secure="+secure;
+		}
+		document.cookie=cookies;// 쿠키 저장하기
+// 		document.cookie="id=hk;name=hankyung";
+// 		document.forms
+// 		document.body...
+	}
+</script>
+</head>
+<body>
+<h1>쿠키사용하기</h1>
+<button onclick="setCookieTest()">쿠키추가</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
