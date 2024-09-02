@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq02_DOM탐색메서드_메뉴만들기.html</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+	.menu{
+		width:120px;
+		background-color: orange;
+		position: absolute;
+	}
+	#menu02{
+		left:140px;
+	}
+	#menu03{
+		left:270px;
+	}
+	div > a{
+		text-decoration: none;
+		width:120px;
+		height: 30px;
+		display:inline-block;
+		text-align: center;
+		line-height: 30px;
+		font-weight: bold;
+		color:white;
+	}
+	/*하위메뉴 선택*/
+	.menu > div{
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		
+// 		$("a").mouseover(function(){
+// 			$(this).nextAll("div").show();//nextAll():다음에 오는 모든 요소
+// // 			$("a").next().show(); (x)
+// 		});
+// 		$("a").mouseout(function(){
+// 			$(this).nextAll("div").hide();//nextAll():다음에 오는 모든 요소
+// // 			$("a").next().hide(); (x)
+// 		});
+		
+		//메인메뉴에서 마우스를 나가게하면 하위메뉴가 사라지는 문제점-> 하위메뉴 선택하려고 하면 사라짐..
+		//hover(moverFunc,moutFunc): CSS에서 사용되는 셀렉터 표현식중에 :hover
+// 		$("a").hover(function(){
+// 			$(this).nextAll("div").show();
+// 		},function(){
+// 			$(this).nextAll("div").hide();
+// 		});
+		
+// 		$(".menu").hover(function(){
+// 			$(this).children("div").slideDown();			
+// 		},function(){
+// 			$(this).children("div").slideUp();
+// 		});
+		
+		$(".menu").hover(function(){
+			//stop():앞에 적용된 여러 효과들을 종료시키는 기능
+			$(this).children("div").stop().slideToggle();//slideToggle():down,up의 기능 동시에 구현			
+		});
+	});
+</script>
+</head>
+<body>
+<h1>메뉴만들기</h1>
+<div id="menu01" class="menu">
+	<a href="#">필터링메서드</a>
+	<div>.slice(sidx,eidx)</div>
+	<div>.first()</div>
+	<div>.last()</div>
+	<div>.eq(index)</div>
+</div>
+<div id="menu02" class="menu">
+	<a href="#">트리탐색메서드</a>
+	<div>.find("#aa")</div>
+	<div>.children("p")</div>
+	<div>.parent()</div>
+	<div>.prev()/.next()</div>
+</div>
+<div id="menu03" class="menu">
+	<a href="#">기타메서드</a>
+	<div>.add()</div>
+<!-- 	"추가적으로 dom탐색할때" -->
+	<div>.is("p")</div>
+	<div>.end()</div>
+<!-- 	    $("p").next().append("<span></span>").end() -->
+</div>
+</body>
+</html>
+
+
+
+

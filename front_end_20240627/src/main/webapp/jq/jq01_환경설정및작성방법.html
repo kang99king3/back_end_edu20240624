@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq01_환경설정및작성방법.html</title>
+<!-- CDN방식 -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	/*
+		설정하기: - 내부파일 링크
+		        - URL링크(CDN): 네트워크상황에 영향을 많이 받음
+		        
+		작성방법:
+			$ 특수문자를 사용. $의 의미 jquery() => $()
+			js: load 이벤트 작성 => onload=function(){}
+			jq:                => $(function(){}) 1번방법
+			                   => $(document).ready(function(){}); 2번방법
+	*/
+
+	$(function(){ // JS: onload=function(){} 같은 기능임
+// 		alert("Hello JQuery~~~");
+		
+		//이벤트 메서드확인, 이팩트메서드확인
+		$("button").eq(3).click(function(){
+// 			$("img").css("display","none");//감추는 기능: CSS속성
+			$("img").hide(2000);//hide(): 요소를 감추는 기능
+			$("img").show(2000);
+// 			$("div").slideUp(3000);//대상이 인라인요소
+		});
+		
+		$("img").click(function(evt){
+			alert("이미지를 클릭했어요");
+// 			evt.target.style.display="none";
+			$(this).hide();// this를 사용하면 click이벤트가 발생된 엘리먼트를 구해준다.
+		});
+	});
+			                   
+	//Selector표현식 사용하는 방법확인
+	//이미지의 사이즈 조절하는 기능
+	function imgSize(){
+		var imgJS=document.querySelectorAll("div > img");//JS 코드에 경우
+		var imgJQ=$("div > img");// img요소 객체 생성
+		
+// 		imgJQ.css("width","100px");// imgJS.style.width=50px;
+// 		imgJQ.css("height","100px");
+		imgJQ.css({"width":"100px","height":"100px"});// json형식으로 한번에 정의할 수 도 있음
+	}		     
+
+	//DOM탐색메서드 확인
+	function highlight(){
+		//목록 중에 인덱스가 1인 목록을 강조하기
+		$("ol > li").eq(1).css("background-color","yellow");
+		$("ol > li").last().css({"background-color":"blue","color":"white"});
+		$("ol > li").css("font-size","30px");//JS에서는.. 유사배열.기능() X
+		                                     //유사배열[0].기능() O
+	}
+	
+	//DOM처리메서드 확인
+	function addImg(){
+		//JS: appendChild() : Target요소의 자식들중에 마지막 위치에 요소를 추가하는 기능
+		//    appendChild(파라미터 타입: Node) ---> 텍스트형태의 값 X
+		$("div").append("<img src='../3.js/img/1.jpg' alt='음식사진2'/>");
+		
+		//JS문법:
+		var img = document.createElement("img");
+		img.setAttribute("src","../3.js/img/1.jpg");
+		document.querySelectorAll("div")[0].appendChild(img);
+	}
+</script>		
+</head>
+<body>
+<h1>jquery의 사용</h1>
+<ol>
+	<li>셀렉터표현식</li>
+	<li>DOM탐색메서드</li>
+	<li>DOM처리메서드</li>
+	<li>이벤트메서드</li>
+	<li>Ajax메서드</li>
+	<li>기타메서드</li>
+</ol>
+<button onclick="imgSize()">이미지 축소</button>
+<button onclick="highlight()">리스트강조하기</button>
+<button onclick="addImg()">이미지 추가</button>
+<button>이미지 감추기</button>
+<hr/>
+<div><img src="../3.js/img/0.jpg" alt="음식사진"/></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
