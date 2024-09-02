@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq05_ajax_비동기구현.html</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	/*
+		ajax()를 사용하여 비동기 구현
+		-기본속성
+		 -url:요청할 페이지 주소
+		 -method:요청방식(get/post)
+		 -data:요청할 페이지에 전송할 데이터
+		 -dataType:응답받을 데이터의 타입(json/xml/text등등...)
+		 -async:자바스크립트 코드를 비동기로 실행할지 여부(true/false)
+		 -success:서버통신이 성공했다면 정의된 함수를 실행시킴
+		 -error:서버통신이 실패했을때 정의된 함수를 실행시킴
+	*/
+	$(function(){
+		$("#emp_search").click(function(){
+			
+			//다른 실행코드 존재
+			var a=5;
+			
+			$.ajax({
+				url:"emplist.xml",
+				method:"get",
+				async:false, // $.ajax() 메서드를 비동기로 실행할지의 여부
+				data:{"id":"hk","name":"hankyung"},
+				dataType:"xml",
+				success:function(data){ // 파라미터는 응답데이터를 받는다
+					//받은 데이터로 화면에 어떻게 렌더링할지 코드 작성 부분
+// 					alert(data.querySelectorAll("EMPLOYEE_ID")[0].textContent);
+// 					alert($(data).find("LAST_NAME").eq(0).text());
+					var emplist=$(data);
+					
+					for (var i = 0; i < emplist.find("ROW").length; i++) {
+						for (var j = 0; j < emplist.eq(i).children().length; j++) {
+							$("div").append(
+									emplist.eq(i).children().eq(j).text()
+									);
+						}
+					}
+					
+				},
+				error:function(request,error){
+					alert("통신실패:"+request.status+","+error);
+				}
+			});  // jquery.ajax()
+		});
+	})
+</script>		
+</head>
+<body>
+<h1>사원정보조회하기</h1>
+<button type="button" id="emp_search">조회</button>
+<div></div>
+</body>
+</html>
+
+
+
+
+
