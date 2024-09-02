@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq04_메뉴선택하기.html</title>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	img{
+		width: 150px;
+		height: 150px;
+		float:left;
+	}
+	
+	#menu{
+		overflow: auto;/*float을 해제하는 방법중 하나였습니다.*/
+	}
+	.sel{
+		width:140px;
+		height:140px;
+		border:5px dotted yellow;
+		position: absolute;
+		left:300px;
+	}
+	button{
+		width: 150px;
+		height: 50px;
+		margin-left: 300px;
+		margin-top: 30px;
+	}
+</style>
+</head>
+<body>
+<h1>식사 메뉴를 선택하세요!!</h1>
+<div id="menubox">
+	<div class="sel"></div>
+	<div id="menu">
+		<img src="img/chicken.JPG" alt="치킨" />
+		<img src="img/don.JPG" alt="돈까스" />
+		<img src="img/jangsu.JPG" alt="삼겹살" />
+		<img src="img/kimchi.JPG" alt="김치찌개" />
+		<img src="img/kong.JPG" alt="콩나물국밥" />
+	</div>
+	<button>start</button>
+	<div id="message" style="text-align: center;"></div>
+</div>
+</body>
+</html>
+
+
+

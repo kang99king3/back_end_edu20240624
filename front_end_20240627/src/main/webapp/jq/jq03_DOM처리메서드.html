@@ -24,7 +24,7 @@
 		- 기타
 		  - 삭제: remove(), empty():자식요소들 삭제, detach(): 잘라내기
 	*/
-	$(function(){
+	$(function(){//  $(function(){}): js에서 onload=function(){}
 		document.getElementsByTagName("button")[0].onclick=function(){}
 		var count=0;
 		$("button").eq(0).click(function(){
@@ -60,6 +60,20 @@
 			var $ele=$(".insert1").children().first();
 			$(".insert2").append($ele);
 		});
+		
+		//외부추가하기
+		$("button").eq(5).click(function(){
+			$(".insert2").before("<p class='before'>"+(count++)+"before메서드</p>");
+		});
+		$("button").eq(6).click(function(){
+			$(".insert2").after("<p class='after'>"+(count++)+"after메서드</p>");
+		});
+		$("button").eq(7).click(function(){
+			$(".insert2").after($(".insert1").children().first());
+		});
+		
+		//wrap()사용해보기: <div><h1></h1></div>
+		$("h1").wrap("<div style='border:1px dotted blue;'></div>");
 	});
 </script>
 </head>
@@ -69,6 +83,11 @@
 <button>append</button>
 <button>html</button>
 <button>text</button>
+<button>DOM이동</button>
+<hr/>
+<h1>외부요소추가하기</h1>
+<button>before</button>
+<button>after</button>
 <button>DOM이동</button>
 <div class="insert1">
 	<p class="a">내부추가하기</p>
