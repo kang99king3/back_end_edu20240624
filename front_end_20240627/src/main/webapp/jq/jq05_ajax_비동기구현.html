@@ -33,14 +33,17 @@
 					//받은 데이터로 화면에 어떻게 렌더링할지 코드 작성 부분
 // 					alert(data.querySelectorAll("EMPLOYEE_ID")[0].textContent);
 // 					alert($(data).find("LAST_NAME").eq(0).text());
-					var emplist=$(data);
+					var emplist=$(data).find("ROW");
 					
-					for (var i = 0; i < emplist.find("ROW").length; i++) {
+					for (var i = 0; i < emplist.length; i++) {
 						for (var j = 0; j < emplist.eq(i).children().length; j++) {
 							$("div").append(
-									emplist.eq(i).children().eq(j).text()
+									"<p>"
+									+emplist.eq(i).children().eq(j).text()
+									+"</p>"		
 									);
 						}
+						$("div").append("<hr/>");
 					}
 					
 				},
