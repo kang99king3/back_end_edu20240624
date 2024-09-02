@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq03_DOM처리메서드.html</title>
+<style type="text/css">
+	.insert1{
+		border:1px solid red;
+	}
+</style>
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-latest.js"></script>		
+<script type="text/javascript">
+	/*
+		DOM처리메서드의 개념2가지
+		- 내부에 추가하는 기능: 자식요소개념
+		  JS: innerHTML, textContent, appendChild(), insertBefore()
+		  JQ: html()   , text()     , append()     , prepend()
+		  
+		- 외부에 추가하는 기능: 형제/부모요소개념
+		  JQ: after(), before()
+		      wrap() : 부모요소를 추가 , unWrap(): 부모요소를 삭제  
+		      
+		- 기타
+		  - 삭제: remove(), empty():자식요소들 삭제, detach(): 잘라내기
+	*/
+	$(function(){
+		document.getElementsByTagName("button")[0].onclick=function(){}
+		var count=0;
+		$("button").eq(0).click(function(){
+			var $p=$("<p title='속성'></p>");//엘리먼트 객체를 생성하는 코드
+//          주의 사항: js객체에 jq메서드를 사용할 수 없다. 변수에 $를 붙여서 구분하기도 함
+// 			p.eq(0); (O) 
+// 			pJS.eq(0) (X) => JS객체에는 eq()메서드가 구현X
+// 			var pJS=document.createElement("p");
+
+			$p.text((count++)+":prepend메서드");//text를 내부에 추가
+			$p.addClass("prepend");//class속성을 추가할때 사용
+			$(".insert1").prepend($p);//내부에 요소중에 앞에 추가
+			
+			//엘리먼트 객체를 문자열로 정의해서 추가해도 됨=> JS안됨
+// 			$(".insert1").prepend("<p class='prepend'>prepend메서드</p>")
+		});
+		
+		$("button").eq(1).click(function(){
+			$(".insert1").append("<p class='append'>"+(count++)+"append메서드</p>");
+		});
+		
+		$("button").eq(2).click(function(){
+			$(".insert1").html("<strong>html메서드</strong>");//set의 개념
+			var val=$(".insert1").html();//get의 개념
+		});
+		
+		$("button").eq(3).click(function(){
+			$(".insert1").text("<strong>text메서드</strong>");//set의 개념
+			var val=$(".insert1").text();//get의 개념
+		});
+		
+		$("button").eq(4).click(function(){
+			var $ele=$(".insert1").children().first();
+			$(".insert2").append($ele);
+		});
+	});
+</script>
+</head>
+<body>
+<h1>내부요소추가하기</h1>
+<button>prepend</button>
+<button>append</button>
+<button>html</button>
+<button>text</button>
+<button>DOM이동</button>
+<div class="insert1">
+	<p class="a">내부추가하기</p>
+</div>
+<div class="insert2">
+	<p class="a">이동하기</p>
+</div>
+</body>
+</html>
+
+
+
+
+
