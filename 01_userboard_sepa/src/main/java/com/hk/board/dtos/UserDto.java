@@ -31,6 +31,17 @@ public class UserDto {
 		this.height = height;
 		this.mDate = mDate;
 	}
+	
+	public UserDto(String userID, String name, int birthYear, String addr, String mobile1, String mobile2, int height) {
+		super();
+		this.userID = userID;
+		this.name = name;
+		this.birthYear = birthYear;
+		this.addr = addr;
+		this.mobile1 = mobile1;
+		this.mobile2 = mobile2;
+		this.height = height;
+	}
 
 	public String getUserID() {
 		return userID;

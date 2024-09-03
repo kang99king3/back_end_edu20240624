@@ -26,10 +26,27 @@ public class MainTest {
 //		dto.setName("김경호");
 //		dto.setBirthYear(1971);
 		//생성자 오버로딩을 사용했을 경우 코드가 간단하다..
-		UserDto dto=new UserDto("KKH", "김경호", 1971, 
-				                "전남", "019", "12345678", 177, null);
-		boolean isS=dao.insertUser(dto);//파리미터를 DTO객체를 통해 전달.
-		System.out.println("회원정보등록성공:"+isS);
+//		UserDto dto=new UserDto("KKH", "김경호", 1971, 
+//				                "전남", "019", "12345678", 177, null);
+//		boolean isS=dao.insertUser(dto);//파리미터를 DTO객체를 통해 전달.
+//		System.out.println("회원정보등록성공:"+isS);
+		
+		//회원정보 수정
+		boolean isSUpdate=dao.updateUser(new UserDto(
+							 				"KKH",
+							 				"김건모",
+							 				 1970,
+							 				"서울",
+							 				"011",
+							 				"12345678",
+							 				 170
+										));
+		System.out.println("회원수정성공:"+isSUpdate);
+		
+		//회원상세조회
+		System.out.println("==회원상세조회==");
+		UserDto dto=dao.getUser("KKH");
+		System.out.println(dto);
 	}
 
 }
