@@ -21,7 +21,7 @@ public class MainTest {
 		
 		//회원정보 등록
 		//setter메서드를 사용했을 경우
-//		UserDto dto=new UserDto();
+//		UserDto dto=new UserDto(); 
 //		dto.setUserID("KKA");
 //		dto.setName("김경호");
 //		dto.setBirthYear(1971);
