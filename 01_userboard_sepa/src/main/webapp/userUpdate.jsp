@@ -31,7 +31,7 @@
 		//javascript를 활용해서 이동해보기
 		%>
 		<script type="text/javascript">
-			alert("회원정보를 수정했습니다.");
+			alert("회원정보를 수정했습니다."); 
 			location.href="userUpdateForm.jsp?userId=<%=userId%>";
 		</script>
 		<%

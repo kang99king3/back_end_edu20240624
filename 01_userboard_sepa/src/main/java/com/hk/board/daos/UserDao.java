@@ -293,7 +293,52 @@ public class UserDao {
 	}
 	
 	//회원정보삭제하기: Delete문 , 파라미터 필요
-	
+	public boolean deleteUser(String userId) {
+		
+		int count=0;//쿼리 성공 여부 판단을 위해..
+		
+		//DB연결을 위한 정보 정의
+		//url:DB소프트웨어마다 약간씩 다를 수 있음
+		String url="jdbc:mariadb://localhost:3307/hkeduweb";
+		String user="root";
+		String password="manager";
+		
+		Connection conn=null;//DB연결할때 사용할 객체
+		PreparedStatement psmt=null;//쿼리 준비 및 실행을 위한 객체
+		
+		String sql="DELETE FROM USERTBL WHERE USERID = ? ";
+
+		try {
+			conn=DriverManager.getConnection(url, user, password);
+			System.out.println("2단계:DB연결성공");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, userId);
+			System.out.println("3단계:쿼리준비성공");
+			
+			count=psmt.executeUpdate();//반환값: 업데이트된 행의 개수를 반환(int)
+			System.out.println("4단계:쿼리실행성공");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("JDBC실패:"+getClass());
+		}finally {
+			try {
+				if(psmt!=null) {
+					psmt.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+				System.out.println("6단계:DB닫기성공");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("6단계:DB닫기실패");
+			}
+		}
+		
+		return count>0?true:false;
+	}
 	
 }
 
