@@ -38,6 +38,13 @@ public class HkDto implements Serializable{
 		this.content = content;
 	}
 
+	public HkDto(int seq, String title, String content) {
+		super();
+		this.seq = seq;
+		this.title = title;
+		this.content = content;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,8 +124,36 @@ public class HkDao extends DataBase{
 	
 	//수정하기: update문 실행,  파라미터: seq,title,content
 	//                      수정할 내용: title, content , regdate-> Sysdate()
-	public boolean updateBoard(HkDto dto) {
+	public boolean updateBoard(HkDto dto) {//int seq, Sting title..
 		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+//		Statement st=null;// ? -> 파라미터 적용하는 기능이 없어
+		
+		//String 객체이용했을 경우
+		String sql=" UPDATE HKBOARD SET TITLE=?,CONTENT=?, "
+				 + "                    REGDATE=SYSDATE() "
+				 + " WHERE SEQ = ? ";
+		
+		//String~클래스를 이용했을 경우 new예약어 사용--> 메모리 효율은 좋다
+		StringBuffer sb=new StringBuffer();
+		sb.append(" UPDATE HKBOARD SET TITLE=?,CONTENT=?, ");
+		sb.append("                   REGDATE=SYSDATE() ");
+		sb.append(" WHERE SEQ = ? ");
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sb.toString());
+//			st=conn.createStatement();
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setInt(3, dto.getSeq());//쿼리준비 완료
+			count=psmt.executeUpdate();//쿼리실행: 반환값은 변경된 행의 개수
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, psmt, conn);
+		}
 		
 		return count>0?true:false;
 	}
@@ -132,7 +161,21 @@ public class HkDao extends DataBase{
 	//글삭제하기: delete문 실행 , 파라미터: seq
 	public boolean delBoard(int seq) {
 		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
 		
+		String sql="DELETE FROM HKBOARD WHERE SEQ=?";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			count=psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+		}
 		return count>0?true:false;
 	}
 }

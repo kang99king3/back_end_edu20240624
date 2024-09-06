@@ -35,12 +35,22 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" onclick="" value="수정폼이동" />
+			<input type="button" onclick="updateForm(<%=dto.getSeq()%>)" value="수정폼이동" />
 			<input type="button" onclick="" value="삭제" />
 			<input type="button" value="글목록"
 			       onclick="location.href='boardlist.jsp'" />
 		</td>
 	</tr>
 </table>
+<script type="text/javascript">
+	//수정폼으로 이동
+	function updateForm(seq){
+		location.href="boardupdateform.jsp?seq="+seq;
+	}
+</script>
 </body>
 </html>
+
+
+
+
