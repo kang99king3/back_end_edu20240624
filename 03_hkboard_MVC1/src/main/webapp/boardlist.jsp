@@ -61,7 +61,7 @@
 </table>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="insertboardform.jsp";
+		location.href="hkController.jsp?command=insertboardform";
 	}
 </script>
 </body>

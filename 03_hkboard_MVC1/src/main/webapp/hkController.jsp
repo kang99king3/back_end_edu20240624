@@ -38,6 +38,34 @@
 		HkDto dto=dao.getBoard(seq);//글하나에 대한 정보
 		request.setAttribute("dto", dto);
 		pageContext.forward("boarddetail.jsp");
+	}else if(command.equals("insertboardform")){//글추가폼이동
+		response.sendRedirect("insertboardform.jsp");
+	}else if(command.equals("insertboard")){//글추가하기
+		//4단계:파라미터받기
+		String id=request.getParameter("id");
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		
+		boolean isS=dao.insertBoard(new HkDto(id,title,content));
+		if(isS){
+			// 브라우저에 주소창에 응답 URL로 변경된다. update작업시 응답
+			response.sendRedirect("hkController.jsp?command=boardlist");
+			// 브라우저에 주소창에 요청 URL로 적용된다. 조회작업시 응답
+// 			pageContext.forward("hkController.jsp?command=boardlist");
+		}else{
+			%>
+			<script type="text/javascript">
+				alert("글추가실패");
+				location.href="hkController.jsp?command=insertboardform";
+			</script>
+			<%
+		}
+	}else if(command.equals("boardupdateform")){
+		
+	}else if(command.equals("boardupdate")){
+		
+	}else if(command.equals("deleteboard")){
+		
 	}
 %>
 </body>
