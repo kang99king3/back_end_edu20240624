@@ -1,0 +1,52 @@
+<%@page import="com.hk.dtos.HkDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.hk.daos.HkDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8"); %>
+<%response.setContentType("text/html;charset=UTF-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hkController.jsp</title>
+</head>
+<body>
+<%
+	//1단계:command 값 받기 - 어떤 요청인지 확인
+	//     index.jsp -> 글목록요청 -> hkcontroller.jsp?command=boardlist
+	String command=request.getParameter("command");
+	
+	//2단계:DAO객체 생성 - DB관련 작업 수행을 위한 준비단계
+	HkDao dao=new HkDao();
+	
+	//3단계: 분기 - command값 확인해서 요청작업 처리 실행
+	if(command.equals("boardlist")){//글목록 요청 처리
+		//4단계:파라미터 받기 <--여기서는 받을 값이 없음
+		
+		//5단계:dao메서드 실행
+		List<HkDto> lists=dao.getAllList();//글목록 반환
+		
+		//6단계:Scope객체에 담기
+		request.setAttribute("lists", lists);// RS["lists":lists]
+		
+		//7단계:페이지 이동
+		pageContext.forward("boardlist.jsp");
+	}else if(command.equals("boarddetail")){//상세보기
+		//4단계:파라미터받기
+		int seq=Integer.parseInt(request.getParameter("seq"));
+		HkDto dto=dao.getBoard(seq);//글하나에 대한 정보
+		request.setAttribute("dto", dto);
+		pageContext.forward("boarddetail.jsp");
+	}
+%>
+</body>
+</html>
+
+
+
+
+
+
+
+
