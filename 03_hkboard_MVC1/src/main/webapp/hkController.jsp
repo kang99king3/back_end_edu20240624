@@ -102,14 +102,23 @@
 		String[] chks=request.getParameterValues("chk");//chk={1,2,3,4}
 		
 		//여러글을 삭제하는 기능 구현: 전달할 파라미터 타입은 배열
-		System.out.println(Arrays.toString(chks));
-		out.println(Arrays.toString(chks));
-		if(chks==null||chks.length==0){
-			response.sendRedirect("error.jsp?msg="
-			+URLEncoder.encode("글삭제할때 최소하나이상체크해야합니다","utf-8"));
-		}else{
+		//자바에서 유효값 처리할 경우
+		//유효하지 않은 값을 처리하기 위해서 요청이 실행되는 단점
+// 		System.out.println(Arrays.toString(chks));
+// 		out.println(Arrays.toString(chks));
+// 		if(chks==null||chks.length==0){
+// 			response.sendRedirect("error.jsp?msg="
+// 			+URLEncoder.encode("글삭제할때 최소하나이상체크해야합니다","utf-8"));
+// 		}else{
 	// 		dao.muldelBoard(chks);
 			
+// 		}
+		boolean isS=dao.mulDel(chks);
+		if(isS){
+			response.sendRedirect("hkController.jsp?command=boardlist");
+		}else{
+			response.sendRedirect("error.jsp?msg="
+							+URLEncoder.encode("글삭제실패","utf-8"));
 		}
 	}
 %>
