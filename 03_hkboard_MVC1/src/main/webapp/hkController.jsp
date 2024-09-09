@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.hk.dtos.HkDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.hk.daos.HkDao"%>
@@ -61,11 +62,40 @@
 			<%
 		}
 	}else if(command.equals("boardupdateform")){
+		// seq값을 받아서 DAO요청해서 글상세내용을 조회하는 작업
+		// --> 수정폼에 글상세내용이 조회되기때문에
+		String sseq=request.getParameter("seq");
+		int seq=Integer.parseInt(sseq);
+		HkDto dto=dao.getBoard(seq);//글 상세내용 조회
 		
+		request.setAttribute("dto", dto);//request Scope에 담기
+		pageContext.forward("boardupdateform.jsp");
 	}else if(command.equals("boardupdate")){
+		String sseq=request.getParameter("seq");
+		int seq=Integer.parseInt(sseq);
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
 		
+		boolean isS=dao.updateBoard(new HkDto(seq,title,content));
+		if(isS){
+			response.sendRedirect("hkController.jsp?"
+								  +"command=boarddetail&seq="+seq);
+		}else{
+			//url에 한글을 포함해서 요청할 경우 인코딩하자
+			response.sendRedirect("error.jsp?msg="
+							+URLEncoder.encode("글수정실패","utf-8"));
+		}
 	}else if(command.equals("deleteboard")){
+		String sseq=request.getParameter("seq");
+		int seq=Integer.parseInt(sseq);
 		
+		boolean isS=dao.delBoard(seq);
+		if(isS){
+			response.sendRedirect("hkController.jsp?command=boardlist");
+		}else{
+			response.sendRedirect("error.jsp?msg="
+								+URLEncoder.encode("글삭제실패","utf-8"));
+		}
 	}
 %>
 </body>
