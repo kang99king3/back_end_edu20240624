@@ -78,6 +78,41 @@ public class UserDao extends DataBase{
 		
 		return resultId;
 	}
+	
+	//로그인 기능: 파라미터 ID, Password
+	public UserDto getLogin(String id, String password) {
+		UserDto dto=new UserDto();
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		ResultSet rs=null;
+		
+		String sql=" SELECT ID, NAME, ROLE "
+				 + " FROM USERINFO "
+				 + " WHERE ID=? AND PASSWORD=? AND ENABLED='Y' ";
+		
+		try {
+			conn=getConnection();
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, password);
+			
+			rs=psmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setId(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setRole(rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		
+		return dto;
+	}
 }
 
 
