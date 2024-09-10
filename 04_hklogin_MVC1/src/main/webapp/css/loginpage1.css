@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+*{
+	margin: 0px;
+	padding:0px;
+}
+
+body{
+	background-color: gainsboro;
+}
+
+button{
+	border: 1px solid cornflowerblue;
+	background-color:cyan;
+	border-radius:5px;
+	width:300px;
+	height: 40px;
+	color:darkorchid;
+	font-weight: bold;	
+}
+
+form{
+	width: 300px;
+	margin: 10% auto;
+}
+
+input, button{
+	margin:2px;
+}
+
+input[name]{
+	border:0px;
+	width:288px;
+	height: 40px;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+
+
+
+
+
