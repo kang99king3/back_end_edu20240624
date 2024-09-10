@@ -2,13 +2,24 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html;charset=UTF-8"); %>
+<%@include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
+<!-- <link rel="stylesheet" href="css/layout.css"> -->
 </head>
 <body>
+<!-- <nav class="navbar"> -->
+<!-- 	<div id="navbar"> -->
+<!-- 		<ul class="navbar-nav"> -->
+<!-- 			<li><a href="index.jsp">HOME</a></li> -->
+<!-- 			<li>ABOUT</li> -->
+<!-- 			<li>CONTECT</li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
+<!-- </nav> -->
 <div>
 	<h1>회원가입</h1>
 	<form action="userController.jsp" method="post" onsubmit="return isPW(this)">
@@ -24,6 +35,9 @@
 		<button type="button" onclick="location.href='index.jsp'">메인</button>
 	</form>
 </div>
+<!-- <div class="footer"> -->
+<!-- 	Copyright 1999-2024. 한경닷컴 All rights reserved. -->
+<!-- </div> -->
 <script type="text/javascript">
 	//아이디 중복체크
 	function idChk(){
@@ -53,7 +67,7 @@
 </script> 
 </body>
 </html> 
-
+<%@include file="footer.jsp" %>
 
 
 
