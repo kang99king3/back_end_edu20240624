@@ -11,7 +11,7 @@
 </head>
 <body>
 <% String msg=request.getParameter("msg"); %>
-<form action="userController.jsp" method="post">
+<form action="userController.jsp" method="post" onsubmit="userIdCookie()">
 	<input type="hidden" name="command" value="login"/>
 	<h1>Login</h1>
 	<input type="text" name="id" placeholder="ID" required="required" />
@@ -25,6 +25,18 @@
 <script type="text/javascript">
 	function registForm(){
 		location.href="userController.jsp?command=registform";
+	}
+	
+	//아이디를 쿠키에 저장하기
+	function userIdCookie(){
+		//chkID 객체 구함
+		var chkID=document.querySelectorAll("input[type=checkbox]")[0];
+		//입력된 ID구함
+		var id=document.qeurySelectorAll("input[name=id]")[0].value;
+		
+		if(chkID.checked){//체크가 되어 있으면 쿠키에 id를 저장하자
+			
+		}
 	}
 </script>
 </body>
