@@ -17,12 +17,28 @@
 <link rel="stylesheet" href="css/layout.css">
 </head>
 <%
-	UserDto ldto=(UserDto)session.getAttribute("ldto");
+	//현재 path 확인해보기
+	System.out.println(request.getRequestURI());
+	System.out.println(request.getRequestURI().substring(
+				request.getContextPath().length()
+			));
 
-	//로그인 정보가 없는 경우(로그아웃한 경우) 화면처리 
-	if(ldto==null){
-		pageContext.forward("index.jsp");
+	UserDto ldto=null;
+	
+	String requestPath=
+	request.getRequestURI().substring(request.getContextPath().length());
+	
+	if(!requestPath.equals("/registform.jsp")){
+		ldto=(UserDto)session.getAttribute("ldto");
+	
+		//로그인 정보가 없는 경우(로그아웃한 경우) 화면처리 
+		if(ldto==null){
+			pageContext.forward("index.jsp");
+		}		
 	}
+// 	hkcontroller.jsp/admin/*    --> 로그인정보확인해서 볼수 있는 페이지
+// 	hkcontroller.jsp/user/login --> 로그인정보확인해서 볼수 있는 페이지
+// 	hkcontroller.jsp/user/regist--> 로그인정보확인X
 %>
 <body>
 <nav class="navbar">
