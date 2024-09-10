@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/cookiefunc.js"></script>
 <link rel="stylesheet" href="css/loginpage1.css">
 </head>
 <body>
@@ -32,10 +33,18 @@
 		//chkID 객체 구함
 		var chkID=document.querySelectorAll("input[type=checkbox]")[0];
 		//입력된 ID구함
-		var id=document.qeurySelectorAll("input[name=id]")[0].value;
+		var id=document.querySelectorAll("input[name=id]")[0].value;
 		
 		if(chkID.checked){//체크가 되어 있으면 쿠키에 id를 저장하자
-			
+			setCookie("rememberid",id,100);
+		}
+	}
+	
+	//cookie에 아이디가 저장되어 있다면 id입력박스에 해당 id를 출력하자
+	onload=function(){
+		var cookieID=getCookie("rememberid");
+		if(cookieID!=null){
+			document.querySelectorAll("input[name=id]")[0].value=cookieID;
 		}
 	}
 </script>
