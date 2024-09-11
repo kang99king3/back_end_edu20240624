@@ -79,13 +79,58 @@
 		session.invalidate();//session안에 모든 정보를 삭제한다.
 		System.out.println("로그아웃함");
 		response.sendRedirect("index.jsp");
-	}else if(command.equals("userinfo")){
+	}else if(command.equals("userinfo")){// 나의 정보 조회
 		//controller페이지에서 session에 로그인 정보를 가져올 수 도 있다.
 // 		UserDto ldto=(UserDto)session.getAttribute("ldto");
 // 		String id=ldto.getId();
 
 		//user_main.jsp에서 id값을 전달할 수 도 있다.
 		String id=request.getParameter("id");
+		UserDto dto=dao.getUser(id);
+		
+		request.setAttribute("dto", dto);
+		pageContext.forward("userinfo.jsp");
+	}else if(command.equals("userupdate")){
+		String id=request.getParameter("id");
+		String address=request.getParameter("address");
+		String email=request.getParameter("email");
+		
+		boolean isS=dao.updateUser(new UserDto(id,address,email));
+// 		            dao.updateUser(id,address,email) 그냥 3개 선언해서 처리해도 됨
+		if(isS){
+			%>
+			<script type="text/javascript">
+				alert('수정완료');
+				location.href="userController.jsp?command=userinfo&id=<%=id%>";
+			</script>
+			<%
+		}else{
+			%>
+			<script type="text/javascript">
+				alert('수정실패');
+				location.href="userController.jsp?command=userinfo&id=<%=id%>";
+			</script>
+			<%
+		}
+	}else if(command.equals("deluser")){
+		String id=request.getParameter("id");
+		boolean isS=dao.delUser(id);
+		session.invalidate();
+		if(isS){
+			%>
+			<script type="text/javascript">
+				alert("회원탈퇴 완료하였습니다.");
+				location.href="index.jsp";
+			</script>
+			<%
+		}else{
+			%>
+			<script type="text/javascript">
+				alert("회원탈퇴실패");
+				location.href="index.jsp";
+			</script>
+			<%
+		}
 	}
 %>
 </body>

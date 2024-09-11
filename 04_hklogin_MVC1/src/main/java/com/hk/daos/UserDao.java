@@ -148,7 +148,7 @@ public class UserDao extends DataBase{
 		return dto;
 	}
 	
-	//나의 정보 수정하기: 파라미터 - id/seq , address, email
+	//나의 정보 수정하기: 파라미터 - id , address, email
 	public boolean updateUser(UserDto dto) {
 		int count=0;
 		Connection conn=null;
