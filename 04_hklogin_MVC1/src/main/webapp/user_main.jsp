@@ -15,7 +15,7 @@
 	<div class="main">
 		<div class="lead">
 			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인하였습니다.</span>
-			<span><a href="">나의정보</a></span>
+			<span><a href="userController.jsp?command=userinfo&id=<%=ldto.getId()%>">나의정보</a></span>
 			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
 		</div>
 	</div>

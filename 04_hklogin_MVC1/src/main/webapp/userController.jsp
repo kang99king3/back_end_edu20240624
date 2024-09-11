@@ -79,6 +79,13 @@
 		session.invalidate();//session안에 모든 정보를 삭제한다.
 		System.out.println("로그아웃함");
 		response.sendRedirect("index.jsp");
+	}else if(command.equals("userinfo")){
+		//controller페이지에서 session에 로그인 정보를 가져올 수 도 있다.
+// 		UserDto ldto=(UserDto)session.getAttribute("ldto");
+// 		String id=ldto.getId();
+
+		//user_main.jsp에서 id값을 전달할 수 도 있다.
+		String id=request.getParameter("id");
 	}
 %>
 </body>

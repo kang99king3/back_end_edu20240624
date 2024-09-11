@@ -42,7 +42,9 @@
 
 form{
 	width:800px;
-	margin:10% auto;
+	margin:5% auto;
+	background-color: honeydew;
+	padding: 20px;
 }
 
 input{
@@ -68,8 +70,9 @@ button{
 	margin-left:60px;
 }
 
-
-
+form > a{
+	text-decoration: none;
+}
 
 
 

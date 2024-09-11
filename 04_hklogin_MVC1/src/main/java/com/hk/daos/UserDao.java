@@ -110,8 +110,87 @@ public class UserDao extends DataBase{
 		}finally {
 			close(rs, psmt, conn);
 		}
-		
 		return dto;
+	}
+	
+	//나의 정보 조회
+	public UserDto getUser(String id) {
+		UserDto dto=new UserDto();
+		
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		ResultSet rs=null;
+		
+		String sql=" SELECT SEQ, ID, NAME, ADDRESS, EMAIL, ROLE, REGDATE "
+				 + " FROM USERINFO "
+				 + " WHERE ID=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs=psmt.executeQuery();
+			while(rs.next()) {
+				dto.setSeq(rs.getInt(1));
+				dto.setId(rs.getString(2));
+				dto.setName(rs.getString(3));
+				dto.setAddress(rs.getString(4));
+				dto.setEmail(rs.getString(5));
+				dto.setRole(rs.getString(6));
+				dto.setRegDate(rs.getDate(7));
+			}
+			System.out.println(dto);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		return dto;
+	}
+	
+	//나의 정보 수정하기: 파라미터 - id/seq , address, email
+	public boolean updateUser(UserDto dto) {
+		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		String sql=" UPDATE USERINFO SET ADDRESS = ?, EMAIL = ? "
+				 + " WHERE ID = ? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, dto.getAddress());
+			psmt.setString(2, dto.getEmail());
+			psmt.setString(3, dto.getId());
+			count=psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+		}
+		return count>0?true:false;
+	}
+	
+	//회원 탈퇴 : enabled - 'N' 업데이트 , 파라미터: id
+	public boolean delUser(String id) {
+		int count=0;
+		Connection conn=null;
+		PreparedStatement psmt=null;
+		
+		String sql=" UPDATE USERINFO SET ENABLED = 'N' WHERE ID=? ";
+		
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			count=psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(null, psmt, conn);
+		}
+		return count>0?true:false;
 	}
 }
 

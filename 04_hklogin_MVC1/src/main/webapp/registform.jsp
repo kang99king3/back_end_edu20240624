@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- <link rel="stylesheet" href="css/layout.css"> -->
 </head>
 <body>
@@ -30,6 +31,7 @@
 		<input type="password" name="password" placeholder="PASSWORD" required="required" />
 		<input type="password" name="password2" placeholder="PASSWORD확인" required="required" />
 		<input type="text" name="address" placeholder="ADDRESS" required="required" />
+		<input type="text" id="sample5_address" placeholder="주소">
 		<input type="email" name="email" placeholder="EMAIL" required="required" />
 		<button type="submit">가입완료</button>
 		<button type="button" onclick="location.href='index.jsp'">메인</button>
