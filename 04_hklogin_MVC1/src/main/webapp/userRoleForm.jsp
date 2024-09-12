@@ -30,7 +30,7 @@
 				<form action="userController.jsp" method="post">
 					<input type="hidden" name="command" value="userUpdateRole"/>
 					<input type="hidden" name="id" value="<%=dto.getId()%>"/>
-					<table class="table">
+					<table  class="table">
 						<tr>
 							<th>아이디</th>
 							<td><%=dto.getId()%></td>

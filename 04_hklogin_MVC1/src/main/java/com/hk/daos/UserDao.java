@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hk.database.DataBase;
 import com.hk.dtos.RoleStatus;
@@ -192,6 +194,103 @@ public class UserDao extends DataBase{
 		}
 		return count>0?true:false;
 	}
+	
+	//회원목록 전체조회
+		public List<UserDto> getAllUserList(){
+			List<UserDto> list=new ArrayList<>();
+			
+			Connection conn=null;
+			PreparedStatement psmt=null;
+			ResultSet rs=null;
+			
+			String sql=" SELECT seq, id, NAME, address, email, role, "
+					 + " enabled,regdate "
+					 + " FROM userinfo ";
+			
+			try {
+				conn=getConnection();
+				psmt=conn.prepareStatement(sql);
+				rs=psmt.executeQuery();
+				while(rs.next()) {
+					UserDto dto=new UserDto();
+					dto.setSeq(rs.getInt(1));
+					dto.setId(rs.getString(2));
+					dto.setName(rs.getString(3));
+					dto.setAddress(rs.getString(4));
+					dto.setEmail(rs.getString(5));
+					dto.setRole(rs.getString(6));
+					dto.setEnabled(rs.getString(7));
+					dto.setRegDate(rs.getDate(8));
+					list.add(dto);
+					System.out.println(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs, psmt, conn);
+			}
+			return list;
+		}
+		
+		//회원목록 전제 조회[사용중]
+		public List<UserDto> getUserList(){
+			List<UserDto> list=new ArrayList<>();
+			
+			Connection conn=null;
+			PreparedStatement psmt=null;
+			ResultSet rs=null;
+			
+			String sql=" SELECT seq, id, NAME, role, "
+					 + " regdate "
+					 + " FROM userinfo "
+					 + " WHERE enabled='Y' ";
+			
+			try {
+				conn=getConnection();
+				psmt=conn.prepareStatement(sql);
+				rs=psmt.executeQuery();
+				while(rs.next()) {
+					UserDto dto=new UserDto();
+					dto.setSeq(rs.getInt(1));
+					dto.setId(rs.getString(2));
+					dto.setName(rs.getString(3));
+					dto.setRole(rs.getString(4));
+					dto.setRegDate(rs.getDate(5));
+					list.add(dto);
+					System.out.println(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs, psmt, conn);
+			}
+			return list;
+		}
+		
+		//회원등급수정
+		public boolean userUpdateRole(String id, String role) {
+			int count=0;
+			Connection conn=null;
+			PreparedStatement psmt=null;
+			
+			String sql=" UPDATE userinfo "
+					 + " SET role=? "
+					 + " WHERE id=? ";
+			
+			try {
+				conn=getConnection();
+				psmt=conn.prepareStatement(sql);
+				psmt.setString(1, role);
+				psmt.setString(2, id);
+				count=psmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(null, psmt, conn);
+			}
+			
+			return count>0?true:false;
+		}
 }
 
 

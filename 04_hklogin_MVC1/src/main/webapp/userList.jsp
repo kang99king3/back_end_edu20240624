@@ -10,10 +10,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
+	//등급변경을 위한 회원상세정보조회
+	function roleForm(id){
+		location.href="userController.jsp?command=roleForm&id="+id;
+	}
 </script>
 </head>
-
+<%
+	List<UserDto> list=(List<UserDto>)request.getAttribute("list");
+%>
 <body>
 <div id="container">
 	<div class="main">
@@ -27,7 +32,7 @@
 			<h1>관리자 페이지</h1>
 			<h2>회원목록조회[등급수정]</h2>
 			<div id="userAllList">
-				<table class="table">
+				<table  class="table">
 					<tr>
 						<th>회원번호</th>
 						<th>아이디</th>
@@ -35,7 +40,34 @@
 						<th>회원등급</th>
 						<th>가입일</th>
 					</tr>
-					
+					<%
+						if(list==null||list.size()==0){
+							out.print("<tr>"
+									 +"<td colspan='5'>--회원이 존재하지 않습니다.--</td>"	
+									 +"</tr>");					
+						}else{
+							for(UserDto dto:list){//향상된 for문
+								%>
+								<tr>
+									<td><%=dto.getSeq()%></td>
+									<td><%=dto.getId()%></td>
+									<td><%=dto.getName()%></td>
+									<td>
+										<%=dto.getRole()%>
+										<%
+											if(!(dto.getId().equals(ldto.getId()))){
+											%>
+											<button type="button" onclick="roleForm('<%=dto.getId()%>')">변경</button>
+											<%	
+											}
+										%>
+									</td>
+									<td><%=dto.getRegDate()%></td>
+								</tr>
+								<%
+							}
+						}
+					%>
 				</table>
 			</div>
 		</div>

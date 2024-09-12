@@ -86,7 +86,25 @@ fieldset{
 	border-radius: 5px;
 }
 
+.main{
+	width:1200px;
+	margin:50px auto;
+}
 
+td, th{
+	padding: 10px;
+}
 
+tr:nth-child(odd){
+	background-color: azure ;
+}
+
+tr:nth-child(1){
+	background-color:deepskyblue ;
+}
+
+table button{
+	width:100px;
+}
 
 
