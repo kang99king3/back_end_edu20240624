@@ -23,7 +23,15 @@
 		String id=request.getParameter("id");
 		String name=request.getParameter("name");
 		String password=request.getParameter("password");
-		String address=request.getParameter("address");
+		
+		//주소 API 활용 : 파라미터 받기
+		String addr1=request.getParameter("addr1");//우편번호
+		String addr2=request.getParameter("addr2");//기본주소
+		String addr3=request.getParameter("addr3");//상세주소
+		String addr4=request.getParameter("addr4");//참고항목
+		
+// 		String address=request.getParameter("address");
+		String address=addr1+" "+addr2+" "+addr3+" "+addr4;
 		String email=request.getParameter("email");
 		
 		boolean isS=dao.insertUser(new UserDto(id,name,password,address,email));

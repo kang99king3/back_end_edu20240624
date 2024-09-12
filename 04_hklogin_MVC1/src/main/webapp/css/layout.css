@@ -74,7 +74,17 @@ form > a{
 	text-decoration: none;
 }
 
+fieldset > #sample6_postcode,fieldset > input[type=button]{
+	width:380px;
+}
 
+fieldset > #sample6_detailAddress,fieldset > #sample6_extraAddress{
+	width:375px;
+}
+fieldset{
+	margin:10px auto;
+	border-radius: 5px;
+}
 
 
 
