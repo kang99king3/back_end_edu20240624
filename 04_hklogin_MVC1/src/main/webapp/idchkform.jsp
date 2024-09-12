@@ -21,8 +21,10 @@
 		//id입력박스객체
 		var parentInputId=opener.document.getElementsByName("id")[0];
 		if(resultId=='null'){
+			localStorage.setItem("idchk","y");
 			opener.document.getElementsByName("name")[0].focus();
 		}else{
+			localStorage.setItem("idchk","n");
 			parentInputId.focus();
 		}
 		

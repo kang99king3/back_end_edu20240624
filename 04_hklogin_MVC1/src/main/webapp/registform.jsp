@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- <link rel="stylesheet" href="css/layout.css"> -->
 </head>
 <body>
@@ -31,7 +30,6 @@
 		<input type="password" name="password" placeholder="PASSWORD" required="required" />
 		<input type="password" name="password2" placeholder="PASSWORD확인" required="required" />
 		<input type="text" name="address" placeholder="ADDRESS" required="required" />
-		<input type="text" id="sample5_address" placeholder="주소">
 		<input type="email" name="email" placeholder="EMAIL" required="required" />
 		<button type="submit">가입완료</button>
 		<button type="button" onclick="location.href='index.jsp'">메인</button>
@@ -41,6 +39,21 @@
 <!-- 	Copyright 1999-2024. 한경닷컴 All rights reserved. -->
 <!-- </div> -->
 <script type="text/javascript">
+	onload=function(){
+		var inputs=document.querySelectorAll("input[name]");
+		for(var i=2; i< inputs.length;i++){
+			inputs[i].onfocus=function(){
+				var isIdchk=localStorage.getItem("idchk");
+				console.log(isIdchk);
+				if(isIdchk==null||isIdchk==='n'){//중복체크여부 확인
+					alert("아이디 중복체크를 먼저 확인하세요");
+					inputs[1].focus();//ID 입력박스로 이동
+				}				
+			}
+		}
+	}
+	
+
 	//아이디 중복체크
 	function idChk(){
 		var id=document.getElementsByName("id")[0].value;
@@ -64,6 +77,8 @@
 			formEle.password.focus();//비밀번호를 바로 입력할 수 있도록 유도.. 커서넣기
 			return false;// false 반환해줘야 submit 취소할 수 있다.
 		}
+		
+		localStorage.removeItem("idchk");//storage의 값을 삭제한다.
 		return true;
 	}
 </script> 
