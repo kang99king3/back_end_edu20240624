@@ -19,7 +19,7 @@
 			<span><a href="hkController.jsp?command=boardlist">게시판</a></span>
 			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
 		</div>
-		<div id="contents" style="height:700px;">
+		<div id="contents" >
 		
 		</div>
 	</div>

@@ -28,17 +28,25 @@
 	text-decoration: none;
 }
 
+/* footer요소 하단에 위치하는 코드 --------*/
+/* footer요소가 항상 바닥에 위치하면서 페이지 내부가 길어지면 아래로 밀리면서 계속 하단에 위치 */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#container {
+  min-height: calc(90vh - 50px); /* 100px은 푸터 높이 */
+}
+
 .footer{
-	position: absolute;
-	left:0px;
-	right:0px;
-	bottom:0px;
 	text-align: center;
 	color:white;
 	background-color: darkblue;
 	line-height: 50px;
 	height: 50px;
 }
+/* footer요소 하단에 위치하는 코드 --------*/
 
 form{
 	width:800px;
