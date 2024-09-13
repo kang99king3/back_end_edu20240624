@@ -23,7 +23,7 @@
 <div id="container">
 	<div class="main">
 		<div class="lead">
-			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인 함</span> |
+			<span><%=ldto.getTid()%>[<%=ldto.getTrole()%>]님이 로그인 함</span> |
 			<span><a href="userController.jsp?command=getAllUserList">회원전체조회</a></span> |
 			<span><a href="userController.jsp?command=getUserList">회원정보[등급]수정</a></span> |
 			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
@@ -35,7 +35,7 @@
 				<input type="text" name="search" /><button>검색</button>
 				<table  class="table">
 					<tr>
-						<th>회원번호</th>
+						<th>번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>회원등급</th>
@@ -47,23 +47,24 @@
 									 +"<td colspan='5'>--회원이 존재하지 않습니다.--</td>"	
 									 +"</tr>");					
 						}else{
+							int i=1;
 							for(UserDto dto:list){//향상된 for문
 								%>
 								<tr>
-									<td><%=dto.getSeq()%></td>
-									<td><%=dto.getId()%></td>
-									<td><%=dto.getName()%></td>
+									<td><%=i++%></td>
+									<td><%=dto.getTid()%></td>
+									<td><%=dto.getTname()%></td>
 									<td>
-										<%=dto.getRole()%>
+										<%=dto.getTrole()%>
 										<%
-											if(!(dto.getId().equals(ldto.getId()))){
+											if(!(dto.getTid().equals(ldto.getTid()))){
 											%>
-											<button type="button" onclick="roleForm('<%=dto.getId()%>')">변경</button>
+											<button type="button" onclick="roleForm('<%=dto.getTid()%>')">변경</button>
 											<%	
 											}
 										%>
 									</td>
-									<td><%=dto.getRegDate()%></td>
+									<td><%=dto.getTregDate()%></td>
 								</tr>
 								<%
 							}
