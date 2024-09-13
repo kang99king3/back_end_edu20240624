@@ -26,7 +26,6 @@
 	#contents{
 		width:900px;
 		margin-left:100px;
-		border:1px solid red;
 	}
 </style>
 </head>
