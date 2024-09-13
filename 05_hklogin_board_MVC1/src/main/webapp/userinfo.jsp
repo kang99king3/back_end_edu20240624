@@ -18,6 +18,7 @@
 		<div class="lead">
 			<span><%=ldto.getTid()%>[<%=ldto.getTrole()%>]님이 로그인하였습니다.</span>
 			<span><a href="userController.jsp?command=userinfo&id=<%=ldto.getTid()%>">나의정보</a></span>
+			<span><a href="hkController.jsp?command=boardlist">게시판</a></span>
 			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
 		</div>
 		<div class="contents">

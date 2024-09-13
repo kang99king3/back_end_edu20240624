@@ -38,63 +38,73 @@
 	List<HkDto> lists=(List<HkDto>)request.getAttribute("lists");
 %>
 <body>
-<div id="contents">
-	<h1>게시판</h1>
-	<h2>글목록</h2>
-	<input type="text" name="id" /><button type="button" onclick="searchId()">검색</button>
-	<form action="hkController.jsp" method="post" onsubmit="return isAllCheck();">
-	<input type="hidden" name="command" value="muldel" />
-	<!-- 삭제버튼 클릭 - chkbox:체크된 박스들만 chk=seq,chk=seq,chk=seq -->
-	<table class="board_table">
-	<!-- 	<col width="50px"> -->
-		<col width="100px">
-		<col width="100px">
-		<col width="300px">
-		<col width="200px">
-		<tr>
-	<!-- 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th> -->
-			<th>번호</th><th>작성자</th><th>제목</th><th>작성일</th>
-		</tr>
-		<%	if(lists==null||lists.size()==0){
-			%>
-			<tr>
-				<td colspan="5">작성된 글이 없습니다.</td>
-			</tr>
-			<%
-		}
-			for(HkDto dto:lists){
-				%>
+<div id="container">
+	<div class="main">
+		<div class="lead">
+			<span><%=ldto.getTid()%>[<%=ldto.getTrole()%>]님이 로그인하였습니다.</span>
+			<span><a href="userController.jsp?command=userinfo&id=<%=ldto.getTid()%>">나의정보</a></span>
+			<span><a href="hkController.jsp?command=boardlist">게시판</a></span>
+			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
+		</div>
+		<div id="contents" style="height:700px;">
+			<h1>게시판</h1>
+			<h2>글목록</h2>
+			<input type="text" name="id" /><button type="button" onclick="searchId()">검색</button>
+			<form action="hkController.jsp" method="post" onsubmit="return isAllCheck();">
+			<input type="hidden" name="command" value="muldel" />
+			<!-- 삭제버튼 클릭 - chkbox:체크된 박스들만 chk=seq,chk=seq,chk=seq -->
+			<table class="board_table">
+			<!-- 	<col width="50px"> -->
+				<col width="100px">
+				<col width="100px">
+				<col width="300px">
+				<col width="200px">
 				<tr>
-	<%-- 				<td><input type="checkbox" name="chk" value="<%=dto.getTseq()%>"/></td> --%>
-					<td><%=dto.getTseq()%></td>
-					<td><%=dto.getTid()%></td>
-					<td>
-					<% if(dto.getDelflag().equals("Y")){
-						%>
-						--삭제된 글입니다--
-						<%
-					   }else{
-						%>
-						<a href="hkController.jsp?command=boarddetail&seq=<%=dto.getTseq()%>"><%=dto.getTtitle()%></a>					
-						<%	
-					   }
-					%>
-					
-					</td>
-					<td><%=dto.getTregDate()%></td>
+			<!-- 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th> -->
+					<th>번호</th><th>작성자</th><th>제목</th><th>작성일</th>
 				</tr>
-				<%
-			}
-		 %>
-		 <tr>
-		 	<td colspan="5">
-		 		<button type="button" onclick="insertBoardForm()">글추가</button>
-	<!-- 	 		<button type="submit">글삭제</button> -->
-		 	</td>
-		 </tr>
-	</table>
-	</form>
-
+				<%	if(lists==null||lists.size()==0){
+					%>
+					<tr>
+						<td colspan="5">작성된 글이 없습니다.</td>
+					</tr>
+					<%
+				}
+					for(HkDto dto:lists){
+						%>
+						<tr>
+			<%-- 				<td><input type="checkbox" name="chk" value="<%=dto.getTseq()%>"/></td> --%>
+							<td><%=dto.getTseq()%></td>
+							<td><%=dto.getTid()%></td>
+							<td>
+							<% if(dto.getDelflag().equals("Y")){
+								%>
+								--삭제된 글입니다--
+								<%
+							   }else{
+								%>
+								<a href="hkController.jsp?command=boarddetail&seq=<%=dto.getTseq()%>"><%=dto.getTtitle()%></a>					
+								<%	
+							   }
+							%>
+							
+							</td>
+							<td><%=dto.getTregDate()%></td>
+						</tr>
+						<%
+					}
+				 %>
+				 <tr>
+				 	<td colspan="5">
+				 		<button type="button" onclick="insertBoardForm()">글추가</button>
+			<!-- 	 		<button type="submit">글삭제</button> -->
+				 	</td>
+				 </tr>
+			</table>
+			</form>
+		
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 	function insertBoardForm(){
