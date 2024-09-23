@@ -52,8 +52,8 @@ public class HelloServletOld extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//인코딩처리
-		req.setCharacterEncoding("utf-8");
-		resp.setContentType("text/html;charset=utf-8");
+//		req.setCharacterEncoding("utf-8");
+//		resp.setContentType("text/html;charset=utf-8");
 		
 		//Session객체 사용
 		HttpSession session=req.getSession();
@@ -73,7 +73,7 @@ public class HelloServletOld extends HttpServlet{
 		//sendRedirect
 		resp.sendRedirect("test.jsp?param="+param);
 		//forward
-		req.getRequestDispatcher("test.jsp").forward(req, resp);
+//		req.getRequestDispatcher("test.jsp").forward(req, resp);
 		
 	}
 	
