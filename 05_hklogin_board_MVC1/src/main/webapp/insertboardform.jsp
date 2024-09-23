@@ -14,7 +14,7 @@
 <form action="hkController.jsp" method="post">
 <input type="hidden" name="command" value="insertboard"/>
 <!-- 글추가시 아이디는 session에서 가져와서 hkController.jsp로 전달한다. -->
-<input type="hidden" name="id" value="${ldto.tid}"/>
+<input type="hidden" name="id" value="${sessionScope.ldto.tid}"/>
 	<table border="1">
 		<tr>
 			<th>작성자(ID)</th>

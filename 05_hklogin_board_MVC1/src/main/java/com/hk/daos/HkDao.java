@@ -247,8 +247,8 @@ public class HkDao extends DataBase{
 		
 		String sql=" SELECT TSEQ, TID, TTITLE, TCONTENT, TREGDATE, DELFLAG "
 				+  " FROM T_BOARD "
-				+ " WHERE TID=?"
-				+ " ORDER BY TREGDATE DESC ";
+				+  " WHERE TID=?"
+				+  " ORDER BY TREGDATE DESC ";
 		
 		try {
 			conn=getConnection();//2단계:DB연결
