@@ -10,9 +10,18 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+  	<param-name>driver</param-name>
+  	<param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  
   <servlet>
   	<servlet-name>HelloServletOld</servlet-name>
   	<servlet-class>com.hk.hello.HelloServletOld</servlet-class>
+  	<init-param>
+  		<param-name>name</param-name>
+  		<param-value>건양</param-value>
+  	</init-param>
   </servlet>
   
   <servlet-mapping>
