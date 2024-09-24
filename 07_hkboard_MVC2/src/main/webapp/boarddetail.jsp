@@ -34,18 +34,18 @@
 			<input type="button" onclick="updateForm(<%=dto.getSeq()%>)" value="수정폼이동" />
 			<input type="button" onclick="delBoard(<%=dto.getSeq()%>)" value="삭제" />
 			<input type="button" value="글목록"
-			       onclick="location.href='hkController.jsp?command=boardlist'" />
+			       onclick="location.href='boardlist.board'" />
 		</td>
 	</tr>
 </table>
 <script type="text/javascript">
 	//수정폼으로 이동
 	function updateForm(seq){
-		location.href="hkController.jsp?command=boardupdateform&seq="+seq;
+		location.href="boardupdateform.board?seq="+seq;
 	}
 	//글 삭제하기
 	function delBoard(seq){
-		location.href="hkController.jsp?command=deleteboard&seq="+seq;
+		location.href="deleteboard.board?seq="+seq;
 	}
 </script>
 </body>

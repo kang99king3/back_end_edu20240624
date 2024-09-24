@@ -68,12 +68,13 @@ public class HkController extends HttpServlet {
 				// 브라우저에 주소창에 요청 URL로 적용된다. 조회작업시 응답
 //	 			pageContext.forward("hkController.jsp?command=boardlist");
 			}else{
-				String jsLocation="<script type='text/javascript'>"
-								 +"	alert('글추가실패');"
-								 +"	location.href='insertboardform.board';"
-								 +"</script>" ;
-				PrintWriter pw=response.getWriter();//브라우저 출력용 프린터
-				pw.print(jsLocation);
+//				String jsLocation="<script type='text/javascript'>"
+//								 +"	alert('글추가실패');"
+//								 +"	location.href='insertboardform.board';"
+//								 +"</script>" ;
+//				PrintWriter pw=response.getWriter();//브라우저 출력용 프린터
+//				pw.print(jsLocation);
+				jsLocation("글추가실패", "insertboardform.board", response);
 			}
 		}else if(command.equals("/boardupdateform.board")){
 			// seq값을 받아서 DAO요청해서 글상세내용을 조회하는 작업
@@ -146,6 +147,18 @@ public class HkController extends HttpServlet {
 						throws ServletException, IOException {
 		request.getRequestDispatcher(url)
 		   .forward(request, response);
+	}
+	
+	//JS location 구현
+	public void jsLocation(String msg,String url,
+									 HttpServletResponse response) 
+						 throws IOException {
+		String jsLocation="<script type='text/javascript'>"
+						 +"	alert('"+msg+"');"
+						 +"	location.href='"+url+"';"
+						 +"</script>" ;
+		PrintWriter pw=response.getWriter();//브라우저 출력용 프린터
+		pw.print(jsLocation);
 	}
 
 }

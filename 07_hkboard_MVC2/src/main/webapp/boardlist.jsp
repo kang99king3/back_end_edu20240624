@@ -33,8 +33,8 @@
 <body>
 <h1>게시판</h1>
 <h2>글목록</h2>
-<form action="hkController.jsp" method="post" onsubmit="return isAllCheck();">
-<input type="hidden" name="command" value="muldel" />
+<form action="muldel.board" method="post" onsubmit="return isAllCheck();">
+<!-- <input type="hidden" name="command" value="muldel" /> -->
 <!-- 삭제버튼 클릭 - chkbox:체크된 박스들만 chk=seq,chk=seq,chk=seq -->
 <table>
 	<col width="50px">
@@ -53,7 +53,7 @@
 				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
 				<td><%=dto.getSeq()%></td>
 				<td><%=dto.getId()%></td>
-				<td><a href="hkController.jsp?command=boarddetail&seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
+				<td><a href="boarddetail.board?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
 				<td><%=dto.getRegDate()%></td>
 			</tr>
 			<%
@@ -69,7 +69,7 @@
 </form>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="hkController.jsp?command=insertboardform";
+		location.href="insertboardform.board";
 	}
 	//전체선택 체크박스 기능 구현
 	function allSel(bool){

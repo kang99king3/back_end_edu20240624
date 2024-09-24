@@ -15,8 +15,8 @@
 %>
 <body>
 <h1>글 수정하기</h1>
-<form action="hkController.jsp" method="post">
-	<input type="hidden" name="command" value="boardupdate"/>
+<form action="boardupdate.board" method="post">
+<!-- 	<input type="hidden" name="command" value="boardupdate"/> -->
 	<input type="hidden" name="seq" value="<%=dto.getSeq()%>"/>
 	<table border="1">
 		<tr>
@@ -38,7 +38,7 @@
 			<td colspan="2">
 				<input type="submit" value="수정완료" />
 				<input type="button" value="글목록"
-				 onclick="location.href='hkController.jsp?command=boardlist'" />
+				 onclick="location.href='boardlist.board'" />
 			</td>
 		</tr>
 	</table>
