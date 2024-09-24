@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/cookiefunc.js"></script>
-<link rel="stylesheet" href="loginpage2.css">
+<link rel="stylesheet" href="css/loginpage1.css">
 </head>
 <body>
 <% String msg=request.getParameter("msg"); %>
