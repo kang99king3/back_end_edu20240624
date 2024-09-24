@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="hkController.jsp?command=boardlist">게시판보기</a>
+<a href="boardlist.board">게시판보기</a>
 </body>
 </html>
 

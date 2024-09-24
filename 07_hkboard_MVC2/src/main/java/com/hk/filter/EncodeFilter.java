@@ -13,7 +13,7 @@ import javax.servlet.http.HttpFilter;
 
 //urlmapping 방법 2가지 (xml, 어노테이션)
 @WebFilter(
-		urlPatterns = { "/*","/a","/b" }, 
+		urlPatterns = { "/*" }, 
 		initParams = { 
 				@WebInitParam(name = "encoding", value = "utf-8")
 		})
