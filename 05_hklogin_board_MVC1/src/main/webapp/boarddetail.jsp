@@ -16,36 +16,48 @@
 	HkDto dto=(HkDto)request.getAttribute("dto");
 %>
 <body>
-<h1>게시판 상세보기</h1>
-<table border="1" class="board_table">
-	<tr>
-		<th>작성자(ID)</th>
-		<td><%=dto.getTid()%></td>
-	</tr>
-	<tr>
-		<th>글제목</th>
-		<td><%=dto.getTtitle()%></td>
-	</tr>
-	<tr>
-		<th>글내용</th>
-		<td><textarea rows="10" cols="60" readonly="readonly"><%=dto.getTcontent()%></textarea></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<%
-				//로그인한 회원 자신의 글일 경우만 수정,삭제 기능 사용
-				if(ldto.getTid().equals(dto.getTid())){
-					%>
-					<input type="button" onclick="updateForm(<%=dto.getTseq()%>)" value="수정폼이동" />
-					<input type="button" onclick="delBoard(<%=dto.getTseq()%>)" value="삭제" />					
-					<%
-				}
-			%>
-			<input type="button" value="글목록"
-			       onclick="location.href='hkController.jsp?command=boardlist'" />
-		</td>
-	</tr>
-</table>
+<div id="container">
+	<div class="main">
+		<div class="lead">
+			<span><%=ldto.getTid()%>[<%=ldto.getTrole()%>]님이 로그인하였습니다.</span>
+			<span><a href="userController.jsp?command=userinfo&id=<%=ldto.getTid()%>">나의정보</a></span>
+			<span><a href="hkController.jsp?command=boardlist">게시판</a></span>
+			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
+		</div>
+		<div id="contents" style="height:700px;">
+			<h1>게시판 상세보기</h1>
+			<table border="1" class="board_table">
+				<tr>
+					<th>작성자(ID)</th>
+					<td><%=dto.getTid()%></td>
+				</tr>
+				<tr>
+					<th>글제목</th>
+					<td><%=dto.getTtitle()%></td>
+				</tr>
+				<tr>
+					<th>글내용</th>
+					<td><textarea rows="10" cols="60" readonly="readonly"><%=dto.getTcontent()%></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<%
+							//로그인한 회원 자신의 글일 경우만 수정,삭제 기능 사용
+							if(ldto.getTid().equals(dto.getTid())){
+								%>
+								<input type="button" onclick="updateForm(<%=dto.getTseq()%>)" value="수정폼이동" />
+								<input type="button" onclick="delBoard(<%=dto.getTseq()%>)" value="삭제" />					
+								<%
+							}
+						%>
+						<input type="button" value="글목록"
+						       onclick="location.href='hkController.jsp?command=boardlist'" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	//수정폼으로 이동
 	function updateForm(seq){

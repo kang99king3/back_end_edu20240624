@@ -1,3 +1,4 @@
+<%@include file="header.jsp" %>
 <%@page import="com.hk.dtos.HkDto"%>
 <%@page import="com.hk.daos.HkDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,38 +15,50 @@
 	HkDto dto=(HkDto)request.getAttribute("dto");
 %>
 <body>
-<h1>글 수정하기</h1>
-<form action="hkController.jsp" method="post">
-	<input type="hidden" name="command" value="boardupdate"/>
-	<input type="hidden" name="seq" value="<%=dto.getTseq()%>"/>
-	<table border="1">
-		<tr>
-			<th>작성자(ID)</th>
-			<td><%=dto.getTid()%></td>
-		</tr>
-		<tr>
-			<th>글제목</th>
-			<td><input type="text" name="title" required="required"
-												value="<%=dto.getTtitle()%>"/></td>
-						
-		</tr>
-		<tr>
-			<th>글내용</th>
-			<td><textarea rows="10" cols="60" name="content"
-									required="required"><%=dto.getTcontent()%></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="수정완료" />
-				<input type="button" value="글목록"
-				 onclick="location.href='hkController.jsp?command=boardlist'" />
-			</td>
-		</tr>
-	</table>
-</form>
+<div id="container">
+	<div class="main">
+		<div class="lead">
+			<span><%=ldto.getTid()%>[<%=ldto.getTrole()%>]님이 로그인하였습니다.</span>
+			<span><a href="userController.jsp?command=userinfo&id=<%=ldto.getTid()%>">나의정보</a></span>
+			<span><a href="hkController.jsp?command=boardlist">게시판</a></span>
+			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
+		</div>
+		<div id="contents" style="height:700px;">
+			<h1>글 수정하기</h1>
+			<form action="hkController.jsp" method="post">
+				<input type="hidden" name="command" value="boardupdate"/>
+				<input type="hidden" name="seq" value="<%=dto.getTseq()%>"/>
+				<table border="1" class="board_table">
+					<tr>
+						<th>작성자(ID)</th>
+						<td><%=dto.getTid()%></td>
+					</tr>
+					<tr>
+						<th>글제목</th>
+						<td><input type="text" name="title" required="required"
+															value="<%=dto.getTtitle()%>"/></td>
+									
+					</tr>
+					<tr>
+						<th>글내용</th>
+						<td><textarea rows="10" cols="60" name="content"
+												required="required"><%=dto.getTcontent()%></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="submit" value="수정완료" />
+							<input type="button" value="글목록"
+							 onclick="location.href='hkController.jsp?command=boardlist'" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
 </body>
 </html>
-
+<%@include file="footer.jsp" %>
 
 
 
