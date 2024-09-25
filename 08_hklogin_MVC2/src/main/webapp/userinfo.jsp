@@ -9,15 +9,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<% 
-// 	UserDto dto=(UserDto)request.getAttribute("dto");
-%>
 <body>
 <div id="container">
 	<div class="main">
 		<div class="lead">
-			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인하였습니다.</span>
-			<span><a href="userinfo.user?id=<%=ldto.getId()%>">나의정보</a></span>
+			<span>${ldto.id}[${ldto.role}]님이 로그인하였습니다.</span>
+			<span><a href="userinfo.user?id=${ldto.id}">나의정보</a></span>
 			<span><a href="logout.user">로그아웃</a></span>
 		</div>
 		<div class="contents">
@@ -29,17 +26,14 @@
 					<table border="1">
 						<tr>
 							<th>아이디</th>
-<%-- 							<td><%=dto.getId()%></td> --%>
 							<td>${dto.id}</td>
 						</tr>
 						<tr>
 							<th>이름</th>
-<%-- 							<td><%=dto.getName()%></td> --%>
 							<td>${dto.name}</td>
 						</tr>
 						<tr>
 							<th>등급</th>
-<%-- 							<td><%=dto.getRole()%></td> --%>
 							<td>${dto.role}</td>
 						</tr>
 						<tr>

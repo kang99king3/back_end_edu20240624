@@ -14,8 +14,8 @@
 <div id="container">
 	<div class="main">
 		<div class="lead">
-			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인하였습니다.</span>
-			<span><a href="userinfo.user?id=<%=ldto.getId()%>">나의정보</a></span>
+			<span>${ldto.id}[${ldto.role}]님이 로그인하였습니다.</span>
+			<span><a href="userinfo.user?id=${ldto.id}">나의정보</a></span>
 			<span><a href="logout.user">로그아웃</a></span>
 		</div>
 	</div>
