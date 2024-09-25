@@ -3,9 +3,11 @@
 
 <mapper namespace="com.hk.ans">
 
-	<select id="list" parameterType="String" resultType="AnswerDto">
-		select id,title,content from answerboard
-		where id=#{id}
+	<select id="boardlist" resultType="AnswerDto">
+		SELECT SEQ, ID, TITLE, CONTENT, REGDATE
+		       REFER, STEP, DEPTH,READCOUNT,DELFLAG
+	    FROM ANSWERBOARD
+	    ORDER BY REFER DESC, STEP 
 	</select>
 	
 	

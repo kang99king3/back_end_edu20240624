@@ -6,7 +6,7 @@
 	
 <!-- 	변수설정 -->
 	<typeAliases>
-		<typeAlias type="com.hk.ans.AnswerDto" alias="AnswerDto"/>
+		<typeAlias type="com.hk.ans.dtos.AnswerDto" alias="AnswerDto"/>
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->
