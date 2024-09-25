@@ -13,7 +13,7 @@
 <div id="container">
 	<div class="main">
 		<div class="lead">
-			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인 함</span> |
+			<span>${ldto.id}[${ldto.role}]님이 로그인 함</span> |
 			<span><a href="getAllUserList.user">회원전체조회</a></span> |
 			<span><a href="getUserList.user">회원정보[등급]수정</a></span> |
 			<span><a href="logout.user">로그아웃</a></span>

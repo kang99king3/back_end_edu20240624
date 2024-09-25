@@ -1,7 +1,9 @@
 /**
  * 쿠키 기능 구현 
  */
-
+function kkk(){
+	alert('HI');
+}
 //setCookie() 구현 :   setCookie(a,b,c)
 	function setCookie(name,value,expires,domain,path,secure){
 		var cookies="";

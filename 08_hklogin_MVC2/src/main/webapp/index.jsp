@@ -8,10 +8,47 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/cookiefunc.js"></script>
-<link rel="stylesheet" href="css/loginpage1.css">
+<!-- <link rel="stylesheet" href="css/loginpage1.css"> -->
+<style type="text/css">
+	*{
+	margin: 0px;
+	padding:0px;
+}
+
+body{
+	background-color: gainsboro;
+}
+
+button{
+	border: 1px solid cornflowerblue;
+	background-color:black;
+	border-radius:5px;
+	width:300px;
+	height: 40px;
+	color:darkorchid;
+	font-weight: bold;	
+}
+
+form{
+	width: 300px;
+	margin: 10% auto;
+}
+
+input, button{
+	margin:2px;
+}
+
+input[name]{
+	border:0px;
+	width:288px;
+	height: 40px;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+</style>
 </head>
 <body>
-<% String msg=request.getParameter("msg"); %>
+<%-- <% String msg=request.getParameter("msg"); %> --%>
 <form action="login.user" method="post" onsubmit="userIdCookie()">
 <!-- 	<input type="hidden" name="command" value="login"/> -->
 	<h1>Login</h1>
@@ -19,7 +56,8 @@
 	<input type="password" name="password" placeholder="password" 
 											  required="required" />
 	<input type="checkbox" value="remember-me"/><label>아이디 저장</label>
-	<label style="color:red;"><small><%=msg==null?"":msg%></small></label>	
+<%-- 	<label style="color:red;"><small><%=msg==null?"":msg%></small></label> --%>
+	<label style="color:red;"><small>${param.msg==null?"":param.msg}</small></label>		
 	<button type="submit">Sign in</button>
 	<button type="button" onclick="registForm()">Sign up</button>
 </form>
