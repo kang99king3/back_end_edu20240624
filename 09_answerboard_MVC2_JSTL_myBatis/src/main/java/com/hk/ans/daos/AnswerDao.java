@@ -30,7 +30,36 @@ public class AnswerDao extends SqlMapConfig{
 		}
 		return list;
 	}
+	
+	//새글 추가하기: insert문 실행
+	public boolean insertBoard(AnswerDto dto) {
+		int count=0;
+		SqlSession sqlSession=null;
+		
+		try {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			//파라미터 타입: DTO, Array, Map, String, int
+			//insert(쿼리ID이름, 파라미터)<---전달할 파라미터 개수가 여러개일경우 
+			//                            하나의 객체에 담아서 전달해야 함
+			count=sqlSession.insert(nameSpace+"insertboard", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return count>0?true:false;
+	}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

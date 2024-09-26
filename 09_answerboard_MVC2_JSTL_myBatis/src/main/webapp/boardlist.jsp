@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${empty list ? "데이터가 없어요":list.length}
+${empty list ? "데이터가 없어요":list[0]}
 </body>
 </html>
