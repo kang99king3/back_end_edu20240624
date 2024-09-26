@@ -4,6 +4,7 @@
 <%response.setContentType("text/html;charset=UTF-8"); %>  
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,15 @@
 <div id="container">
 	<h2>글목록 조회</h2>
 	<table border="1">
+		<col width="50px" />
+		<col width="100px" />
+		<col width="300px" />
+		<col width="100px" />
+		<col width="150px" />
+		<col width="50px" />
+		<col width="50px" />
+		<col width="50px" />
+		<col width="50px" />
 		<tr>
 			<th>번호</th>
 			<th>작성자</th>
@@ -37,7 +47,7 @@
 					<tr>
 						<td>${dto.seq}</td>
 						<td>${dto.id}</td>
-						<td>${dto.title}</td>
+						<td>${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}</td>
 						<td>${dto.readCount}</td>
 						<td><fmt:formatDate value="${dto.regDate}" pattern="yyyy년MM월dd일"/> </td>
 						<td>${dto.delflag}</td>
@@ -48,6 +58,20 @@
 				</c:forEach>
 			</c:otherwise>		
 		</c:choose>
+		<tr>
+			<td colspan="9" style="text-align: center;">
+				<c:forEach begin="1" end="${pcount}" var="i" step="1">
+					<a href="boardlist.board?pnum=${i}">${i}</a>&nbsp;&nbsp;
+				</c:forEach>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="9">
+				<button type="button" 
+				     onclick="location.href='insertform.board'">글추가</button>
+				<button>삭제</button>
+			</td>
+		</tr>
 	</table>
 </div>
 </body>

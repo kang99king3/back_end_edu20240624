@@ -29,11 +29,21 @@ public class AnsController extends HttpServlet {
 		AnswerDao dao=new AnswerDao();
 		
 		if(command.equals("/boardlist.board")) {
-			List<AnswerDto> list=dao.getAllList();
+			
+			//페이지번호 받기
+			String pnum=request.getParameter("pnum");
+			
+			List<AnswerDto> list=dao.getAllList(pnum);
 			request.setAttribute("list", list);
+			
+			//페이지수
+			int pcount=dao.getPCount();
+			request.setAttribute("pcount", pcount);
 			
 			request.getRequestDispatcher("boardlist.jsp")
 			       .forward(request, response);
+		}else if(command.equals("/insertform.board")) {//글추가폼이동
+			response.sendRedirect("insertboardform.jsp");
 		}
 		
 	}

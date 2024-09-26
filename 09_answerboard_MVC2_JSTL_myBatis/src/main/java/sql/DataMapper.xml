@@ -3,11 +3,26 @@
 
 <mapper namespace="com.hk.ans">
 				
-	<select id="boardlist" resultType="AnswerDto">
-		SELECT SEQ, ID, TITLE, CONTENT, REGDATE,
-		       REFER, STEP, DEPTH,READCOUNT,DELFLAG
-	    FROM ANSWERBOARD
-	    ORDER BY REFER DESC, STEP 
+<!-- 	<select id="boardlist" resultType="AnswerDto"> -->
+<!-- 		SELECT SEQ, ID, TITLE, CONTENT, REGDATE, -->
+<!-- 		       REFER, STEP, DEPTH,READCOUNT,DELFLAG -->
+<!-- 	    FROM ANSWERBOARD -->
+<!-- 	    ORDER BY REFER DESC, STEP  -->
+<!-- 	</select> -->
+	
+	<select id="boardlist" parameterType="String" resultType="AnswerDto">
+		SELECT RN, SEQ, ID, TITLE, CONTENT, REGDATE,
+			   REFER, STEP, DEPTH,READCOUNT,DELFLAG 
+		FROM	(SELECT ROW_NUMBER() OVER(ORDER BY refer DESC, step) rn,
+				        SEQ, ID, TITLE, CONTENT, REGDATE,
+					    REFER, STEP, DEPTH,READCOUNT,DELFLAG
+			     FROM answerboard) a
+		WHERE CEIL(rn/5) = #{pnum}
+	</select>
+	
+	<select id="getpcount" resultType="int">
+		SELECT ceil(COUNT(*)/5) pagecount
+		FROM answerboard
 	</select>
 	
 	<insert id="insertboard" parameterType="AnswerDto" >

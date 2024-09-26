@@ -13,7 +13,7 @@ public class AnswerDao extends SqlMapConfig{
 	private String nameSpace="com.hk.ans.";
 	
 	//1.글목록 조회하기
-	public List<AnswerDto> getAllList(){
+	public List<AnswerDto> getAllList(String pnum){
 		List<AnswerDto> list=new ArrayList<>();
 		
 		SqlSession sqlSession=null;//쿼리 실행을 위한 객체
@@ -22,13 +22,29 @@ public class AnswerDao extends SqlMapConfig{
 			//sqlSession객체를 구하려면 openSession()을 통해서 얻어온다.
 			//sqlSession객체를 구함: true-autocommit설정
 			sqlSession=getSqlSessionFactory().openSession(true);
-			list=sqlSession.selectList(nameSpace+"boardlist");
+			list=sqlSession.selectList(nameSpace+"boardlist",pnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
 		return list;
+	}
+	
+	//페이지수 구하기
+	public int getPCount() {
+		int count=0;
+		SqlSession sqlSession=null;
+		
+		try {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.selectOne(nameSpace+"getpcount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return count;
 	}
 	
 	//새글 추가하기: insert문 실행
