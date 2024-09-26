@@ -1,6 +1,7 @@
 package com.hk.ans.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,6 +45,18 @@ public class AnsController extends HttpServlet {
 			       .forward(request, response);
 		}else if(command.equals("/insertform.board")) {//글추가폼이동
 			response.sendRedirect("insertboardform.jsp");
+		}else if(command.equals("/insertboard.board")) {//글추가하기
+			String id=request.getParameter("id");
+			String title=request.getParameter("title");
+			String content=request.getParameter("content");
+			
+			boolean isS=dao.insertBoard(new AnswerDto(id,title,content));
+			if(isS) {
+				response.sendRedirect("boardlist.board?pnum=1");
+			}else {
+				response.sendRedirect("error.jsp?msg="
+									+URLEncoder.encode("글추가실패", "utf-8"));
+			}
 		}
 		
 	}
