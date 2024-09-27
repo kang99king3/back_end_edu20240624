@@ -69,8 +69,14 @@
 						<td>${dto.seq}</td>
 						<td>${dto.id}</td>
 						<td>
-							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/>
-							<jsp:getProperty property="arrowNbsp" name="util"/>	
+							<c:forEach begin="1" end="${dto.depth}" var="i" step="1">
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<c:if test="${i==dto.depth}">
+									<img src="img/arrow.png" />
+								</c:if>
+							</c:forEach>
+<%-- 							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/> --%>
+<%-- 							<jsp:getProperty property="arrowNbsp" name="util"/>	 --%>
 							<a href="boarddetail.board?seq=${dto.seq}">
 								${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}
 							</a>
