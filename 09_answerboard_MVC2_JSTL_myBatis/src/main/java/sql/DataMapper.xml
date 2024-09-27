@@ -10,14 +10,34 @@
 <!-- 	    ORDER BY REFER DESC, STEP  -->
 <!-- 	</select> -->
 	
-	<select id="boardlist" parameterType="String" resultType="AnswerDto">
+	<select id="boardlist" parameterType="Map" resultType="AnswerDto">
 		SELECT RN, SEQ, ID, TITLE, CONTENT, REGDATE,
 			   REFER, STEP, DEPTH,READCOUNT,DELFLAG 
 		FROM	(SELECT ROW_NUMBER() OVER(ORDER BY refer DESC, step) rn,
 				        SEQ, ID, TITLE, CONTENT, REGDATE,
 					    REFER, STEP, DEPTH,READCOUNT,DELFLAG
 			     FROM answerboard) a
-		WHERE CEIL(rn/5) = #{pnum}
+		<where>
+			<choose>
+				<when test="seq!=null">
+				    <include refid="param" />
+				</when>
+				<otherwise>
+					CEIL(rn/5) = #{pnum}
+				</otherwise>
+			</choose>	     
+		</where>
+	</select>
+	
+	<sql id="param">
+		seq=#{seq}
+	</sql>
+	
+	
+	<select id="getboard" parameterType="int" resultType="AnswerDto">
+		SELECT SEQ,ID, TITLE, CONTENT,REGDATE
+		FROM ANSWERBOARD
+		WHERE SEQ=#{seq}
 	</select>
 	
 	<select id="getpcount" resultType="int">

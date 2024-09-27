@@ -13,10 +13,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <style type="text/css">
-	#container{
-		width:1200px;
-		margin:100px auto;
-	}
+ 	#container{ 
+ 		width:1200px; 
+ 		margin:100px auto; 
+ 	} 
+	
 </style>
 </head>
 <body>
@@ -57,7 +58,11 @@
 					<tr>
 						<td>${dto.seq}</td>
 						<td>${dto.id}</td>
-						<td>${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}</td>
+						<td>
+							<a href="boarddetail.board?seq=${dto.seq}">
+								${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}
+							</a>
+						</td>
 						<td>${dto.readCount}</td>
 						<td><fmt:formatDate value="${dto.regDate}" pattern="yyyy년MM월dd일"/> </td>
 						<td>${dto.delflag}</td>
@@ -85,7 +90,7 @@
 			<td colspan="9">
 				<button type="button" class="btn btn-primary"
 				     onclick="location.href='insertform.board'">글추가</button>
-				<button class="btn">삭제</button>
+				<button class="btn btn-danger">삭제</button>
 			</td>
 		</tr>
 	</table>

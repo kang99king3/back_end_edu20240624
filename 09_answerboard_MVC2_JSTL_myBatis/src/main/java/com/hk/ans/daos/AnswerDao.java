@@ -1,7 +1,9 @@
 package com.hk.ans.daos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -18,17 +20,40 @@ public class AnswerDao extends SqlMapConfig{
 		
 		SqlSession sqlSession=null;//쿼리 실행을 위한 객체
 		
+		//myBatis에서 파라미터 전달의 기본은 Map에 담아서 보내는 방법임
+		Map<String, String> map=new HashMap<>();
+		map.put("pnum", pnum);
+		
 		try {
 			//sqlSession객체를 구하려면 openSession()을 통해서 얻어온다.
 			//sqlSession객체를 구함: true-autocommit설정
 			sqlSession=getSqlSessionFactory().openSession(true);
-			list=sqlSession.selectList(nameSpace+"boardlist",pnum);
+			list=sqlSession.selectList(nameSpace+"boardlist",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
 		return list;
+	}
+	
+	//2.글 상세조회
+	public AnswerDto getBoard(String seq){
+		AnswerDto dto=new AnswerDto();
+		
+		SqlSession sqlSession=null;//쿼리 실행을 위한 객체
+		//myBatis에서 파라미터 전달의 기본은 Map에 담아서 보내는 방법임
+				Map<String, String> map=new HashMap<>();
+				map.put("seq", seq);
+		try {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			dto=sqlSession.selectOne(nameSpace+"boardlist",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return dto;
 	}
 	
 	//페이지수 구하기

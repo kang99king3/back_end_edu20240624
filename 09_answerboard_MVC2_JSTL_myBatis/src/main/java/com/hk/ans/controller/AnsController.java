@@ -57,6 +57,14 @@ public class AnsController extends HttpServlet {
 				response.sendRedirect("error.jsp?msg="
 									+URLEncoder.encode("글추가실패", "utf-8"));
 			}
+		}else if(command.equals("/boarddetail.board")) {
+			String seq=request.getParameter("seq");
+			AnswerDto dto=dao.getBoard(seq);
+			
+			request.setAttribute("dto", dto);
+			
+			request.getRequestDispatcher("detailboard.jsp")
+		       .forward(request, response);
 		}
 		
 	}
