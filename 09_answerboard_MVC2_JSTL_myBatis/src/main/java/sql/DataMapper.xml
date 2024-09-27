@@ -52,6 +52,22 @@
         0,0,0,'N')
 	</insert>
 	
+<!-- 	답글 추가 -->
+	<update id="replyupdate" parameterType="AnswerDto">
+		UPDATE answerboard 
+		SET step = step+1
+		WHERE refer = (SELECT refer FROM answerboard WHERE seq=#{seq})
+		AND step > (SELECT step FROM answerboard WHERE seq=#{seq})
+	</update>
+	
+	<insert id="replyinsert" parameterType="AnswerDto">
+		INSERT INTO answerboard 
+		VALUES(NULL,#{id},#{title},#{content},SYSDATE(),
+		 (SELECT refer FROM answerboard alias_for_subquery WHERE seq=#{seq}),
+		 (SELECT step FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		 (SELECT depth FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		 0,'N')
+	</insert>
 	
 </mapper>
 

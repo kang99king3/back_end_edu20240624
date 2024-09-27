@@ -65,6 +65,19 @@ public class AnsController extends HttpServlet {
 			
 			request.getRequestDispatcher("detailboard.jsp")
 		       .forward(request, response);
+		}else if(command.equals("/replyboard.board")) {
+			int seq=Integer.parseInt(request.getParameter("seq"));
+			String id=request.getParameter("id");
+			String title=request.getParameter("title");
+			String content=request.getParameter("content");
+			
+			boolean isS=dao.replyBoard(new AnswerDto(seq,id,title,content));
+			if(isS) {
+				response.sendRedirect("boardlist.board?pnum=1");
+			}else {
+				response.sendRedirect("error.jsp?msg="
+						+URLEncoder.encode("답글추가실패", "utf-8"));
+			}
 		}
 		
 	}
