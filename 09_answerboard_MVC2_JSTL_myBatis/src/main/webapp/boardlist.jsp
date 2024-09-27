@@ -1,3 +1,4 @@
+<%@page import="com.hk.ans.dtos.AnswerDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -21,6 +22,15 @@
 </style>
 </head>
 <body>
+<% 
+	AnswerDto dto=new AnswerDto();
+	dto.setId("id");
+	dto.getId();
+%>
+<%-- <jsp:useBean id="udto" class="com.hk.ans.dtos.AnswerDto" /> --%>
+<%-- <jsp:setProperty property="id" name="udto" value="id값"/> --%>
+<%-- <jsp:getProperty property="id" name="udto"/> --%>
+<jsp:useBean id="util" class="com.hk.ans.util.Util" />
 <h1>답변형 게시판</h1>
 <div id="container">
 	<h2>글목록 조회</h2>
@@ -59,6 +69,8 @@
 						<td>${dto.seq}</td>
 						<td>${dto.id}</td>
 						<td>
+							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/>
+							<jsp:getProperty property="arrowNbsp" name="util"/>	
 							<a href="boarddetail.board?seq=${dto.seq}">
 								${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}
 							</a>
