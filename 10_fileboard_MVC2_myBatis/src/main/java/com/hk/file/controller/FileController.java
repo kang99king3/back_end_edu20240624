@@ -1,5 +1,6 @@
 package com.hk.file.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hk.file.daos.FileDao;
+import com.hk.file.dtos.FileDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -22,6 +25,8 @@ public class FileController extends HttpServlet {
 				     .substring(request.getContextPath().length());
 		
 		System.out.println("요청내용:"+command);
+		
+		FileDao dao=new FileDao();
 		
 		if(command.equals("/fileuploadform.file")) {
 			response.sendRedirect("uploadform.jsp");
@@ -77,7 +82,15 @@ public class FileController extends HttpServlet {
 			int file_size=(int)multi.getFile("filename").length();
 			System.out.println("파일사이즈:"+file_size);
 			//4.DB에 정보 추가하기
+			boolean isS=dao.insertFile(new FileDto(0,origin_name,stored_name,file_size,null));
 			
+			//5.업로드된 파일명을 변경하기(원본파일명으로 업로드 되어 있음)
+			// old이름 ---> stored이름 변경
+			File oldFile=new File(saveDirectory+"/"
+								 +multi.getFilesystemName("filename"));
+			
+			File newFile=new File(saveDirectory+"/"+stored_name);
+			oldFile.renameTo(newFile);//old명 --> new명으로 변경
 			
 			response.sendRedirect("uploadform.jsp");
 		}
