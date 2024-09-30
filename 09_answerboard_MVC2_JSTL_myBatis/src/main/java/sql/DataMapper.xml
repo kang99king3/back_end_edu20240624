@@ -69,6 +69,12 @@
 		 0,'N')
 	</insert>
 	
+<!-- 조회수 -->
+	<update id="readcount" parameterType="int">
+		UPDATE answerboard SET readcount = readcount+1
+		WHERE seq = #{seq}
+	</update>
+	
 </mapper>
 
 

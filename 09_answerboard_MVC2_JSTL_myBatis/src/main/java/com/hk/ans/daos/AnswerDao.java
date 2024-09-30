@@ -112,6 +112,22 @@ public class AnswerDao extends SqlMapConfig{
 		}
 		return count>0?true:false;
 	}
+	
+	//조회수 올리기: update문
+	public boolean readCount(int seq) {
+		int count=0;
+		SqlSession sqlSession=null;
+		
+		try {
+			sqlSession=getSqlSessionFactory().openSession(true);
+			count=sqlSession.update(nameSpace+"readcount", seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return count>0?true:false;
+	}
 }
 
 

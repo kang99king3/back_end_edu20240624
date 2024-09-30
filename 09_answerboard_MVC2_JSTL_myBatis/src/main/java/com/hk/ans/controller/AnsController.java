@@ -3,6 +3,7 @@ package com.hk.ans.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hk.ans.daos.AnswerDao;
 import com.hk.ans.dtos.AnswerDto;
+import com.hk.ans.util.Paging;
 
 @WebServlet("*.board")
 public class AnsController extends HttpServlet {
@@ -41,6 +43,11 @@ public class AnsController extends HttpServlet {
 			int pcount=dao.getPCount();
 			request.setAttribute("pcount", pcount);
 			
+			//-----페이지에 페이징 처리 기능을 추가하자
+			//필요한 값: pcount(페이지개수), pnum(요청 페이지번호), 페이지범위(패이지수)
+			Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
+			request.setAttribute("pMap", map);
+			
 			request.getRequestDispatcher("boardlist.jsp")
 			       .forward(request, response);
 		}else if(command.equals("/insertform.board")) {//글추가폼이동
@@ -57,9 +64,11 @@ public class AnsController extends HttpServlet {
 				response.sendRedirect("error.jsp?msg="
 									+URLEncoder.encode("글추가실패", "utf-8"));
 			}
-		}else if(command.equals("/boarddetail.board")) {
+		}else if(command.equals("/boarddetail.board")) {//글 상세조회
 			String seq=request.getParameter("seq");
 			AnswerDto dto=dao.getBoard(seq);
+			
+			dao.readCount(Integer.parseInt(seq));//조회수 업데이트
 			
 			request.setAttribute("dto", dto);
 			
