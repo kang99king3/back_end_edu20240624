@@ -3,7 +3,10 @@
 
 <mapper namespace="com.hk.file">
 				
-
+	<insert id="insertfile" parameterType="FileDto">
+		INSERT INTO fileboard 
+		VALUES(NULL,#{origin_name},#{stored_name},#{file_size},SYSDATE())
+	</insert>
 	
 </mapper>
 

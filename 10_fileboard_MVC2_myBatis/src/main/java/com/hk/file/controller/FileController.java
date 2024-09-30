@@ -1,6 +1,8 @@
 package com.hk.file.controller;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +57,27 @@ public class FileController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}//try-catch종료
+			
+			//DB에 파일정보를 추가하기
+			//1.원본파일명 구하기
+			// name="filename"
+			String origin_name=multi.getOriginalFileName("filename");
+			System.out.println("원본파일명:"+origin_name);
+			
+			//2.저장 파일명 구하기: UUID객체 ---> 32자리 값을 구함
+			//"12345678-12345678-12345678-12345678"
+			String random32=
+			UUID.randomUUID().toString().replace("-", "");// "-"제거하기
+			// abcd.jpg --> random32+.jpg 변환
+			String stored_name=random32
+					+(origin_name.substring(origin_name.lastIndexOf(".")));
+			
+			System.out.println("저장파일명:"+stored_name);
+			//3.파일사이즈 구하기
+			int file_size=(int)multi.getFile("filename").length();
+			System.out.println("파일사이즈:"+file_size);
+			//4.DB에 정보 추가하기
+			
 			
 			response.sendRedirect("uploadform.jsp");
 		}
