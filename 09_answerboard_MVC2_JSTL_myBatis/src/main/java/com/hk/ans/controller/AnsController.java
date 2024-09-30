@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.hk.ans.daos.AnswerDao;
 import com.hk.ans.dtos.AnswerDto;
@@ -36,6 +37,14 @@ public class AnsController extends HttpServlet {
 			//페이지번호 받기
 			String pnum=request.getParameter("pnum");
 			
+			//-- 현재 요청한 페이지 번호 유지를 위한 코드----
+			//session 스코프객체 이용--> request 객체로부터 얻어온다.
+			//session객체가 개인 장바구니 개념
+			HttpSession session=request.getSession();
+//			HttpSession session2=new HttpSession();(X)
+			session.setAttribute("pnum", pnum);
+			
+			
 			List<AnswerDto> list=dao.getAllList(pnum);
 			request.setAttribute("list", list);
 			
@@ -47,7 +56,7 @@ public class AnsController extends HttpServlet {
 			//필요한 값: pcount(페이지개수), pnum(요청 페이지번호), 페이지범위(패이지수)
 			Map<String, Integer> map=Paging.pagingValue(pcount, pnum, 5);
 			request.setAttribute("pMap", map);
-			
+						// ${pMap.startPage} 페이지에서 호출하는 방법
 			request.getRequestDispatcher("boardlist.jsp")
 			       .forward(request, response);
 		}else if(command.equals("/insertform.board")) {//글추가폼이동

@@ -91,15 +91,15 @@
 				</c:forEach>
 			</c:otherwise>		
 		</c:choose>
-		<tr>
+		<tr>                        
 			<td colspan="9" >
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
-				 	<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<c:forEach begin="1" end="${pcount}" var="i" step="1">
-						<li class="page-item"><a class="page-link" href="boardlist.board?pnum=${i}">${i}</a></li>
+				 	<li class="page-item"><a class="page-link" href="boardlist.board?pnum=${pMap.prePageNum}">Previous</a></li>
+					<c:forEach begin="${pMap.startPage}" end="${pMap.endPage}" var="i" step="1">
+						<li class="page-item ${sessionScope.pnum == i ? "active":"" }"><a class="page-link" href="boardlist.board?pnum=${i}">${i}</a></li>
 					</c:forEach>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<li class="page-item"><a class="page-link" href="boardlist.board?pnum=${pMap.nextPageNum}">Next</a></li>
 				</ul>
 			</nav>
 			</td>
