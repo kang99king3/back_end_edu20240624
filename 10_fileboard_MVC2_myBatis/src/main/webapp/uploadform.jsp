@@ -18,6 +18,10 @@
 			<td><input type="file" name="filename"/></td>
 		</tr>
 		<tr>
+			<th>다운로드:</th>
+			<td><a href="downloadlist.file">파일목록</a></td>
+		</tr>
+		<tr>
 			<td colspan="2"><input type="submit" value="업로드"/></td>
 		</tr>
 	</table>

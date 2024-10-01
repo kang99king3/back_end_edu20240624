@@ -2,6 +2,7 @@ package com.hk.file.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -95,6 +96,40 @@ public class FileController extends HttpServlet {
 			oldFile.renameTo(newFile);// old명 --> new명으로 변경
 			
 			response.sendRedirect("uploadform.jsp");
+		}else if(command.equals("/downloadlist.file")) {
+			List<FileDto> list=dao.getFileList();
+			
+			request.setAttribute("list", list);
+			
+			request.getRequestDispatcher("filelist.jsp")
+				   .forward(request, response);
+		}else if(command.equals("/download.file")) {//다운로드하기
+			int seq =Integer.parseInt(request.getParameter("seq"));
+			
+			//origin_name값은 다운로드할때 사용자에게 보내줄 파일명
+			//stored_name값은 실제 파일의 경로를 구할때 사용
+			FileDto dto=dao.getFileInfo(seq);
+			
+			//파일의 저장 경로
+			String saveDirectory=request.getSession().getServletContext()
+					             .getRealPath("upload");
+			String filePath=saveDirectory+"/"+dto.getStored_name();
+			
+			//다운로드 환경을 설정 시작-------
+			response.reset();
+			
+			//다운로드 파일의 형식 설정
+			//- 다운로드 형식을 모를때 octet-stream으로 설정
+//			response.setContentType("text/html");
+//			response.setContentType("text/msword");
+			response.setContentType("application/octet-stream");
+			
+			//다운로드 파일명 인코딩 처리
+			String fileName=new String(dto.getOrigin_name().getBytes("utf-8"),"8859_1");
+			//파일 다운로드할때 저장화면창을 제공하면서 원본파일명이 초기값으로 보기에 처리
+			response.setHeader("Content-Disposition",
+							   "attachment; filename="+fileName);
+			//다운로드 환경 설정 종료 ----------
 		}
 	}
 
