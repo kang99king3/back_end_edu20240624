@@ -5,8 +5,21 @@
 				
 	<insert id="insertfile" parameterType="FileDto">
 		INSERT INTO fileboard 
-		VALUES(NULL,#{origin_name},#{stored_name},#{file_size},SYSDATE())
+		VALUES(NULL,#{origin_name},#{stored_name},#{file_size},
+		SYSDATE())
 	</insert>
+	
+	<select id="getfilelist" parameterType="Map" resultType="FileDto">
+		SELECT SEQ, ORIGIN_NAME, STORED_NAME, FILE_SIZE,F_REGDATE
+		FROM FILEBOARD
+		<where>
+			<if test="seq!=null">
+			     SEQ = #{seq}
+			</if>
+		</where>
+		ORDER BY f_regdate DESC 
+	</select>
+	
 	
 </mapper>
 

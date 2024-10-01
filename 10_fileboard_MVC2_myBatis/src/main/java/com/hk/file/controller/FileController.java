@@ -33,18 +33,19 @@ public class FileController extends HttpServlet {
 		}else if(command.equals("/fileupload.file")) {
 			//1. 경로 설정(상대경로, 절대경로)
 			//- 절대경로
-			String saveDirectory
-				="C:/Users/user/git/back_end_edu20240624_web_20240924/"
-				+ "10_fileboard_MVC2_myBatis/src/main/webapp/upload";
+//			String saveDirectory
+//				="C:/Users/user/git/back_end_edu20240624_web_20240924/"
+//				+ "10_fileboard_MVC2_myBatis/src/main/webapp/upload";
 			
 			//- 상대경로
-//			String saveDirectory=request.getSession().getServletContext()
-//					             .getRealPath("upload");
+			String saveDirectory=request.getSession().getServletContext()
+					             .getRealPath("upload");
 			
 			System.out.println("업로드경로:"+saveDirectory);
 			//2.file 업로드 최대 사이즈 설정: byte단위
 			int maxPostSize=1*1024*1024*10; // 10MB
 			
+			//파일업로드에 관련된 객체==> Multi 용어가 나옴
 			MultipartRequest multi=null;
 			
 			try {
@@ -54,6 +55,7 @@ public class FileController extends HttpServlet {
 										   maxPostSize, //한번에 최대 업로드 크기
 										   "utf-8", // 인코딩
 										   new DefaultFileRenamePolicy() //중복 이름 재정의
+										                                 //abc.jpg -> abc_copy.jpg
 										   );
 				//text 파라미터 받을 경우
 	//			request.getParameter("title");//(x)
@@ -90,7 +92,7 @@ public class FileController extends HttpServlet {
 								 +multi.getFilesystemName("filename"));
 			
 			File newFile=new File(saveDirectory+"/"+stored_name);
-			oldFile.renameTo(newFile);//old명 --> new명으로 변경
+			oldFile.renameTo(newFile);// old명 --> new명으로 변경
 			
 			response.sendRedirect("uploadform.jsp");
 		}
