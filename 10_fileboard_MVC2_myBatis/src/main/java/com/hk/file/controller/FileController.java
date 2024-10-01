@@ -1,11 +1,14 @@
 package com.hk.file.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -130,6 +133,32 @@ public class FileController extends HttpServlet {
 			response.setHeader("Content-Disposition",
 							   "attachment; filename="+fileName);
 			//다운로드 환경 설정 종료 ----------
+			
+			//다운로드 구현
+			// 디렉토리에 저장파일 ---> 자바 ---> 클라이언트로 출력
+			File file=new File(filePath);//file객체를 생성..
+			
+			//java가 한번에 읽어 줄 크기 : 배열을 생성한다.
+			byte[] b=new byte[(int)file.length()];
+			
+			FileInputStream in=null;//입력
+			ServletOutputStream out=null;//출력
+			
+			try {
+				in=new FileInputStream(file);
+				out=response.getOutputStream();
+				int numRead=0;//읽어들이는 값의 개수를 저장할 변수
+				while((numRead=in.read(b,0,b.length))!=-1) {
+					out.write(b,0,numRead);//클라이언트로 출력
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				out.flush();
+				out.close();
+				in.close();
+			}
+			
 		}
 	}
 

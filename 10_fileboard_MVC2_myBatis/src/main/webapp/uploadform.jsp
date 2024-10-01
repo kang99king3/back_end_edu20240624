@@ -15,7 +15,31 @@
 	<table border="1">
 		<tr>
 			<th>파일:</th>
-			<td><input type="file" name="filename"/></td>
+<!-- 			<td><input type="file" name="filename" multiple="multiple"/></td> -->
+			<td>
+				<input type="file" name="filename"/>
+			</td>
+		</tr>
+		<tr>
+			<th>다운로드:</th>
+			<td><a href="downloadlist.file">파일목록</a></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="업로드"/></td>
+		</tr>
+	</table>
+</form>
+<form action="filemultiupload.file" method="post" 
+							   enctype="multipart/form-data">
+	<table border="1">
+		<tr>
+			<th>파일:</th>
+<!-- 			<td><input type="file" name="filename" multiple="multiple"/></td> -->
+			<td>
+				<input type="file" name="filename1"/>
+				<input type="file" name="filename2"/>
+				<input type="file" name="filename3"/>
+			</td>
 		</tr>
 		<tr>
 			<th>다운로드:</th>
