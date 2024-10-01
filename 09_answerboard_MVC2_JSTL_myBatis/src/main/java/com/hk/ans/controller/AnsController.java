@@ -42,7 +42,7 @@ public class AnsController extends HttpServlet {
 			//session객체가 개인 장바구니 개념
 			HttpSession session=request.getSession();
 			if(pnum==null) {
-				pnum=(String)session.getAttribute(pnum);
+				pnum=(String)session.getAttribute("pnum");
 			}else {
 //				HttpSession session2=new HttpSession();(X)
 				session.setAttribute("pnum", pnum);
@@ -89,7 +89,7 @@ public class AnsController extends HttpServlet {
 				dao.readCount(Integer.parseInt(seq));//조회수 업데이트
 				//review값이 y이면 sendRedirect로 seq값만 전송되도록 재요청한다.
 				//그럼 글목록에서 상세조회 요청했을때만 조회수가 증가한다.
-				response.sendRedirect("detailboard.board?seq="+seq);
+				response.sendRedirect("boarddetail.board?seq="+seq);
 			}else {
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("detailboard.jsp")
