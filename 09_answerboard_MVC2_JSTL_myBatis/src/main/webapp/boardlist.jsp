@@ -77,7 +77,7 @@
 							</c:forEach>
 <%-- 							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/> --%>
 <%-- 							<jsp:getProperty property="arrowNbsp" name="util"/>	 --%>
-							<a href="boarddetail.board?seq=${dto.seq}">
+							<a href="boarddetail.board?review=y&seq=${dto.seq}">
 								${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}
 							</a>
 						</td>

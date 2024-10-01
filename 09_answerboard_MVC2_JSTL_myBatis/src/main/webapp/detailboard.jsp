@@ -53,8 +53,10 @@
 				<button class="btn btn-primary" type="button" id="replyBtn">답글</button>
 				<button class="btn btn-primary" type="button">수정</button>
 				<button class="btn btn-primary" type="button">삭제</button>
+<!-- 				<button class="btn btn-primary" type="button" -->
+<!-- 				        onclick="location.href='boardlist.board?pnum=1'">목록</button> -->
 				<button class="btn btn-primary" type="button"
-				        onclick="location.href='boardlist.board?pnum=1'">목록</button>
+				        onclick="location.href='boardlist.board'">목록</button>
 			</td>
 		</tr>
 	</table>
@@ -82,8 +84,10 @@
 				<tr>
 					<td colspan="2">
 						<input class="btn btn-primary" type="submit" value="답글등록" />
+<!-- 						<input class="btn btn-primary" type="button" value="글목록" -->
+<!-- 						       onclick="location.href='boardlist.board?pnum=1'" /> -->
 						<input class="btn btn-primary" type="button" value="글목록"
-						       onclick="location.href='boardlist.board?pnum=1'" />
+						       onclick="location.href='boardlist.board'" />
 					</td>
 				</tr>
 			</table>

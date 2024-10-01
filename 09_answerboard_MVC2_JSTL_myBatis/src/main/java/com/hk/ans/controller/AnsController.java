@@ -41,8 +41,12 @@ public class AnsController extends HttpServlet {
 			//session 스코프객체 이용--> request 객체로부터 얻어온다.
 			//session객체가 개인 장바구니 개념
 			HttpSession session=request.getSession();
-//			HttpSession session2=new HttpSession();(X)
-			session.setAttribute("pnum", pnum);
+			if(pnum==null) {
+				pnum=(String)session.getAttribute(pnum);
+			}else {
+//				HttpSession session2=new HttpSession();(X)
+				session.setAttribute("pnum", pnum);
+			}
 			
 			
 			List<AnswerDto> list=dao.getAllList(pnum);
@@ -68,7 +72,8 @@ public class AnsController extends HttpServlet {
 			
 			boolean isS=dao.insertBoard(new AnswerDto(id,title,content));
 			if(isS) {
-				response.sendRedirect("boardlist.board?pnum=1");
+//				response.sendRedirect("boardlist.board?pnum=1");
+				response.sendRedirect("boardlist.board");
 			}else {
 				response.sendRedirect("error.jsp?msg="
 									+URLEncoder.encode("글추가실패", "utf-8"));
@@ -77,12 +82,20 @@ public class AnsController extends HttpServlet {
 			String seq=request.getParameter("seq");
 			AnswerDto dto=dao.getBoard(seq);
 			
-			dao.readCount(Integer.parseInt(seq));//조회수 업데이트
+			//boardlist.jsp에서 제목링크를 클릭하여 파라미터가 전달될때
+			//review=y 값을 전달해준다.
+			String review=request.getParameter("review");
+			if(review!=null&&review.equals("y")) {
+				dao.readCount(Integer.parseInt(seq));//조회수 업데이트
+				//review값이 y이면 sendRedirect로 seq값만 전송되도록 재요청한다.
+				//그럼 글목록에서 상세조회 요청했을때만 조회수가 증가한다.
+				response.sendRedirect("detailboard.board?seq="+seq);
+			}else {
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("detailboard.jsp")
+				.forward(request, response);	
+			}
 			
-			request.setAttribute("dto", dto);
-			
-			request.getRequestDispatcher("detailboard.jsp")
-		       .forward(request, response);
 		}else if(command.equals("/replyboard.board")) {
 			int seq=Integer.parseInt(request.getParameter("seq"));
 			String id=request.getParameter("id");
@@ -91,7 +104,8 @@ public class AnsController extends HttpServlet {
 			
 			boolean isS=dao.replyBoard(new AnswerDto(seq,id,title,content));
 			if(isS) {
-				response.sendRedirect("boardlist.board?pnum=1");
+//				response.sendRedirect("boardlist.board?pnum=1");
+				response.sendRedirect("boardlist.board");
 			}else {
 				response.sendRedirect("error.jsp?msg="
 						+URLEncoder.encode("답글추가실패", "utf-8"));
