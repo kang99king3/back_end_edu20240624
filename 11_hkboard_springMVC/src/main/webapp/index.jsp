@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Spring Template</h1>
-<a href="home.do">HOME</a>
+<h1>Spring MVC 게시판구현</h1>
+<a href="boardlist.do">게시판</a>
 </body>
 </html>
