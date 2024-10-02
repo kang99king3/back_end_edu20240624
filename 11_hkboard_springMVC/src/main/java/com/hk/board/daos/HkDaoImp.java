@@ -11,13 +11,14 @@ import com.hk.board.dtos.HkDto;
 @Repository
 public class HkDaoImp implements IHkDao{
 
+	private String namespace="com.hk.board.";
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public List<HkDto> getAllList() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"boardlist");
 	}
 
 	@Override

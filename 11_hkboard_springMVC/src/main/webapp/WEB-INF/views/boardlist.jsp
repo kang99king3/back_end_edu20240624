@@ -1,7 +1,5 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="com.hk.dtos.HkDto"%>
+<%@page import="com.hk.board.dtos.HkDto"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hk.daos.HkDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -23,12 +21,7 @@
 </style>
 </head>
 <%
-//  requestScope에 저장될때는 Object타입으로 자동 변환됨
-//  --> 다운캐스팅이 필요함
-// 	Object obj=request.getAttribute("lists");
-// 	List<HkDto> lists=(List<HkDto>)obj;
-
-	List<HkDto> lists=(List<HkDto>)request.getAttribute("lists");
+	List<HkDto> lists=(List<HkDto>)request.getAttribute("list");
 %>
 <body>
 <h1>게시판</h1>

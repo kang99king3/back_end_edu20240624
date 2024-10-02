@@ -16,8 +16,7 @@ public class HkServiceImp implements IHkService{
 	
 	@Override
 	public List<HkDto> getAllList() {
-		// TODO Auto-generated method stub
-		return null;
+		return hkDao.getAllList();
 	}
 
 	@Override
