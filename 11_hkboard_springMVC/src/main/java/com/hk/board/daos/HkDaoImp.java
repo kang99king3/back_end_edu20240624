@@ -23,8 +23,8 @@ public class HkDaoImp implements IHkDao{
 
 	@Override
 	public boolean insertBoard(HkDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=sqlSession.insert(namespace, dto);
+		return count>0?true:false;
 	}
 
 	@Override

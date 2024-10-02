@@ -34,6 +34,24 @@ public class HkController {
 		return "boardlist";//페이지 이름만 써준다.
 //		return "redirect:boardlist.do";//redirect 방식
 	}
+	
+	//글추가
+	@RequestMapping(value="/insertBoard.do",method=RequestMethod.POST)
+	public String insertBoard(Model model,HkDto dto) {
+		//전달된 파라미터를 메서드의 파라미터변수로 받을 수 있다.
+		System.out.println(dto);
+		
+		boolean isS=hkService.insertBoard(dto);
+		
+		if(isS) {
+			return "redirect:boardlist.do";// "WEB-IN/views/boardList.do.jsp"->404
+		}else {
+			model.addAttribute("msg", "글추가실패");
+			return "error";// return "페이지이름"; --> viewResolver가 실행됨			
+		}
+	}
+	
+	//상세보기
 }
 
 

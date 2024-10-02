@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-<!-- 	변수설정 : 나중에 실제 구현할때 활성화해서 사용하세요 -->
+<!-- 	변수설정 : 나중에 실제  구현할때 활성화해서 사용하세요 -->
 	<typeAliases>
 		<typeAlias type="com.hk.board.dtos.HkDto" alias="HkDto"/>
 	</typeAliases>

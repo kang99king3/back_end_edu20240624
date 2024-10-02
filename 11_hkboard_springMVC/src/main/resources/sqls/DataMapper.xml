@@ -8,6 +8,10 @@
 		FROM HKBOARD
 		ORDER BY REGDATE DESC
 	</select>
+	
+	<insert id="">
+	
+	</insert>
 				
 </mapper>
 

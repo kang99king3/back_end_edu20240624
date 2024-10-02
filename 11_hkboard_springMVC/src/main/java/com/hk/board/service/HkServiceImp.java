@@ -21,7 +21,7 @@ public class HkServiceImp implements IHkService{
 
 	@Override
 	public boolean insertBoard(HkDto dto) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
