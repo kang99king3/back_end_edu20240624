@@ -1,18 +1,18 @@
-package com.hk.board.daos;
+package com.hk.board.service;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import com.hk.board.daos.IHkDao;
 import com.hk.board.dtos.HkDto;
 
-@Repository
-public class HkDaoImp implements IHkDao{
+@Service
+public class HkServiceImp implements IHkService{
 
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	private IHkDao hkDao;
 	
 	@Override
 	public List<HkDto> getAllList() {
