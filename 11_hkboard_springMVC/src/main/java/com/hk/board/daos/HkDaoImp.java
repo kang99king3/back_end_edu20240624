@@ -1,6 +1,8 @@
 package com.hk.board.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,13 @@ public class HkDaoImp implements IHkDao{
 
 	@Override
 	public HkDto getBoard(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getboard", seq);
 	}
 
 	@Override
 	public boolean updateBoard(HkDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=sqlSession.update(namespace+"updateboard", dto);
+		return count>0?true:false;
 	}
 
 	@Override
@@ -47,8 +48,15 @@ public class HkDaoImp implements IHkDao{
 
 	@Override
 	public boolean mulDel(String[] chks) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs", chks);
+		int count=sqlSession.delete(namespace+"muldel", map);
+		return count>0?true:false;
 	}
 
 }
+
+
+
+
+

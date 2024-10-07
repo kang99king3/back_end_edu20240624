@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html;charset=UTF-8"); %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 <body>
 <h1>게시판</h1>
 <h2>글목록</h2>
-<form action="muldel.board" method="post" onsubmit="return isAllCheck();">
+<form action="muldel.do" method="post" onsubmit="return isAllCheck();">
 <!-- <input type="hidden" name="command" value="muldel" /> -->
 <!-- 삭제버튼 클릭 - chkbox:체크된 박스들만 chk=seq,chk=seq,chk=seq -->
 <table>
@@ -48,7 +49,7 @@
 				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
 				<td><%=dto.getSeq()%></td>
 				<td><%=dto.getId()%></td>
-				<td><a href="boarddetail.board?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
+				<td><a href="boarddetail.do?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
 				<td><%=toDates(dto.getRegDate())%></td>
 			</tr>
 			<%

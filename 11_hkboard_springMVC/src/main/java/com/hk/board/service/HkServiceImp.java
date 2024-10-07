@@ -26,14 +26,12 @@ public class HkServiceImp implements IHkService{
 
 	@Override
 	public HkDto getBoard(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return hkDao.getBoard(seq);
 	}
 
 	@Override
 	public boolean updateBoard(HkDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return hkDao.updateBoard(dto);
 	}
 
 	@Override
@@ -44,8 +42,7 @@ public class HkServiceImp implements IHkService{
 
 	@Override
 	public boolean mulDel(String[] chks) {
-		// TODO Auto-generated method stub
-		return false;
+		return hkDao.mulDel(chks);
 	}
 
 }
