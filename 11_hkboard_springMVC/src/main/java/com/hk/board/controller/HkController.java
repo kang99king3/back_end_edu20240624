@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,8 +39,25 @@ public class HkController {
 //		return "redirect:boardlist.do";//redirect 방식
 	}
 	
+	//글추가폼이동
+	@RequestMapping(value = "/insertboardform.do"
+			      ,method = RequestMethod.GET)
+	public String insertBoardForm() {
+		System.out.println("글추가폼이동");
+		//redirect로 응답하면 페이지를 못찾아줌
+//		return "redirect:insertboardform";(X)
+		return "insertboardform";//viewResolver객체 실행
+	}
+	
 	//글추가
 	@RequestMapping(value="/insertBoard.do",method=RequestMethod.POST)
+//	@RequestMapping(value="/insertBoard.do") //get또는 post방식 모두 적용
+	
+	//restAPI 구현 URL 맵핑방법
+//	@GetMapping("/insertBoard.do") // 조회를 요청
+//	@PostMapping("/insertBoard.do")// insert 요청
+//	@PutMapping("/insertBoard.do")// update요청
+//	@DeleteMapping("/insertBoard.do")// delete요청
 	public String insertBoard(Model model,HkDto dto) {
 		//전달된 파라미터를 메서드의 파라미터변수로 받을 수 있다.
 		System.out.println(dto);

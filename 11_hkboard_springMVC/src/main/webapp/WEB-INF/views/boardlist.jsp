@@ -62,7 +62,7 @@
 </form>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="insertboardform.board";
+		location.href="insertboardform.do";
 	}
 	//전체선택 체크박스 기능 구현
 	function allSel(bool){
