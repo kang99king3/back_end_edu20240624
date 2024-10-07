@@ -21,8 +21,7 @@ public class HkServiceImp implements IHkService{
 
 	@Override
 	public boolean insertBoard(HkDto dto) {
-		
-		return false;
+		return hkDao.insertBoard(dto);
 	}
 
 	@Override

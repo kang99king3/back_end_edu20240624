@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.hk.board.dtos.HkDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -47,7 +49,7 @@
 				<td><%=dto.getSeq()%></td>
 				<td><%=dto.getId()%></td>
 				<td><a href="boarddetail.board?seq=<%=dto.getSeq()%>"><%=dto.getTitle()%></a></td>
-				<td><%=dto.getRegDate()%></td>
+				<td><%=toDates(dto.getRegDate())%></td>
 			</tr>
 			<%
 		}
@@ -100,6 +102,16 @@
 		return false;//취소버튼 클릭했을 경우 전송되면 안되니깐 false반환
 	}
 </script>
+<%-- <%//실행부 %> --%>
+<%-- <%=//표현부 %> --%>
+<%!  
+	//선언부:메서드 선언하기
+	public String toDates(Date regdate){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	 return sdf.format(regdate);
+	}
+%>
+
 </body>
 </html>
 

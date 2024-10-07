@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.board.daos.IHkDao;
 import com.hk.board.dtos.HkDto;
@@ -50,16 +51,20 @@ public class HkController {
 	}
 	
 	//글추가
-	@RequestMapping(value="/insertBoard.do",method=RequestMethod.POST)
-//	@RequestMapping(value="/insertBoard.do") //get또는 post방식 모두 적용
+	@RequestMapping(value="/insertboard.do",method=RequestMethod.POST)
+//	@RequestMapping(value="/insertboard.do") //get또는 post방식 모두 적용
 	
 	//restAPI 구현 URL 맵핑방법
 //	@GetMapping("/insertBoard.do") // 조회를 요청
 //	@PostMapping("/insertBoard.do")// insert 요청
 //	@PutMapping("/insertBoard.do")// update요청
 //	@DeleteMapping("/insertBoard.do")// delete요청
-	public String insertBoard(Model model,HkDto dto) {
+	public String insertBoard(Model model, HkDto dto
+							 ,HttpServletRequest request) {
 		//전달된 파라미터를 메서드의 파라미터변수로 받을 수 있다.
+//		request.getParameter("id");
+//		request.getParameter("title");
+//		request.getParameter("content");//생략가능
 		System.out.println(dto);
 		
 		boolean isS=hkService.insertBoard(dto);
