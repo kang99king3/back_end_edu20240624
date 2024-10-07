@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="home.do">HOME</a>
+<h1>Hello Loginboard</h1>
 </body>
 </html>
