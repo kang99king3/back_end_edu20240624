@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+    <!-- Spring MVC @Controller같은 어노테이션 방식으로 운영을 하자~ -->
+	<mvc:annotation-driven/>
+
+	<!-- 정적파일 경로(js, css, img)를 설정 -->
+	<mvc:resources location="/resources/" mapping="/**"></mvc:resources>
+
+	<!-- JSP 셋팅 :   prefix/페이지이름suffix 경로를 만들어서 찾아줌 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 객체를 xml에 등록하지 않아도 생성해서 사용할 수 있게 한다. -->
+	<!-- base-package는 기본적으로 3뎁스로 구성한다. -->
+	<context:component-scan base-package="com.hk.board" />
+	
+</beans>
