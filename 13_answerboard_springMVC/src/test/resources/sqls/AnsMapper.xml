@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.ans">
+	<select id="boardlist" parameterType="Map" resultType="AnswerDto">
+		SELECT RN, SEQ, ID, TITLE, CONTENT, REGDATE,
+			   REFER, STEP, DEPTH,READCOUNT,DELFLAG 
+		FROM	(SELECT ROW_NUMBER() OVER(ORDER BY refer DESC, step) rn,
+				        SEQ, ID, TITLE, CONTENT, REGDATE,
+					    REFER, STEP, DEPTH,READCOUNT,DELFLAG
+			     FROM answerboard) a
+		<where>
+			<choose>
+				<when test="seq!=null">
+				    <include refid="param" />
+				</when>
+				<otherwise>
+					CEIL(rn/5) = #{pnum}
+				</otherwise>
+			</choose>	     
+		</where>
+	</select>
+	
+	<sql id="param">
+		seq=#{seq}
+	</sql>
+	
+	
+	<select id="getboard" parameterType="int" resultType="AnswerDto">
+		SELECT SEQ,ID, TITLE, CONTENT,REGDATE
+		FROM ANSWERBOARD
+		WHERE SEQ=#{seq}
+	</select>
+	
+	<select id="getpcount" resultType="int">
+		SELECT ceil(COUNT(*)/5) pagecount
+		FROM answerboard
+	</select>
+	
+	<insert id="insertboard" parameterType="AnswerDto" >
+		INSERT INTO ANSWERBOARD 
+		VALUES ( NULL,#{id},#{title},#{content},SYSDATE(),
+        (SELECT NVL(MAX(REFER),0)+1 FROM ANSWERBOARD ALIAS_FOR_SUBQUERY),
+        0,0,0,'N')
+	</insert>
+	
+<!-- 	답글 추가 -->
+	<update id="replyupdate" parameterType="AnswerDto">
+		UPDATE answerboard 
+		SET step = step+1
+		WHERE refer = (SELECT refer FROM answerboard WHERE seq=#{seq})
+		AND step > (SELECT step FROM answerboard WHERE seq=#{seq})
+	</update>
+	
+	<insert id="replyinsert" parameterType="AnswerDto">
+		INSERT INTO answerboard 
+		VALUES(NULL,#{id},#{title},#{content},SYSDATE(),
+		 (SELECT refer FROM answerboard alias_for_subquery WHERE seq=#{seq}),
+		 (SELECT step FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		 (SELECT depth FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		 0,'N')
+	</insert>
+	
+<!-- 조회수 -->
+	<update id="readcount" parameterType="int">
+		UPDATE answerboard SET readcount = readcount+1
+		WHERE seq = #{seq}
+	</update>
+</mapper>
+
+
+
+
+
+
