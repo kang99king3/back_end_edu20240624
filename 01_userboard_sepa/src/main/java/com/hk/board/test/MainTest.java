@@ -6,7 +6,7 @@ import com.hk.board.daos.UserDao;
 import com.hk.board.dtos.UserDto;
 
 public class MainTest {
-
+	
 	public static void main(String[] args) {
 		
 		//DB접근----> DAO객체

@@ -14,12 +14,13 @@ import lombok.RequiredArgsConstructor;
 
 
 @Repository
+@RequiredArgsConstructor
 public class AnsDaoImp implements IAnsDao{
 
 	private String namespace="com.hk.ans.";
 	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
+//	@Autowired
+	private final SqlSessionTemplate sqlSession;
 	
 	@Override
 	public List<AnswerDto> getAllList(String pnum) {
