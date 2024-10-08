@@ -1,31 +1,22 @@
-package com.hk.board.daos;
+package com.hk.board.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import com.hk.board.daos.IAnsDao;
 import com.hk.board.dtos.AnswerDto;
 
-import lombok.RequiredArgsConstructor;
+@Service
+public class AnsServiceImp implements IAnsService{
 
-
-@Repository
-public class AnsDaoImp implements IAnsDao{
-
-	private String namespace="com.hk.ans.";
-	
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	private IAnsDao ansDao;
 	
 	@Override
 	public List<AnswerDto> getAllList(String pnum) {
-		Map<String, String>map=new HashMap<>();
-		map.put("pnum", pnum);
-		return sqlSession.selectList(namespace+"boardlist", map);
+		return ansDao.getAllList(pnum);
 	}
 
 	@Override

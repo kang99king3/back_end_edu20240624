@@ -49,6 +49,8 @@ public class AnsDaoImpTest {
 	public void afterMethod() {
 		System.out.println("after실행");
 	}
+	
+	
 }
 
 
