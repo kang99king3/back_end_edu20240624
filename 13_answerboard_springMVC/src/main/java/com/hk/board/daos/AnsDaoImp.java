@@ -31,26 +31,31 @@ public class AnsDaoImp implements IAnsDao{
 
 	@Override
 	public AnswerDto getBoard(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String>map=new HashMap<>();
+		map.put("seq", seq);
+		return sqlSession.selectOne(namespace+"getboard", map);
 	}
 
 	@Override
 	public int getPCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace+"getpcount");
 	}
 
 	@Override
 	public boolean insertBoard(AnswerDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=sqlSession.insert(namespace+"insertboard", dto);
+		return count>0?true:false;
 	}
 
+	//답글추가: update, insert 2개 작업이 실행
 	@Override
-	public boolean replyBoard(AnswerDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public int replyUpdate(AnswerDto dto) {
+		return sqlSession.update(namespace+"replyupdate", dto);
+	}
+	
+	@Override
+	public int replyInsert(AnswerDto dto) {
+		return sqlSession.insert(namespace+"replyinsert", dto);
 	}
 
 	@Override
@@ -58,5 +63,6 @@ public class AnsDaoImp implements IAnsDao{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

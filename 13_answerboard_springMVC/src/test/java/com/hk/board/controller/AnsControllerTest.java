@@ -37,8 +37,8 @@ public class AnsControllerTest {
 		//boardlist.do 요청하기
 		MvcResult result=mock.perform(
 									  MockMvcRequestBuilders
-				                     .get("/boardlist.do")
-				                     .param("pnum", "1")
+									  .get("/boardlist.do")
+				                      .param("pnum", "1")
 				                     )
 				             .andExpect(MockMvcResultMatchers.status().isOk())
 							 .andReturn();

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hk.board.daos.IAnsDao;
 import com.hk.board.dtos.AnswerDto;
@@ -37,10 +39,15 @@ public class AnsServiceImp implements IAnsService{
 		return false;
 	}
 
+	//transaction 처리 필요
+	// - 선언적 처리 방법: 어노테이션 작성 방식
+	// - AOP 처리 방법: AOP 적용 처리 방식
+	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public boolean replyBoard(AnswerDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		ansDao.replyUpdate(dto);
+		int count=ansDao.replyInsert(dto);
+		return count>0?true:false;
 	}
 
 	@Override

@@ -19,8 +19,19 @@ public interface IAnsDao {
 	public int getPCount();
 	//새글 추가하기: insert문 실행
 	public boolean insertBoard(AnswerDto dto) ;
+	
 	//답글추가하기: update문, insert문 실행 --> transaction처리가 필요
-	public boolean replyBoard(AnswerDto dto);
+//	public boolean replyBoard(AnswerDto dto);
+	public int replyUpdate(AnswerDto dto);
+	public int replyInsert(AnswerDto dto);
+	
 	//조회수 올리기: update문
 	public boolean readCount(int seq);
 }
+
+
+
+
+
+
+
