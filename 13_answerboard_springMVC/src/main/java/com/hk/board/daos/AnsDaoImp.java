@@ -60,8 +60,8 @@ public class AnsDaoImp implements IAnsDao{
 
 	@Override
 	public boolean readCount(int seq) {
-		// TODO Auto-generated method stub
-		return false;
+		int count = sqlSession.update(namespace+"readcount", seq);
+		return count>0?true:false;
 	}
 
 

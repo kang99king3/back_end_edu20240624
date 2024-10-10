@@ -23,20 +23,17 @@ public class AnsServiceImp implements IAnsService{
 
 	@Override
 	public AnswerDto getBoard(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return ansDao.getBoard(seq);
 	}
 
 	@Override
 	public int getPCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ansDao.getPCount();
 	}
 
 	@Override
 	public boolean insertBoard(AnswerDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.insertBoard(dto);
 	}
 
 	//transaction 처리 필요
@@ -52,8 +49,7 @@ public class AnsServiceImp implements IAnsService{
 
 	@Override
 	public boolean readCount(int seq) {
-		// TODO Auto-generated method stub
-		return false;
+		return ansDao.readCount(seq);
 	}
 
 }
