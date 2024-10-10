@@ -12,5 +12,31 @@
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	
+<!-- 	advice가 구현되어 있는 로그 클래스를 등록하자 -->
+	<bean id="logAop" class="com.hk.board.aop.LogExecute" />
+	
+<!-- 	aop 환경을 설정하자 -->
+	<aop:config>
+<!-- 	advice(LogExecute객체)가 실행될 위치를 설정하는 pointcut 정의 -->
+		<aop:pointcut id="daoLogPoint" 
+		      expression="execution(* com.hk.board.daos.AnsDaoImp.*(..))" />
+	
+<!-- 	advice와 pointcut을 연결하는 설정 -->
+		<aop:aspect id="logAspect" ref="logAop">
+			<aop:before method="before" pointcut-ref="daoLogPoint"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="daoLogPoint"/>
+			<aop:after-throwing method="daoError" pointcut-ref="daoLogPoint"/>
+		</aop:aspect>
+	</aop:config>
 		
-	</beans>	
+		
+</beans>	
+
+
+
+
+
+
+
+
