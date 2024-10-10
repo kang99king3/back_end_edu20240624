@@ -22,6 +22,14 @@
 	<!-- base-package는 기본적으로 3뎁스로 구성한다. -->
 	<context:component-scan base-package="com.hk.board" />
 	
+<!-- 	인터셉터 설정하기 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do"/>
+			<bean class="com.hk.board.interceptor.InterceptorTest" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
 
 
