@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="home.do">HOME</a>
+<!-- <a href="home.do">HOME</a> -->
+<a href="boardlist.do?pnum=1">게시판보기</a>
 </body>
 </html>
