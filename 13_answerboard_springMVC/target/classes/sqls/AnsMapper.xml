@@ -53,7 +53,7 @@
 	</update>
 	
 	<insert id="replyinsert" parameterType="AnswerDto">
-		INSERT INTO answerboard 
+		INSERT INTO answerboard1
 		VALUES(NULL,#{id},#{title},#{content},SYSDATE(),
 		 (SELECT refer FROM answerboard alias_for_subquery WHERE seq=#{seq}),
 		 (SELECT step FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,

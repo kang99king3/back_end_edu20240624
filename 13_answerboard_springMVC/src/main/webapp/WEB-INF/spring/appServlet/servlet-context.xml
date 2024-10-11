@@ -10,7 +10,8 @@
     <!-- Spring MVC @Controller같은 어노테이션 방식으로 운영을 하자~ -->
 	<mvc:annotation-driven/>
 
-	<!-- 정적파일 경로(js, css, img)를 설정 -->
+	<!-- 정적파일 경로(js, css, img)를 설정: -->
+<!-- 	location: 실제경로의미,  mapping:사용하는 경로의미 -->
 	<mvc:resources location="/resources/" mapping="/**"></mvc:resources>
 
 	<!-- JSP 셋팅 :   prefix/페이지이름suffix 경로를 만들어서 찾아줌 -->

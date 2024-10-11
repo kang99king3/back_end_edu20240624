@@ -54,7 +54,7 @@
 							<c:forEach begin="1" end="${dto.depth}" var="i" step="1">
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								<c:if test="${i==dto.depth}">
-									<img src="img/arrow.png" />
+									<img src="resources/img/arrow.png" />
 								</c:if>
 							</c:forEach>
 <%-- 							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/> --%>

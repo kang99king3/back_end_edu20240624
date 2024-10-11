@@ -79,6 +79,20 @@ public class AnsController {
 		
 	}
 	
+	@RequestMapping(value="/replyboard.do", method=RequestMethod.POST)
+	public String replyBoard(Model model, AnswerDto dto) {
+		
+		boolean isS=ansService.replyBoard(dto);
+		
+		if(isS) {
+			return "redirect:boardlist.do";
+		}else {
+			model.addAttribute("msg", "답글추가실패");
+			return "error";
+		}
+	}
+	
+	
 }
 
 
