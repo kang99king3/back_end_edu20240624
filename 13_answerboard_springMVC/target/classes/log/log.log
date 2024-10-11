@@ -1,5 +1,202 @@
-INFO : org.springframework.test.context.web.WebTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]:2024 10월 10 10:53:50, 127
-INFO : org.springframework.test.context.web.WebTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@34f5090e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@31e5415e, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@a2431d0, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1cbb87f3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1a4013, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1b6e1eff, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@306f16f3, org.springframework.test.context.event.EventPublishingTestExecutionListener@702b8b12]:2024 10월 10 10:53:50, 141
-INFO : org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet '':2024 10월 10 10:53:50, 960
-INFO : org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet '':2024 10월 10 10:53:50, 960
-INFO : org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms:2024 10월 10 10:53:50, 961
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started:2024 10월 11 09:11:42, 963
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@35d5c24b]:2024 10월 11 09:11:43, 404
+DEBUG: org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.:2024 10월 11 09:11:43, 456
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [sqls/Configuration.xml]':2024 10월 11 09:11:43, 710
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was not specified.:2024 10월 11 09:11:43, 713
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:43, 766
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.liveBeansView.mbeanDomain] not found - trying original name [spring.liveBeansView.mbeanDomain]. javax.naming.NameNotFoundException: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:43, 767
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:43, 768
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.liveBeansView.mbeanDomain] threw NamingException with message: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:43, 768
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 817 ms:2024 10월 11 09:11:43, 782
+INFO : org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'appServlet':2024 10월 11 09:11:43, 874
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.active]:2024 10월 11 09:11:43, 874
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.active] not found - trying original name [spring.profiles.active]. javax.naming.NameNotFoundException: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:43, 875
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.active]:2024 10월 11 09:11:43, 875
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.active] threw NamingException with message: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:43, 875
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.default]:2024 10월 11 09:11:43, 875
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.default] not found - trying original name [spring.profiles.default]. javax.naming.NameNotFoundException: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:43, 875
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.default]:2024 10월 11 09:11:43, 876
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.default] threw NamingException with message: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:43, 876
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@25d69082]:2024 10월 11 09:11:44, 541
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.h.b.c.AnsController:
+	{GET [/home.do]}: home()
+	{GET [/boardlist.do]}: boardList(Model,String,HttpServletRequest):2024 10월 11 09:11:44, 990
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}:2024 10월 11 09:11:45, 175
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/**=ResourceHttpRequestHandler [ServletContext [/resources/]]}:2024 10월 11 09:11:45, 213
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:45, 293
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.liveBeansView.mbeanDomain] not found - trying original name [spring.liveBeansView.mbeanDomain]. javax.naming.NameNotFoundException: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:45, 294
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:45, 294
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.liveBeansView.mbeanDomain] threw NamingException with message: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:45, 294
+INFO : org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1420 ms:2024 10월 11 09:11:45, 294
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started:2024 10월 11 09:11:48, 816
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@74c04377]:2024 10월 11 09:11:49, 246
+DEBUG: org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.:2024 10월 11 09:11:49, 288
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [sqls/Configuration.xml]':2024 10월 11 09:11:49, 532
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was not specified.:2024 10월 11 09:11:49, 536
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:49, 584
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.liveBeansView.mbeanDomain] not found - trying original name [spring.liveBeansView.mbeanDomain]. javax.naming.NameNotFoundException: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:49, 586
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:49, 586
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.liveBeansView.mbeanDomain] threw NamingException with message: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:49, 586
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 780 ms:2024 10월 11 09:11:49, 596
+INFO : org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'appServlet':2024 10월 11 09:11:49, 650
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.active]:2024 10월 11 09:11:49, 651
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.active] not found - trying original name [spring.profiles.active]. javax.naming.NameNotFoundException: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:49, 651
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.active]:2024 10월 11 09:11:49, 651
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.active] threw NamingException with message: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:49, 651
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.default]:2024 10월 11 09:11:49, 651
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.default] not found - trying original name [spring.profiles.default]. javax.naming.NameNotFoundException: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:49, 652
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.default]:2024 10월 11 09:11:49, 652
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.default] threw NamingException with message: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:49, 652
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@460aa24e]:2024 10월 11 09:11:50, 161
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.h.b.c.AnsController:
+	{GET [/home.do]}: home()
+	{GET [/boardlist.do]}: boardList(Model,String,HttpServletRequest):2024 10월 11 09:11:50, 604
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}:2024 10월 11 09:11:50, 795
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/**=ResourceHttpRequestHandler [ServletContext [/resources/]]}:2024 10월 11 09:11:50, 818
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:50, 894
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.liveBeansView.mbeanDomain] not found - trying original name [spring.liveBeansView.mbeanDomain]. javax.naming.NameNotFoundException: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.:2024 10월 11 09:11:50, 894
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.liveBeansView.mbeanDomain]:2024 10월 11 09:11:50, 895
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.liveBeansView.mbeanDomain] threw NamingException with message: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:11:50, 895
+INFO : org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1244 ms:2024 10월 11 09:11:50, 895
+INFO : com.hk.board.interceptor.InterceptorTest - /13_answerboard_springMVC/boardlist.do요청함:2024 10월 11 09:11:56, 752
+INFO : class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - before실행(info):시작:getAllList:2024 10월 11 09:11:56, 800
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - before실행(debug):시작:execution(public abstract java.util.List com.hk.board.daos.IAnsDao.getAllList(java.lang.String)):2024 10월 11 09:11:56, 800
+DEBUG: org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession:2024 10월 11 09:11:56, 806
+DEBUG: org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61ee2f3] was not registered for synchronization because synchronization is not active:2024 10월 11 09:11:56, 814
+DEBUG: org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource:2024 10월 11 09:11:56, 861
+DEBUG: org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [jdbc:mariadb://localhost:3307/hkeduweb, UserName=root, MariaDB Connector/J] will not be managed by Spring:2024 10월 11 09:11:56, 945
+DEBUG: com.hk.ans.boardlist - ==>  Preparing: SELECT RN, SEQ, ID, TITLE, CONTENT, REGDATE, REFER, STEP, DEPTH,READCOUNT,DELFLAG FROM (SELECT ROW_NUMBER() OVER(ORDER BY refer DESC, step) rn, SEQ, ID, TITLE, CONTENT, REGDATE, REFER, STEP, DEPTH,READCOUNT,DELFLAG FROM answerboard) a WHERE CEIL(rn/5) = ?:2024 10월 11 09:11:56, 952
+DEBUG: com.hk.ans.boardlist - ==> Parameters: 1(String):2024 10월 11 09:11:56, 981
+DEBUG: com.hk.ans.boardlist - <==      Total: 5:2024 10월 11 09:11:57, 004
+DEBUG: org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61ee2f3]:2024 10월 11 09:11:57, 008
+INFO : class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - afterReturning실행(info):시작:getAllList:2024 10월 11 09:11:57, 010
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - afterReturning실행(debug):시작:execution(public abstract java.util.List com.hk.board.daos.IAnsDao.getAllList(java.lang.String)):2024 10월 11 09:11:57, 010
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - 전달 파라미터:[1]:2024 10월 11 09:11:57, 010
+INFO : class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - before실행(info):시작:getPCount:2024 10월 11 09:11:57, 010
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - before실행(debug):시작:execution(public abstract int com.hk.board.daos.IAnsDao.getPCount()):2024 10월 11 09:11:57, 011
+DEBUG: org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession:2024 10월 11 09:11:57, 011
+DEBUG: org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d9338f2] was not registered for synchronization because synchronization is not active:2024 10월 11 09:11:57, 011
+DEBUG: org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource:2024 10월 11 09:11:57, 011
+DEBUG: org.mybatis.spring.transaction.SpringManagedTransaction - JDBC Connection [jdbc:mariadb://localhost:3307/hkeduweb, UserName=root, MariaDB Connector/J] will not be managed by Spring:2024 10월 11 09:11:57, 011
+DEBUG: com.hk.ans.getpcount - ==>  Preparing: SELECT ceil(COUNT(*)/5) pagecount FROM answerboard:2024 10월 11 09:11:57, 011
+DEBUG: com.hk.ans.getpcount - ==> Parameters: :2024 10월 11 09:11:57, 011
+DEBUG: com.hk.ans.getpcount - <==      Total: 1:2024 10월 11 09:11:57, 016
+DEBUG: org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d9338f2]:2024 10월 11 09:11:57, 016
+INFO : class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - afterReturning실행(info):시작:getPCount:2024 10월 11 09:11:57, 016
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - afterReturning실행(debug):시작:execution(public abstract int com.hk.board.daos.IAnsDao.getPCount()):2024 10월 11 09:11:57, 016
+DEBUG: class org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint - 전달 파라미터:[]:2024 10월 11 09:11:57, 016
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started:2024 10월 11 09:46:50, 255
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@759e0b33]:2024 10월 11 09:46:50, 635
+DEBUG: org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.:2024 10월 11 09:46:50, 670
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [sqls/Configuration.xml]':2024 10월 11 09:46:50, 866
+DEBUG: org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was not specified.:2024 10월 11 09:46:50, 868
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.liveBeansView.mbeanDomain]:2024 10월 11 09:46:50, 902
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.liveBeansView.mbeanDomain] not found - trying original name [spring.liveBeansView.mbeanDomain]. javax.naming.NameNotFoundException: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.:2024 10월 11 09:46:50, 903
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.liveBeansView.mbeanDomain]:2024 10월 11 09:46:50, 903
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.liveBeansView.mbeanDomain] threw NamingException with message: Name [spring.liveBeansView.mbeanDomain]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.liveBeansView.mbeanDomain]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:46:50, 903
+INFO : org.springframework.web.context.ContextLoader - Root WebApplicationContext initialized in 658 ms:2024 10월 11 09:46:50, 914
+INFO : org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'appServlet':2024 10월 11 09:46:50, 959
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.active]:2024 10월 11 09:46:50, 959
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.active] not found - trying original name [spring.profiles.active]. javax.naming.NameNotFoundException: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.active]:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.active] threw NamingException with message: Name [spring.profiles.active]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.active]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [java:comp/env/spring.profiles.default]:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiLocatorDelegate - Converted JNDI name [java:comp/env/spring.profiles.default] not found - trying original name [spring.profiles.default]. javax.naming.NameNotFoundException: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiTemplate - Looking up JNDI object with name [spring.profiles.default]:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.jndi.JndiPropertySource - JNDI lookup for name [spring.profiles.default] threw NamingException with message: Name [spring.profiles.default]은(는) 이 컨텍스트에 바인딩되지 않았습니다. [spring.profiles.default]을(를) 찾을 수 없습니다.. Returning null.:2024 10월 11 09:46:50, 960
+DEBUG: org.springframework.ui.context.support.UiApplicationContextUtils - Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@6b287e17]:2024 10월 11 09:46:51, 412
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 
+	c.h.b.c.AnsController:
+	{GET [/home.do]}: home()
+	{GET [/boardlist.do]}: boardList(Model,String,HttpServletRequest):2024 10월 11 09:46:51, 836
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}:2024 10월 11 09:46:52, 003
+DEBUG: _org.springframework.web.servlet.HandlerMapping.Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/**=ResourceHttpRequestHandler [ServletContext [/resources/]]}:2024 10월 11 09:46:52, 027
+WARN : org.springframework.web.context.support.XmlWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ansController': Unsatisfied dependency expressed through field 'ansService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ansServiceImp' defined in file [D:\eclipse202403\eclipse\workspace_20240627_web_ver202403\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\13_answerboard_springMVC\WEB-INF\classes\com\hk\board\service\AnsServiceImp.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'txAdvice': Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'transactionManager' available:2024 10월 11 09:46:52, 300
+ERROR: org.springframework.web.servlet.DispatcherServlet - Context initialization failed:2024 10월 11 09:46:52, 301
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ansController': Unsatisfied dependency expressed through field 'ansService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ansServiceImp' defined in file [D:\eclipse202403\eclipse\workspace_20240627_web_ver202403\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\13_answerboard_springMVC\WEB-INF\classes\com\hk\board\service\AnsServiceImp.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'txAdvice': Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'transactionManager' available
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:702)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:591)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1161)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1114)
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:1007)
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4948)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5256)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3814)
+	at org.apache.catalina.loader.WebappLoader.backgroundProcess(WebappLoader.java:311)
+	at org.apache.catalina.core.StandardContext.backgroundProcess(StandardContext.java:5599)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1362)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1366)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1344)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ansServiceImp' defined in file [D:\eclipse202403\eclipse\workspace_20240627_web_ver202403\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\13_answerboard_springMVC\WEB-INF\classes\com\hk\board\service\AnsServiceImp.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'txAdvice': Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'transactionManager' available
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	... 40 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'txAdvice': Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'transactionManager' available
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:342)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1707)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor.getAdvice(AbstractBeanFactoryPointcutAdvisor.java:116)
+	at org.springframework.aop.aspectj.AspectJProxyUtils.isAspectJAdvice(AspectJProxyUtils.java:73)
+	at org.springframework.aop.aspectj.AspectJProxyUtils.makeAdvisorChainAspectJCapableIfNecessary(AspectJProxyUtils.java:54)
+	at org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator.extendAdvisors(AspectJAwareAdvisorAutoProxyCreator.java:95)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAutoProxyCreator.java:98)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAdvisorAutoProxyCreator.java:78)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:339)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:291)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 49 more
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'transactionManager' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:872)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:283)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
+	... 69 more

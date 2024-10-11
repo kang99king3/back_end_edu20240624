@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"	
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans	
-						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx
+       					http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"
+						>
 
 <!-- 	DB연결에 관련된 작업을 설정하는 코드 : myBatis 등등..-->
 	
@@ -32,6 +36,15 @@
 		<constructor-arg index="0" ref="sqlSession" />
 	</bean>
 	
+<!-- 	Transaction 처리를 위한 객체 등록 -->
+	<bean id="transactionManager" 
+	      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+<!-- 	선언적 트랜젝션 처리: @transactional 어노테이션 사용 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+	                      proxy-target-class="true"  />
 </beans>
 
 

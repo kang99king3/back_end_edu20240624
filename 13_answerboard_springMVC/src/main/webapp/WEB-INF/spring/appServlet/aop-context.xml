@@ -29,7 +29,20 @@
 			<aop:after-throwing method="daoError" pointcut-ref="daoLogPoint"/>
 		</aop:aspect>
 	</aop:config>
-		
+	
+<!-- 	transaction 처리 aop이용 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"
+								rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="serviceTransaction" 
+			  expression="execution(* com.hk.board.service.*ServiceImp.*Board(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceTransaction"/>
+	</aop:config>
 		
 </beans>	
 
