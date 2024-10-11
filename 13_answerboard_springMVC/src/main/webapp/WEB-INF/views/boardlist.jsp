@@ -26,15 +26,6 @@
 <div id="container">
 	<h2>글목록 조회</h2>
 	<table  class="table">
-<%-- 		<col width="50px" /> --%>
-<%-- 		<col width="100px" /> --%>
-<%-- 		<col width="300px" /> --%>
-<%-- 		<col width="100px" /> --%>
-<%-- 		<col width="150px" /> --%>
-<%-- 		<col width="50px" /> --%>
-<%-- 		<col width="50px" /> --%>
-<%-- 		<col width="50px" /> --%>
-<%-- 		<col width="50px" /> --%>
 		<thead class="table-light">
 		<tr>
 			<th>번호</th>
@@ -68,7 +59,7 @@
 							</c:forEach>
 <%-- 							<jsp:setProperty property="arrowNbsp" name="util" value="${dto.depth}"/> --%>
 <%-- 							<jsp:getProperty property="arrowNbsp" name="util"/>	 --%>
-							<a href="boarddetail.board?review=y&seq=${dto.seq}">
+							<a href="boarddetail.do?review=y&seq=${dto.seq}">
 								${fn:length(dto.title)>10?fn:substring(dto.title,0,10)+='...':dto.title}
 							</a>
 						</td>

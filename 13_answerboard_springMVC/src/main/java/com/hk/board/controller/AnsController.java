@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hk.board.util.Paging;
 import com.hk.board.dtos.AnswerDto;
 import com.hk.board.service.IAnsService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class AnsController {
@@ -59,7 +61,35 @@ public class AnsController {
 		
 		return "boardlist";
 	}
+	
+	//상세보기
+	@RequestMapping(value = "/boarddetail.do", method = RequestMethod.GET)
+	public String getBoard(Model model, String seq,String review) {//파라미터는 메서드에 파라미터변수로 받을 수 있음
+		
+		if(review!=null&&review.equals("y")) {
+			ansService.readCount(Integer.parseInt(seq));//조회수 업데이트
+			//review값이 y이면 sendRedirect로 seq값만 전송되도록 재요청한다.
+			//그럼 글목록에서 상세조회 요청했을때만 조회수가 증가한다.
+			return "redirect:boarddetail.do?seq="+seq;
+		}else {
+			AnswerDto dto = ansService.getBoard(seq);
+			model.addAttribute("dto", dto);
+			return "detailboard";//viewResolver객체가 페이지를 찾아준다.: forward방식
+		}
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

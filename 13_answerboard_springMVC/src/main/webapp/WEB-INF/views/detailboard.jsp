@@ -56,14 +56,14 @@
 <!-- 				<button class="btn btn-primary" type="button" -->
 <!-- 				        onclick="location.href='boardlist.board?pnum=1'">목록</button> -->
 				<button class="btn btn-primary" type="button"
-				        onclick="location.href='boardlist.board'">목록</button>
+				        onclick="location.href='boardlist.do'">목록</button>
 			</td>
 		</tr>
 	</table>
 	
 	<div id="replyForm">
 		<h1>답글 작성하기</h1>
-		<form action="replyboard.board" method="post">
+		<form action="replyboard.do" method="post">
 			<input type="hidden" name="seq" value="${dto.seq}"/>
 			<table class="table">
 				<tr>
@@ -87,7 +87,7 @@
 <!-- 						<input class="btn btn-primary" type="button" value="글목록" -->
 <!-- 						       onclick="location.href='boardlist.board?pnum=1'" /> -->
 						<input class="btn btn-primary" type="button" value="글목록"
-						       onclick="location.href='boardlist.board'" />
+						       onclick="location.href='boardlist.do'" />
 					</td>
 				</tr>
 			</table>

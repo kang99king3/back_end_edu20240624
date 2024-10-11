@@ -37,7 +37,7 @@ public class AnsDaoImp implements IAnsDao{
 	public AnswerDto getBoard(String seq) {
 		Map<String, String>map=new HashMap<>();
 		map.put("seq", seq);
-		return sqlSession.selectOne(namespace+"getboard", map);
+		return sqlSession.selectOne(namespace+"boardlist", map);
 	}
 
 	@Override

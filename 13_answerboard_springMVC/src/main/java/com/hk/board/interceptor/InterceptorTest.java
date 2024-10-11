@@ -30,8 +30,10 @@ public class InterceptorTest implements HandlerInterceptor{
 		}else if(request.getRequestURI().contains("/boarddetail.do")) {
 			if(obj==null) {
 				logger.info("로그인없이 상세조회 요청함");
-				response.sendRedirect("index.jsp");
-				return false;
+				System.out.println("로그인이 안됨");
+//				response.sendRedirect("index.jsp");
+//				return false;
+				return true;//상세조회 확인해야 되니깐 true로 다시 수정
 			}
 		}
 		
