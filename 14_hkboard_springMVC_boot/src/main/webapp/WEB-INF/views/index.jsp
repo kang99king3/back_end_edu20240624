@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>spring boot JSP버전</h1>
+<a href="boardlist">게시판</a>
 </body>
 </html>
