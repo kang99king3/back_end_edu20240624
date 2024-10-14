@@ -13,7 +13,7 @@ public interface BoardMapper {
 	public boolean insertBoard(HkDto dto);
 	public HkDto getBoard(int seq);
 	public boolean updateBoard(HkDto dto);
-	public boolean delBoard(int seq);
+//	public boolean delBoard(int seq);
 	public boolean mulDel(Map<String, String[]> map);
 }
 
