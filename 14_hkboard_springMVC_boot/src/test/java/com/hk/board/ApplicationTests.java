@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.hk.board.dtos.HkDto;
 import com.hk.board.service.HkServiceImp;
 
+//spring-boot-starter-test 라이브러리 추가시 
+//               -> jUnit5가 자동으로 추가됨
 @SpringBootTest
 class ApplicationTests {
 	
@@ -19,6 +21,7 @@ class ApplicationTests {
 	void contextLoads() {
 		List<HkDto> list= hkServiceImp.getAllList();
 		System.out.println(list.size());
+		
 	}
 
 }
