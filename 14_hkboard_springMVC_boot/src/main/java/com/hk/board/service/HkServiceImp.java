@@ -17,6 +17,10 @@ public class HkServiceImp {
 	public List<HkDto> getAllList(){
 		return boardMapper.getAllList();
 	}
+	
+	public boolean insertBoard(HkDto dto) {
+		return boardMapper.insertBoard(dto);
+	}
 }
 
 
