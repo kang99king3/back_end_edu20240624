@@ -24,6 +24,7 @@ public class HkController {
 	@Autowired
 	private HkServiceImp hkServiceImp;
 	
+	//   value="/"(localhost:9090) 보여줄 페이지 경로
 	@GetMapping(value="/")
 	public String getMethodName() {
 		logger.info("index페이지");
@@ -41,6 +42,7 @@ public class HkController {
 		model.addAttribute("list", list);
 		return "boardlist";
 	}
+	
 	//글상세조회
 	@GetMapping("/boarddetail.do")
 	public String boardDetail(Model model,int seq) {
@@ -60,8 +62,7 @@ public class HkController {
 	}
 	
 	@PostMapping(value="/insertboard.do")
-	public String insertboard(HkDto dto,
-			Model model) {
+	public String insertboard(HkDto dto,Model model) {
 		
 		System.out.println("aaa");
 		boolean isS=hkServiceImp.insertBoard(dto);
@@ -89,8 +90,7 @@ public class HkController {
 	
 	//글수정
 	@PostMapping(value="/boardupdate.do")
-	public String updateBoard(HkDto dto,
-			Model model) {
+	public String updateBoard(HkDto dto,Model model) {
 
 		boolean isS=hkServiceImp.updateBoard(dto);
 		
@@ -104,8 +104,7 @@ public class HkController {
 	}
 	//글삭제
 	@RequestMapping(value = "muldel.do")
-	public String mulDel(String[] chk,
-			Model model) {
+	public String mulDel(String[] chk,Model model) {
 
 		boolean isS=hkServiceImp.mulDel(chk);
 		
