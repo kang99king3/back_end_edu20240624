@@ -34,7 +34,7 @@
 			<input type="button" onclick="updateForm(<%=dto.getSeq()%>)" value="수정폼이동" />
 			<input type="button" onclick="delBoard(<%=dto.getSeq()%>)" value="삭제" />
 			<input type="button" value="글목록"
-			       onclick="location.href='boardlist.do'" />
+			       onclick="location.href='boardlist'" />
 		</td>
 	</tr>
 </table>

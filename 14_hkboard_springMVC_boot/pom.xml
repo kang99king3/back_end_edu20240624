@@ -102,11 +102,11 @@
 			<version>3.0.3</version>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		
 		<!--jsp페이지 뷰를 사용하려면 jsp용 tomcat 필요-->
 		<dependency>
@@ -122,7 +122,7 @@
 		    <groupId>org.glassfish.web</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+<!--		 https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
 		<dependency>
 		 <groupId>org.apache.taglibs</groupId>
 		 <artifactId>taglibs-standard-impl</artifactId>
