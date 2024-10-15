@@ -35,7 +35,7 @@
 		<td th:text="${dto.id}"></td>
 		<td><a th:href="@{/thboard/boarddetail(seq=${dto.seq})}" 
 		       th:text="${dto.title}"></a></td>
-		<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+		<td th:text="${#dates.format(dto.regDate,'yyyy-MM-dd')}"></td>
 	</tr>
 
 	 <tr>
@@ -48,7 +48,7 @@
 </form>
 <script type="text/javascript">
 	function insertBoardForm(){
-		location.href="insertboardform.do";
+		location.href="/thboard/insertboardform";
 	}
 	//전체선택 체크박스 기능 구현
 	function allSel(bool){
