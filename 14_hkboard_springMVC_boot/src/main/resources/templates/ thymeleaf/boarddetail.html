@@ -1,0 +1,48 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>게시판 상세보기</h1>
+<table border="1">
+	<tr>
+		<th>작성자(ID)</th>
+		<td th:text="${dto.id}"></td>
+	</tr>
+	<tr>
+		<th>글제목</th>
+		<td th:text="${dto.title}"></td>
+	</tr>
+	<tr>
+		<th>글내용</th>
+		<td><textarea rows="10" cols="60" readonly="readonly" th:text="${dto.content}"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" th:onclick="|updateForm(${dto.seq})|" value="수정폼이동" />
+			<input type="button" th:onclick="|delBoard(${dto.seq})|" value="삭제" />
+			<input type="button" value="글목록"
+			       th:onclick="|location.href='@{/thboatd/boardlist}'|" />
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	//수정폼으로 이동
+	function updateForm(seq){
+		location.href="boardupdateform.do?seq="+seq;
+	}
+	//글 삭제하기
+	function delBoard(seq){
+		if(confirm("삭제하시겠습니까?")){
+			location.href="muldel.do?chk="+seq;			
+		}
+	}
+</script>
+</body>
+</html>
+
+
+
+

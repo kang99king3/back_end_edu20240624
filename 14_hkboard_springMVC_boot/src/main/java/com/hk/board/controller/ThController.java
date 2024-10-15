@@ -50,6 +50,13 @@ public class ThController {
 			return "error";
 		}
 	}
+	
+	@GetMapping("/boarddetail")
+	public String boarddetail(Model model,int seq) {
+		HkDto dto=hkServiceImp.getBoard(seq);
+		model.addAttribute("dto", dto);
+		return "thymeleaf/boarddetail";
+	}
 }
 
 
