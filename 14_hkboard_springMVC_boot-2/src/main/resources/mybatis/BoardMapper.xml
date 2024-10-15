@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board.mapper.BoardMapper">
+	
+	<select id="getAllList" resultType="HkDto">
+		SELECT SEQ, ID,TITLE,CONTENT,REGDATE
+		FROM HKBOARD
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<insert id="insertBoard" parameterType="HkDto">
+		INSERT INTO HKBOARD
+		VALUES(null,#{id},#{title},#{content},SYSDATE())
+	</insert>
+	
+	<select id="getBoard" parameterType="int" resultType="HkDto">
+		SELECT SEQ, ID, TITLE, CONTENT, REGDATE
+		FROM HKBOARD
+		WHERE SEQ = #{seq}
+	</select>		
+	
+	<update id="updateBoard" parameterType="HkDto">
+		UPDATE HKBOARD SET TITLE=#{title}
+						  ,CONTENT=#{content}
+						  ,regdate=SYSDATE()
+		WHERE SEQ = #{seq}
+	</update>	
+	
+<!-- foreach문에서 만들어줄 문자열:(3,4,5,6,7,8) -->
+	<delete id="mulDel" parameterType="Map">
+		delete from hkboard where seq in 
+		<foreach collection="seqs" item="seq" open="(" close=")"
+											  separator=",">
+			#{seq}
+		</foreach>           
+	</delete>
+</mapper>
