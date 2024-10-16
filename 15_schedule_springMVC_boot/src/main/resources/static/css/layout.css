@@ -13,6 +13,9 @@
 }
 
 /*달력 폼*/
+.cal #thead > div {
+	text-align: center;
+}
 
 .cal #tbody > div{
 	height: 120px;
