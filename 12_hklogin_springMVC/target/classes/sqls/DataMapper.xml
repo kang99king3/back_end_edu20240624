@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board">
+	
+	<insert id="insertuser" parameterType="UserDto">
+		INSERT INTO USERINFO 
+		VALUES(NULL,#{id},#{name},#{password}
+		      ,#{address},#{email},'Y',#{role},SYSDATE())	
+	</insert>
+	
+	<select id="idcheck" parameterType="String">
+		SELECT ID FROM USERINFO WHERE ID=#{id}
+	</select>
+	
+	<select id="login" parameterType="UserDto" resultType="UserDto">
+		SELECT ID, NAME, ROLE 
+		FROM USERINFO 
+		WHERE ID=#{id} AND PASSWORD=#{password} AND ENABLED='Y' 
+	</select>
+	
+	<select id="getuser" parameterType="String" resultType="UserDto">
+		SELECT SEQ, ID, NAME, ADDRESS, EMAIL, ROLE, REGDATE 
+		FROM USERINFO 
+		 WHERE ID=#{id}
+	</select>
+	
+	<update id="updateuser" parameterType="UserDto">
+		UPDATE USERINFO SET ADDRESS = #{address}, EMAIL = #{email} 
+		WHERE ID = #{id}
+	</update>
+	
+	<update id="deluser" parameterType="String">
+		UPDATE USERINFO SET ENABLED = 'N' WHERE ID=#{id}
+	</update>
+	
+	<select id="getalluserlist" resultType="UserDto">
+		SELECT seq, id, NAME, address, email, role, 
+			   enabled,regdate 
+		FROM userinfo
+		order by regdate
+	</select>
+	
+	<select id="getuserlist" resultType="UserDto">
+		SELECT seq, id, NAME, role,regdate 
+		FROM userinfo 
+		WHERE enabled='Y'
+	</select>
+	
+	<update id="userupdaterole" parameterType="UserDto">
+		UPDATE userinfo 
+		SET role=#{role}
+		WHERE id=#{id}
+	</update>
+</mapper>
+
+
+
+
+
+
