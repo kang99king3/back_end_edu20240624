@@ -29,10 +29,10 @@ public class CalController {
 	}
 	
 	@GetMapping("/calendar")    // client에서 /schedule/calendar 요청
-	public String calendar(Model model) {
+	public String calendar(Model model,String year, String month) {
 		logger.info("달력보기");
 		
-		Map<String, Integer> map = calService.makeCalendar();
+		Map<String, Integer> map = calService.makeCalendar(year, month);
 		model.addAttribute("calMap", map);
 		
 		return "calboard/calendar";

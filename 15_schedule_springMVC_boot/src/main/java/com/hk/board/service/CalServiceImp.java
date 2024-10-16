@@ -9,14 +9,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalServiceImp {
 
-	public Map<String, Integer> makeCalendar(){
+	public Map<String, Integer> makeCalendar(String paramYear,String paramMonth){
 		
 		Map<String,Integer>map=new HashMap<>();
 		
 		Calendar cal=Calendar.getInstance();//추상클래스 : new(X)
 		
-		int year=cal.get(Calendar.YEAR);
-		int month=cal.get(Calendar.MONTH)+1;// calendar[0~11] -> 9+1 -> 10월
+		//paramYear와 paramMonth의 값이 null이 아니면 사용자가 원하는 달을 요청
+		int year=(paramYear==null)?cal.get(Calendar.YEAR):Integer.parseInt(paramYear);
+		int month=(paramMonth==null)?cal.get(Calendar.MONTH)+1:Integer.parseInt(paramMonth);// calendar[0~11] -> 9+1 -> 10월
+		
+		// 월을 이동할때 12 13 14 .....,       -2 -1 0 1 2 3 ... 오류 처리
+		if(month>12) {
+			month=1;
+			year++;
+		}
+		
+		if(month<1) {
+			month=12;
+			year--;
+		}
+		// ----- 
 		
 		//1. 해당 월의 1일에 대한 요일을 구하자
 		//1~7숫자중에 반환: 1은 일요일~ 7은 토요일

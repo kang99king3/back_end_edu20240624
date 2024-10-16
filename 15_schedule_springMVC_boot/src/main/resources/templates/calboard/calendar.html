@@ -12,10 +12,14 @@
 		<h1>일정관리[달력보기]</h1>
 		<div class="cal">
 			<div id="ctitle">
+				<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">◁</a>
+				<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">◀</a>
 				<span th:text="${calMap.year}"></span>
 				<span>년</span>
 				<span th:text="${calMap.month}"></span>
 				<span>월</span>
+				<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month+1})}">▶</a>
+				<a th:href="@{/schedule/calendar(year=${calMap.year+1},month=${calMap.month})}">▷</a>
 			</div>
 			<div id="thead">
 				<div>일</div><div>월</div><div>화</div><div>수</div>
@@ -26,7 +30,14 @@
 					<div th:each="num:${#numbers.sequence(1,calMap.dayOfWeek-1)}">&nbsp;</div>
 				</th:block>
 				<th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
-					<div th:text="${i}"></div>
+					<div>
+						<a th:text="${i}"
+						   th:href="@{/schedule/calboardlist(year=${calMap.year},month=${calMap.month},date=${i})}"></a>
+						<a th:href="@{/schedule/addcalboardform(year=${calMap.year},month=${calMap.month},date=${i})}">
+							<img class="pen" th:src="@{/img/pen.png}" />
+						</a>
+						
+					</div>
 				</th:block>
 			</div>
 		</div>
