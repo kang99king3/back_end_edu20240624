@@ -1,9 +1,18 @@
 package com.hk.board.aop;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.aop.Advisor;
+import org.springframework.aop.aspectj.AspectJExpressionPointcut;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.interceptor.MatchAlwaysTransactionAttributeSource;
+import org.springframework.transaction.interceptor.RollbackRuleAttribute;
+import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 //등록된 빈을 스프링컨테이너에 제공하는 클래스를 선언하는 의미
@@ -12,6 +21,9 @@ public class TransactionAop {
 
 	@Autowired
 	private PlatformTransactionManager transactionManager;
+	
+	private final String EXECUTION 
+    = "execution(* com.hk.calboard.service.CalServiceImp.*(..))";
 	
 	@Bean //객체선언 및 등록
 	public TransactionInterceptor transactionAdvice() {
