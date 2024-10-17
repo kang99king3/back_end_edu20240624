@@ -48,7 +48,10 @@
 	height: 20px;
 }
 
-
+/* 유효값처리 에러 폰트색설정 */
+.errorField{
+	color:red;
+}
 
 
 

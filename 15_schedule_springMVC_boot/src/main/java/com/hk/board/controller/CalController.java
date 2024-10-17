@@ -7,12 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.service.CalServiceImp;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -51,6 +56,22 @@ public class CalController {
 		return "calboard/addcalboardform";
 	}
 	
+	//일정 추가하기
+	//유효값처리: @Validated - 유효값처리에 사용할 객체에 선언
+	//          BindingResult - 유효값처리 후 결과를 받아줄 객체
+	@PostMapping("/addcalboard")
+	public String addcalboard(@Validated InsertCalCommand insertCalCommand,
+			                  BindingResult result) {
+		//유효값처리 결과를 받아 에러가 있는지 확인
+		if(result.hasErrors()) {
+			System.out.println("글을 모두 입력해야 함");
+			return "calboard/addcalboardform";// 요청했던 페이지로 다시 이동
+		}
+		
+		// 일정추가하기 실행 코드 작성
+		
+		return "redirect:/schedule/calendar";
+	}
 	
 	
 }
