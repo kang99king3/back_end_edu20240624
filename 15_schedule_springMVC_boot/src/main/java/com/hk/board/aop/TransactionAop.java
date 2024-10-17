@@ -35,8 +35,8 @@ public class TransactionAop {
 		//모든 메서드에 규칙을 적용하는 트랜젝션 속성 정의
 		RuleBasedTransactionAttribute transactionAttribute
 		=new RuleBasedTransactionAttribute();
-		transactionAttribute.setRollbackRules(rollbackRules);
-		transactionAttribute.setName("*");
+		transactionAttribute.setRollbackRules(rollbackRules);//규칙 정의
+		transactionAttribute.setName("*");//적용할 대상 정의-여기서는 모든 메서드
 		
 		//정의된 트랜젝션속성을 적용한 트랜젝션 소스 객체 정의
 		MatchAlwaysTransactionAttributeSource attributeSource
