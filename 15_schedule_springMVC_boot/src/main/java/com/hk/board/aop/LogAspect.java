@@ -23,7 +23,8 @@ public class LogAspect {
 	//pointcut 정의
 	//execution(): 메서드단위로 설정한다.
 	//within(): 클래스단위로 설정한다.- (com.hk.board.controller.*)
-	@Pointcut(value = "execution(com.hk.board.controller.CalController.*Board(..))")
+	@Pointcut(value = "within(com.hk.board.controller.*)")
+//	@Pointcut(value = "execution(com.hk.board.controller.CalController.*Board(..))")
 	public void controller() {}
 	
 	//before
