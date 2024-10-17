@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hk.board.command.InsertCalCommand;
 import com.hk.board.service.CalServiceImp;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,8 +41,12 @@ public class CalController {
 		return "calboard/calendar";
 	}
 	
+	//일정추가 폼이동
 	@GetMapping("/addcalboardform")
-	public String addcalboardform() {
+	public String addcalboardform(Model model,
+								  InsertCalCommand insertCalCommand) {
+		                        //입력폼 요청시에도 command객체를 보내야함
+		model.addAttribute("insertCalCommand", insertCalCommand);
 		
 		return "calboard/addcalboardform";
 	}
