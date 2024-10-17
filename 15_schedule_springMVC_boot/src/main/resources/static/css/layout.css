@@ -4,13 +4,22 @@
 	margin: 80px 150px 10px;
 }
 
-#footer{
-	background-color: #3c3c3c;
-	color:white;
-	line-height: 50px;
-	height:50px;
-	text-align: center;
+/* footer요소 하단에 위치하는 코드 시작 --------*/
+/* footer요소가 항상 바닥에 위치하면서 페이지 내부가 길어지면 아래로 밀리면서 계속 하단에 위치 */
+
+#container {
+   min-height: calc(90vh - 50px); /* 50px은 푸터 높이 */
 }
+
+#footer{
+	text-align: center;
+	color:white;
+	background-color: #3c3c3c;
+	line-height: 50px;
+	height: 50px;
+}
+/* footer요소 하단에 위치하는 코드 종료--------*/
+
 
 /*달력 폼*/
 #ctitle {
