@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hk.board.service.CalServiceImp;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -37,6 +39,13 @@ public class CalController {
 		
 		return "calboard/calendar";
 	}
+	
+	@GetMapping("/addcalboardform")
+	public String addcalboardform() {
+		
+		return "calboard/addcalboardform";
+	}
+	
 	
 	
 }
