@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+	<div id="container">
+		<form>
+			<table class="table">
+				<col width="50px">
+				<col width="200px">
+				<col width="300px">
+				<col width="200px">
+				<tr>
+					<th><input type="checkbox" name="all" /></th>
+					<th>일정</th>
+					<th>제목</th>
+					<th>작성일</th>
+				</tr>
+				<th:block th:if="${#lists.isEmpty(list)}">
+					<tr>
+						<td colspan="4" style="text-align: center">
+							일정이 없습니다.
+						</td>
+					</tr>
+				</th:block>
+				<th:block th:unless="${#lists.isEmpty(list)}">
+					<tr th:each="dto:${list}">
+						<td><input type="checkbox" name="seq" th:value="${dto.seq}"/></td>
+						<td th:text="${@util.toDates(dto.mdate)}"></td>
+						<td th:text="${dto.title}"></td>
+						<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+					</tr>
+				</th:block>
+			</table>
+		</form>
+	</div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
