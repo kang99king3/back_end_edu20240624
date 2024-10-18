@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.service.CalServiceImp;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,9 +40,10 @@ public class CalController {
 	}
 	
 	@GetMapping("/calendar")    // client에서 /schedule/calendar 요청
-	public String calendar(Model model,String year, String month) {
+	public String calendar(Model model,HttpServletRequest request) {
 		logger.info("달력보기");
-		
+		String year=request.getParameter("year");
+		String month=request.getParameter("month");
 		Map<String, Integer> map = calService.makeCalendar(year, month);
 		model.addAttribute("calMap", map);
 		
@@ -69,7 +73,7 @@ public class CalController {
 		}
 		
 		// 일정추가하기 실행 코드 작성
-		
+//		calService.insertBoard(insertCalCommand);
 		return "redirect:/schedule/calendar";
 	}
 	

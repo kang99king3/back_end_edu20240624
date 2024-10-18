@@ -62,6 +62,7 @@ public class TransactionAop {
 		//advisor객체 = 포인트컷 + 트랜젝션 어드바이스 정의
 		return new DefaultPointcutAdvisor(pointcut,transactionAdvice());
 	}
+	
 }
 
 

@@ -3,8 +3,10 @@ package com.hk.board.service;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.hk.board.command.InsertCalCommand;
+import com.hk.board.dtos.CalDto;
 
 @Service
 public class CalServiceImp {
@@ -47,6 +49,17 @@ public class CalServiceImp {
 		
 		return map;
 	}
+	
+	//controller에서는 insertCalCommand객체로 파라미터를 받음
+	public boolean insertCalBoard(InsertCalCommand insertCalCommand) {
+		// insertCalCommand 값 ---> CalDto로 옮겨 담기
+		
+		int count=0;
+		
+		
+		return count>0?true:false;
+	}
+	
 }
 
 
