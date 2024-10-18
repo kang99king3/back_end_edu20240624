@@ -10,4 +10,16 @@
 		VALUES(NULL,#{id},#{title},#{content},#{mdate},SYSDATE())
 	</insert>
 	
+	<select id="calBoardList" parameterType="Map" resultType="CalDto">
+		SELECT SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
+		FROM CALBOARD
+		WHERE SUBSTRING(MDATE,1,8) = #{yyyyMMdd}
+		AND ID=#{id}
+	</select>
+	
 </mapper>
+
+
+
+
+
