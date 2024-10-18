@@ -1,5 +1,6 @@
 package com.hk.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hk.board.command.DeleteCalCommand;
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.service.CalServiceImp;
@@ -90,9 +92,42 @@ public class CalController {
 		List<CalDto>list=calService.calBoardList(id, map);
 		
 		model.addAttribute("list", list);
-	
+		
+		//일정 목록 페이지에서 유효값처리를 위해 command객체를 사용하고 있어서 
+		//비어있는 객체라도 보내줘야 한다.
+		model.addAttribute("deleteCalCommand", new DeleteCalCommand());
+		             
 		return "calboard/calboardlist";
 	}
+	
+	@PostMapping("/calmuldel")
+	public String calmuldel(@Validated DeleteCalCommand deleteCalCommand
+			                ,BindingResult result
+			                ,Model model) {
+		
+		if(result.hasErrors()) {
+			System.out.println("최소 하나 이상 체크해야 함");
+			
+			//일정목록페이지로 돌아 갈경우 List객체가 필요함
+			String id="hk";
+	
+			Map<String,String>map=new HashMap<>();
+			map.put("year", "2024");
+			map.put("month", "10");
+			map.put("date", "18");
+			
+			List<CalDto>list=calService.calBoardList(id, map);
+			model.addAttribute("list", list);
+			
+			return "calboard/calboardlist";
+		}
+		
+		calService.calMulDel(deleteCalCommand.getSeq());
+		
+		//수정했어요
+		return "redirect:/schedule/calboardlist?year=2024&month=10&date=18";
+	}
+	
 	
 	
 	

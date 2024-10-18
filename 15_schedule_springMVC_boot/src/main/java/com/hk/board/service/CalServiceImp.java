@@ -102,6 +102,15 @@ public class CalServiceImp {
 		return calMapper.calBoardList(map);
 	}
 	
+	//일정삭제하기
+	public boolean calMulDel(String[] seq) {
+		
+		Map<String, String[]>map=new HashMap<>();
+		map.put("seqs", seq);
+		
+		return calMapper.calMulDel(map);
+	}
+	
 }
 
 

@@ -5,11 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+	function isConfirm(){
+		if(confirm("정말 삭제 하시겠습니까?")){
+			return true;
+		}
+		return false;
+	}
+</script>
 </head>
 <body>
 <div layout:fragment="content">
 	<div id="container">
-		<form>
+		<form th:action="@{/schedule/calmuldel}" method="post" 
+		      th:object="${deleteCalCommand}"  onsubmit="return isConfirm()">
 			<table class="table">
 				<col width="50px">
 				<col width="200px">
@@ -41,9 +51,12 @@
 						<button type="submit" title="일정삭제" class="btn btn-default" >
 						  <span class="glyphicon glyphicon-trash" ></span>
 						</button>
-						<button type="button" title="달력보기" class="btn btn-default" >
+						<button type="button" title="달력보기" class="btn btn-default" 
+								th:onclick="|location.href='@{/schedule/calendar}'|">
 						  <span class="glyphicon glyphicon-calendar" ></span>
 						</button>
+						<span class="errorField" th:if="${#fields.hasErrors('seq')}"
+						                         th:errors="*{seq}"></span>
 					</td>
 				</tr>
 			</table>

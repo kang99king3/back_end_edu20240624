@@ -17,6 +17,13 @@
 		AND ID=#{id}
 	</select>
 	
+	<delete id="calMulDel" parameterType="Map">
+		DELETE FROM CALBOARD WHERE SEQ IN
+		<foreach collection="seqs" item="seq" open="(" close=")"
+		                                      separator="," >
+			#{seq}
+		</foreach>
+	</delete>
 </mapper>
 
 
