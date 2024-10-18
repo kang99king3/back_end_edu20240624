@@ -21,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
-
 @Controller
 @RequestMapping("/schedule")  // client에서 /schedule 요청
 public class CalController {
@@ -73,8 +70,10 @@ public class CalController {
 		}
 		
 		// 일정추가하기 실행 코드 작성
-//		calService.insertBoard(insertCalCommand);
-		return "redirect:/schedule/calendar";
+		calService.insertCalBoard(insertCalCommand);
+		
+		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+												  +"&month="+insertCalCommand.getMonth();
 	}
 	
 	

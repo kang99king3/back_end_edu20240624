@@ -7,10 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.dtos.CalDto;
+import com.hk.board.mapper.CalMapper;
+import com.hk.board.utils.Util;
 
 @Service
 public class CalServiceImp {
 
+	@Autowired
+	private Util util;
+	@Autowired
+	private CalMapper calMapper;
+	
 	public Map<String, Integer> makeCalendar(String paramYear,String paramMonth){
 		
 		Map<String,Integer>map=new HashMap<>();
@@ -52,13 +59,34 @@ public class CalServiceImp {
 	
 	//controller에서는 insertCalCommand객체로 파라미터를 받음
 	public boolean insertCalBoard(InsertCalCommand insertCalCommand) {
-		// insertCalCommand 값 ---> CalDto로 옮겨 담기
+		// insertCalCommand 값      ---> CalDto로 옮겨 담기
+		// year,month,date,hour,min  ->  mdate
 		
-		int count=0;
+		//"202410181024"변환하는 작업
+		String mdate=insertCalCommand.getYear()
+				    +util.isTwo(insertCalCommand.getMonth()+"")
+					+util.isTwo(insertCalCommand.getDate()+"")
+					+util.isTwo(insertCalCommand.getHour()+"")
+					+util.isTwo(insertCalCommand.getMin()+"");
 		
+		// command --> dto 값 복사해서 넣는 작업
+		CalDto dto=new CalDto();
+		dto.setId(insertCalCommand.getId());
+		dto.setTitle(insertCalCommand.getTitle());
+		dto.setContent(insertCalCommand.getContent());
+		dto.setMdate(mdate);
+		
+		int count=calMapper.insertCalBoard(dto);
+		
+		//예외발생코드 추가
+//		if(count>0) {
+//			throw new Exception("일정추가 오류");
+//		}
 		
 		return count>0?true:false;
 	}
+	
+	
 	
 }
 
