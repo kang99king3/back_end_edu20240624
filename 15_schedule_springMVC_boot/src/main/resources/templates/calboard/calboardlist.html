@@ -36,6 +36,16 @@
 						<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
 					</tr>
 				</th:block>
+				<tr>
+					<td colspan="4">
+						<button type="submit" title="일정삭제" class="btn btn-default" >
+						  <span class="glyphicon glyphicon-trash" ></span>
+						</button>
+						<button type="button" title="달력보기" class="btn btn-default" >
+						  <span class="glyphicon glyphicon-calendar" ></span>
+						</button>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</div>
