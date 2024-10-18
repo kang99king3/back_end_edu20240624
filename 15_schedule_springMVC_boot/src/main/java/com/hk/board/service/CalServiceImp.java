@@ -2,6 +2,7 @@ package com.hk.board.service;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,7 +87,20 @@ public class CalServiceImp {
 		return count>0?true:false;
 	}
 	
-	
+	//일정목록보기
+	public List<CalDto> calBoardList(String id, Map<String,String> paramMap){
+		
+		//calendar에서 전달된 y,m,d 값을 8자리로 변환한다.
+		String yyyyMMdd=paramMap.get("year")
+				      +util.isTwo(paramMap.get("month"))
+				      +util.isTwo(paramMap.get("date"));
+		
+		Map<String, String>map=new HashMap<>();
+		map.put("id", id);
+		map.put("yyyyMMdd", yyyyMMdd);
+		
+		return calMapper.calBoardList(map);
+	}
 	
 }
 
