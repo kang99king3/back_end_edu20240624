@@ -21,6 +21,12 @@
 		<form th:action="@{/schedule/calmuldel}" method="post" 
 		      th:object="${deleteCalCommand}"  onsubmit="return isConfirm()">
 			<table class="table">
+<!-- 				일정날짜추가 -->
+				<caption>
+					<span th:text="${session.ymd.year}"></span>
+				    <span th:text="${session.ymd.month}"></span>
+				    <span th:text="${session.ymd.date}"></span>
+				</caption>
 				<col width="50px">
 				<col width="200px">
 				<col width="300px">

@@ -20,6 +20,7 @@ import com.hk.board.dtos.CalDto;
 import com.hk.board.service.CalServiceImp;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,10 +84,18 @@ public class CalController {
 	//일정목록보기
 	@GetMapping("/calboardlist")
 	//                     year,month --> Map["year":"2024,"month":"10"]
-	public String calboardlist(Model model,
-							  @RequestParam Map<String, String> map) {
+	public String calboardlist(Model model
+							  ,@RequestParam Map<String, String> map
+							  ,HttpServletRequest request) {
+		//----코드 추가-------------------------
+		HttpSession session=request.getSession();
 		
-		
+		if(map.get("year")==null) {
+			map=(Map<String, String>)session.getAttribute("ymd");
+		}else {
+			session.setAttribute("ymd", map);
+		}
+		//-------------------------------------
 		
 		String id="hk";//회원관리시 사용될 ID <-- 나중에는 세션에서 가져와야 함
 		List<CalDto>list=calService.calBoardList(id, map);
@@ -103,7 +112,10 @@ public class CalController {
 	@PostMapping("/calmuldel")
 	public String calmuldel(@Validated DeleteCalCommand deleteCalCommand
 			                ,BindingResult result
-			                ,Model model) {
+			                ,Model model
+			                ,HttpServletRequest request) {
+		
+	
 		
 		if(result.hasErrors()) {
 			System.out.println("최소 하나 이상 체크해야 함");
@@ -111,10 +123,15 @@ public class CalController {
 			//일정목록페이지로 돌아 갈경우 List객체가 필요함
 			String id="hk";
 	
-			Map<String,String>map=new HashMap<>();
-			map.put("year", "2024");
-			map.put("month", "10");
-			map.put("date", "18");
+//			Map<String,String>map=new HashMap<>();
+//			map.put("year", "2024");
+//			map.put("month", "10");
+//			map.put("date", "18");
+			
+			//------코드 수정 세션에서 받아서 처리--------------
+			HttpSession session=request.getSession();
+			Map<String,String> map=(Map<String,String>)session.getAttribute("ymd");
+			//---------------------------------------------
 			
 			List<CalDto>list=calService.calBoardList(id, map);
 			model.addAttribute("list", list);
@@ -124,8 +141,10 @@ public class CalController {
 		
 		calService.calMulDel(deleteCalCommand.getSeq());
 		
-		//수정했어요
-		return "redirect:/schedule/calboardlist?year=2024&month=10&date=18";
+		//-----수정했어요-----------
+//		return "redirect:/schedule/calboardlist?year=2024&month=10&date=18";
+		return "redirect:/schedule/calboardlist";
+		//------------------------
 	}
 	
 	
