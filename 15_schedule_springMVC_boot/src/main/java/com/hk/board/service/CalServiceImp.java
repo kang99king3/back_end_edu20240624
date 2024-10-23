@@ -111,6 +111,10 @@ public class CalServiceImp {
 		return calMapper.calMulDel(map);
 	}
 	
+	public CalDto calBoardDetail(int seq) {
+		return calMapper.calBoardDetail(seq);
+	}
+	
 }
 
 

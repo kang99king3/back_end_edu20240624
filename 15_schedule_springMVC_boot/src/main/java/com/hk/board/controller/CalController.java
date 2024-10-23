@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hk.board.command.DeleteCalCommand;
 import com.hk.board.command.InsertCalCommand;
+import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.service.CalServiceImp;
 
@@ -147,6 +148,33 @@ public class CalController {
 		//------------------------
 	}
 	
+	@GetMapping("/calboarddetail")
+	public String calboarddetail(UpdateCalCommand updateCalCommand, int seq,Model model) {
+		
+		//service로 부터 상세내용 조회해서 dto로 반환
+		CalDto dto=calService.calBoardDetail(seq);
+		
+		//dto ---> command : 값을 이동시킴
+		updateCalCommand.setSeq(dto.getSeq());
+		updateCalCommand.setTitle(dto.getTitle());
+		updateCalCommand.setContent(dto.getContent());
+		updateCalCommand
+        		.setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
+		updateCalCommand
+		        .setMonth(Integer.parseInt(dto.getMdate().substring(4, 6)));
+		updateCalCommand
+		        .setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
+		updateCalCommand
+				  .setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
+		updateCalCommand
+		        .setMin(Integer.parseInt(dto.getMdate().substring(10)));
+		
+		//화면으로 전달해야 되니깐 model에 dto객체 담고..
+		model.addAttribute("dto", dto);
+		
+		// forward 방식으로 페이지 이동
+		return "calboard/calboarddetail";
+	}
 	
 	
 	
