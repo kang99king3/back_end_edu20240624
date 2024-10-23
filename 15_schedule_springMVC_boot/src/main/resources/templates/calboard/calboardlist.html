@@ -13,6 +13,14 @@
 		}
 		return false;
 	}
+	
+	//전체선택 체크박스 기능 구현
+	function allSel(bool){
+		var chks=document.getElementsByName("seq");//[chk,chk,chk..]
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].checked=bool;//true:체크, false:체크해제
+		}
+	}
 </script>
 </head>
 <body>
@@ -32,7 +40,7 @@
 				<col width="300px">
 				<col width="200px">
 				<tr>
-					<th><input type="checkbox" name="all" /></th>
+					<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th>
 					<th>일정</th>
 					<th>제목</th>
 					<th>작성일</th>
