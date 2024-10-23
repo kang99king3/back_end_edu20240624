@@ -30,7 +30,20 @@
 		FROM CALBOARD
 		WHERE SEQ=#{seq}
 	</select>
+	
+	<update id="calBoardUpdate" parameterType="CalDto">
+		UPDATE CALBOARD
+		SET TITLE=#{title}, CONTENT=#{content},
+		MDATE=#{mdate}, REGDATE=SYSDATE()
+		WHERE SEQ=#{seq}
+	</update>
 </mapper>
+
+
+
+
+
+
 
 
 

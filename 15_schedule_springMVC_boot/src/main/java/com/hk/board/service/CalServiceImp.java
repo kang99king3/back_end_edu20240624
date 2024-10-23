@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hk.board.command.InsertCalCommand;
+import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
 import com.hk.board.mapper.CalMapper;
 import com.hk.board.utils.Util;
@@ -113,6 +114,26 @@ public class CalServiceImp {
 	
 	public CalDto calBoardDetail(int seq) {
 		return calMapper.calBoardDetail(seq);
+	}
+	
+	public boolean calBoardUpdate(UpdateCalCommand updateCalCommand) {
+		// command ---> dto ---> mapper전달
+		//"202410181024"변환하는 작업
+			String mdate=updateCalCommand.getYear()
+					    +util.isTwo(updateCalCommand.getMonth()+"")
+						+util.isTwo(updateCalCommand.getDate()+"")
+						+util.isTwo(updateCalCommand.getHour()+"")
+						+util.isTwo(updateCalCommand.getMin()+"");
+			
+			// command --> dto 값 복사해서 넣는 작업
+			CalDto dto=new CalDto();
+			dto.setSeq(updateCalCommand.getSeq());
+			dto.setTitle(updateCalCommand.getTitle());
+			dto.setContent(updateCalCommand.getContent());
+			dto.setMdate(mdate);
+			
+			return calMapper.calBoardUpdate(dto);
+					
 	}
 	
 }

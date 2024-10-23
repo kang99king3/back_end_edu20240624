@@ -172,6 +172,19 @@ public class CalController {
 		return "calboard/calboarddetail";
 	}
 	
+	@PostMapping("/calboardupdate")
+	public String calboardupdate(@Validated UpdateCalCommand updateCalCommand
+								,BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("수정할 목록을 확인하세요");
+			
+			return "calboard/calboarddetail";//forward니깐 페이지 경로를 작성
+		}
+		calService.calBoardUpdate(updateCalCommand);
+		
+		//redirect니깐 컨트롤러 요청 경로
+		return "redirect:/schedule/calboarddetail?seq="+updateCalCommand.getSeq();
+	}
 	
 	
 }

@@ -17,7 +17,8 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="id" th:field="*{id}" class="form-control"/>
+						<input type="text" name="id" th:field="*{id}" 
+						       class="form-control" readonly="readonly"/>
 					</td>
 				</tr>
 				<tr>
@@ -55,12 +56,22 @@
 						</select>일
 						<select name="hour">
 							<th:block th:each="i:${#numbers.sequence(0,23)}">
-								<option th:value="${i}" th:text="${i}"></option>
+								<th:block th:if="${updateCalCommand.hour==i}">
+									<option selected="selected" th:value="${i}" th:text="${i}"></option>								
+								</th:block>
+								<th:block th:unless="${updateCalCommand.hour==i}">
+									<option th:value="${i}" th:text="${i}"></option>								
+								</th:block>
 							</th:block>
 						</select>시
 						<select name="min">
 							<th:block th:each="i:${#numbers.sequence(0,59)}">
-								<option th:value="${i}" th:text="${i}"></option>
+								<th:block th:if="${updateCalCommand.min==i}">
+									<option selected="selected" th:value="${i}" th:text="${i}"></option>								
+								</th:block>
+								<th:block th:unless="${updateCalCommand.min==i}">
+									<option th:value="${i}" th:text="${i}"></option>								
+								</th:block>
 							</th:block>
 						</select>분
 					</td>
@@ -84,7 +95,11 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="일정추가" class="btn"/>	
+						<input type="submit" value="일정수정" class="btn"/>	
+						<button type="button" title="일정목록" class="btn btn-default" 
+								th:onclick="|location.href='@{/schedule/calboardlist}'|">
+						  <span class="glyphicon glyphicon-list" ></span>
+						</button>
 						<button type="button" title="달력보기" class="btn btn-default" 
 								th:onclick="|location.href='@{/schedule/calendar(year=${session.ymd.year},month=${session.ymd.month})}'|">
 						  <span class="glyphicon glyphicon-calendar" ></span>
