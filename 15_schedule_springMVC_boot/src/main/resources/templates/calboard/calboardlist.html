@@ -48,7 +48,9 @@
 					<tr th:each="dto:${list}">
 						<td><input type="checkbox" name="seq" th:value="${dto.seq}"/></td>
 						<td th:text="${@util.toDates(dto.mdate)}"></td>
-						<td th:text="${dto.title}"></td>
+						<td>
+							<a th:href="@{/schedule/calboarddetail(seq=${dto.seq})}" th:text="${dto.title}"></a>
+						</td>
 						<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
 					</tr>
 				</th:block>

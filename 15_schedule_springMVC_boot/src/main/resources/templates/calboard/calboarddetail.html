@@ -12,44 +12,43 @@
 		<h1>일정 상세보기</h1>
 		<form th:action="@{/schedule/calboardupdate}" method="post"
 								th:object="${updateCalCommand}">
+			<input type="hidden" name="seq" th:field="*{seq}" />					
 			<table class="table">
 				<tr>
 					<th>아이디</th>
 					<td>
 						<input type="text" name="id" th:field="*{id}" class="form-control"/>
-						<span class="errorField" th:if="${#fields.hasErrors('id')}"
-						                         th:errors="*{id}"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>일정</th>
 					<td>
 						<select name="year">
-							<th:block th:each="i:${#numbers.sequence(insertCalCommand.year-5,insertCalCommand.year+5)}">
-								<th:block th:if="${insertCalCommand.year==i}">
+							<th:block th:each="i:${#numbers.sequence(updateCalCommand.year-5,updateCalCommand.year+5)}">
+								<th:block th:if="${updateCalCommand.year==i}">
 									<option selected="selected" th:value="${i}" th:text="${i}"></option>
 								</th:block>
-								<th:block th:unless="${insertCalCommand.year==i}">
+								<th:block th:unless="${updateCalCommand.year==i}">
 									<option th:value="${i}" th:text="${i}"></option>
 								</th:block>
 							</th:block>
 						</select>년
 						<select name="month">
 							<th:block th:each="i:${#numbers.sequence(1,12)}">
-								<th:block th:if="${insertCalCommand.month==i}">
+								<th:block th:if="${updateCalCommand.month==i}">
 									<option selected="selected" th:value="${i}" th:text="${i}"></option>
 								</th:block>
-								<th:block th:unless="${insertCalCommand.month==i}">
+								<th:block th:unless="${updateCalCommand.month==i}">
 									<option th:value="${i}" th:text="${i}"></option>
 								</th:block>
 							</th:block>
 						</select>월
 						<select name="date">
 							<th:block th:each="i:${#numbers.sequence(1,31)}">
-								<th:block th:if="${insertCalCommand.date==i}">
+								<th:block th:if="${updateCalCommand.date==i}">
 									<option selected="selected" th:value="${i}" th:text="${i}"></option>
 								</th:block>
-								<th:block th:unless="${insertCalCommand.date==i}">
+								<th:block th:unless="${updateCalCommand.date==i}">
 									<option th:value="${i}" th:text="${i}"></option>
 								</th:block>
 							</th:block>
@@ -86,8 +85,10 @@
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="일정추가" class="btn"/>	
-						<input type="button" value="달력" class="btn"
-						  th:onclick="|location.href='@{/schedule/calendar}'|"/>				
+						<button type="button" title="달력보기" class="btn btn-default" 
+								th:onclick="|location.href='@{/schedule/calendar(year=${session.ymd.year},month=${session.ymd.month})}'|">
+						  <span class="glyphicon glyphicon-calendar" ></span>
+						</button>				
 					</td>
 				</tr>
 			</table>

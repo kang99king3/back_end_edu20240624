@@ -156,21 +156,17 @@ public class CalController {
 		
 		//dto ---> command : 값을 이동시킴
 		updateCalCommand.setSeq(dto.getSeq());
+		updateCalCommand.setId(dto.getId());// <--id 추가
 		updateCalCommand.setTitle(dto.getTitle());
 		updateCalCommand.setContent(dto.getContent());
-		updateCalCommand
-        		.setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
-		updateCalCommand
-		        .setMonth(Integer.parseInt(dto.getMdate().substring(4, 6)));
-		updateCalCommand
-		        .setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
-		updateCalCommand
-				  .setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
-		updateCalCommand
-		        .setMin(Integer.parseInt(dto.getMdate().substring(10)));
+		updateCalCommand.setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
+		updateCalCommand.setMonth(Integer.parseInt(dto.getMdate().substring(4, 6)));
+		updateCalCommand.setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
+		updateCalCommand.setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
+		updateCalCommand.setMin(Integer.parseInt(dto.getMdate().substring(10)));
 		
 		//화면으로 전달해야 되니깐 model에 dto객체 담고..
-		model.addAttribute("dto", dto);
+		model.addAttribute("updateCalCommand", updateCalCommand);
 		
 		// forward 방식으로 페이지 이동
 		return "calboard/calboarddetail";
