@@ -83,16 +83,18 @@ public class CalController {
 	
 	//일정목록보기
 	@GetMapping("/calboardlist")
-	//                     year,month --> Map["year":"2024,"month":"10"]
+	//                     year,month,date --> Map["year":"2024,"month":"10","date":"18"]
 	public String calboardlist(Model model
 							  ,@RequestParam Map<String, String> map
 							  ,HttpServletRequest request) {
 		//----코드 추가-------------------------
 		HttpSession session=request.getSession();
 		
+		// /schedule/calboardlist 라고 요청을 했을 경우
 		if(map.get("year")==null) {
 			map=(Map<String, String>)session.getAttribute("ymd");
 		}else {
+			// /schedule/calboardlist?year=2024&month=10&date=18 라고 요청을 했을 경우
 			session.setAttribute("ymd", map);
 		}
 		//-------------------------------------
@@ -114,8 +116,6 @@ public class CalController {
 			                ,BindingResult result
 			                ,Model model
 			                ,HttpServletRequest request) {
-		
-	
 		
 		if(result.hasErrors()) {
 			System.out.println("최소 하나 이상 체크해야 함");

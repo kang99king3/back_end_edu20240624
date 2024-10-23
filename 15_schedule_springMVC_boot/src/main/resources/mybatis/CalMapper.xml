@@ -24,6 +24,12 @@
 			#{seq}
 		</foreach>
 	</delete>
+	
+	<select id="calBoardDetail" parameterType="int" resultType="CalDto">      
+		SELECT SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
+		FROM CALBOARD
+		WHERE SEQ=#{seq}
+	</select>
 </mapper>
 
 
