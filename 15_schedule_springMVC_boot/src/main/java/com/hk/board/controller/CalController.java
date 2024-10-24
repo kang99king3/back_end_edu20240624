@@ -25,10 +25,12 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
+//@RestController
 @RequestMapping("/schedule")  // client에서 /schedule 요청
 public class CalController {
 	
