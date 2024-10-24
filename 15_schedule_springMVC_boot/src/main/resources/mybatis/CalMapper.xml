@@ -48,6 +48,12 @@
 			AND ID=#{id}) CAL
 		WHERE RN BETWEEN 1 AND 3
 	</select>
+	
+	<select id="calBoardCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
+		FROM CALBOARD
+		WHERE ID=#{id} AND SUBSTR(MDATE,1,8)=#{yyyyMMdd}
+	</select>
 </mapper>
 
 

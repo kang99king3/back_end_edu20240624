@@ -5,6 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+		$(".d").hover(function(){// 이벤트관련 메서드: click(), change(), ....
+			//년월일 값을 구하는 작업
+			var aDate=$(this);//마우스가 올라갔을때 a태그객체를 구함
+			var year=$(".y").text().trim();//년도
+			var month=$(".m").text().trim();//월
+			var date=aDate.text().trim();//일  <a>5</a>
+			var yyyyMMdd=year+(month.length<2?"0"+month:month)
+                             +(date.length<2?"0"+date:date)
+			console.log(yyyyMMdd);
+			$.ajax({
+				url:"/scheudule/calcountajax", // 요청할 URL
+				method:"get",
+				data:{}, // server로 전달할 파라미터
+				dataType:"json", // server에서 전달되는 파라미터 타입 정의
+				async:false, // ajax()메서드의 실행을 비동기식으로 실행할건지 정의
+				success:function(){
+					
+				},
+				error:function(){
+					alert("통신실패");
+				}
+			});
+		},function(){
+			
+		});// hover(func(),func())
+	});
+</script>
 </head>
 <body>
 <div layout:fragment="content" >
@@ -14,9 +43,9 @@
 			<div id="ctitle">
 				<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">◁</a>
 				<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">◀</a>
-				<span th:text="${calMap.year}"></span>
+				<span class="y" th:text="${calMap.year}"></span>
 				<span>년</span>
-				<span th:text="${calMap.month}"></span>
+				<span class="m" th:text="${calMap.month}"></span>
 				<span>월</span>
 				<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month+1})}">▶</a>
 				<a th:href="@{/schedule/calendar(year=${calMap.year+1},month=${calMap.month})}">▷</a>
@@ -31,7 +60,7 @@
 				</th:block>
 				<th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
 					<div>
-						<a th:text="${i}"
+						<a class="d" th:text="${i}"
 						   th:href="@{/schedule/calboardlist(year=${calMap.year},month=${calMap.month},date=${i})}"></a>
 						<a th:href="@{/schedule/addcalboardform(year=${calMap.year},month=${calMap.month},date=${i})}">
 							<img class="pen" th:src="@{/img/pen.png}" />

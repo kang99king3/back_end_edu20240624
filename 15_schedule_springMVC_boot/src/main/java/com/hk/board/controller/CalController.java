@@ -24,6 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -184,6 +185,15 @@ public class CalController {
 		
 		//redirect니깐 컨트롤러 요청 경로
 		return "redirect:/schedule/calboarddetail?seq="+updateCalCommand.getSeq();
+	}
+	
+	@ResponseBody // body로 응답한다. 데이터를 보내면서..
+	@GetMapping("/calcountajax")
+	public String getMethodName(@RequestParam String param) {
+		
+		
+		
+		return "calboard/calboarddetail";
 	}
 	
 	

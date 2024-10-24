@@ -162,6 +162,13 @@ public class CalServiceImp {
 		return calMapper.calViewList(map);
 	}
 	
+	public int calBoardCount(String id, String yyyyMMdd) {
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("id", id);
+		map.put("yyyyMMdd", yyyyMMdd);
+		return calMapper.calBoardCount(map);
+	}
+	
 }
 
 
