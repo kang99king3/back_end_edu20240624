@@ -12,6 +12,9 @@ import com.hk.board.dtos.CalDto;
 import com.hk.board.mapper.CalMapper;
 import com.hk.board.utils.Util;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class CalServiceImp {
 
@@ -20,7 +23,15 @@ public class CalServiceImp {
 	@Autowired
 	private CalMapper calMapper;
 	
-	public Map<String, Integer> makeCalendar(String paramYear,String paramMonth){
+							   //id값이 필요하므로 컨트롤러에서 Request객체도 전달해야 함
+							   //아니면 컨트롤러에서 id값을 구해서 전달해주기
+	public Map<String, Integer> makeCalendar(HttpServletRequest request){
+		
+		String paramYear=request.getParameter("year");
+		String paramMonth=request.getParameter("month");
+		
+		//id값을 session으로 부터 가져오기 위해 session객체 생성
+		HttpSession session=request.getSession();
 		
 		Map<String,Integer>map=new HashMap<>();
 		
@@ -55,6 +66,14 @@ public class CalServiceImp {
 		map.put("month", month);
 		map.put("dayOfWeek", dayOfWeek);
 		map.put("lastDay", lastDay);
+		
+		//한달에 대한 일정을 구하는 작업
+//		String id=session.getAttribute("id");//session으로부터 id정보 가져오기
+		String id="hk";// session에 저장된 id값을 불러와야 함
+		String yyyyMM=year+util.isTwo(month+"");//년월 6자리
+		List<CalDto> clist=calViewList(id, yyyyMM);
+		//한달에 대한 일정을 requestScope에 저장함
+		request.setAttribute("clist", clist);
 		
 		return map;
 	}
@@ -134,6 +153,13 @@ public class CalServiceImp {
 			
 			return calMapper.calBoardUpdate(dto);
 					
+	}
+	
+	public List<CalDto> calViewList(String id, String yyyyMM){
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("id", id);
+		map.put("yyyyMM", yyyyMM);
+		return calMapper.calViewList(map);
 	}
 	
 }

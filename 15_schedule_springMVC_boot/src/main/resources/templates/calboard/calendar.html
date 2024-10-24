@@ -36,7 +36,7 @@
 						<a th:href="@{/schedule/addcalboardform(year=${calMap.year},month=${calMap.month},date=${i})}">
 							<img class="pen" th:src="@{/img/pen.png}" />
 						</a>
-						
+						[[${@util.getCalViewList(i,clist)}]]
 					</div>
 				</th:block>
 			</div>

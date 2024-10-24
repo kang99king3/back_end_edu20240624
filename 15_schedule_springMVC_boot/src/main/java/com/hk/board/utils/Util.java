@@ -2,8 +2,11 @@ package com.hk.board.utils;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.hk.board.dtos.CalDto;
 
 @Component
 public class Util {
@@ -27,6 +30,23 @@ public class Util {
 		//date타입의 값을 원하는 패턴으로 만들어서 문자열로 반환
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy년MM월dd일 HH:mm");
 		return sdf.format(tm);
+	}
+	
+	//일일별 일정 목록을 구하는 기능
+	public String getCalViewList(int i,List<CalDto> clist) {
+		String d=isTwo(i+"");// 일일을 두자리로 변환  8 --> "08"
+		String calList="";//"<p>일정제목</p><p>일정제목</p><p>일정제목</p>"
+		
+		for (int j = 0; j < clist.size(); j++) {
+			// mdate: "202410181522" 12자리로 저장되어 있음
+			if(clist.get(j).getMdate().substring(6, 8).equals(d)) {
+				calList+="<p>"
+						+clist.get(j).getTitle()
+						+"</p>";
+			}
+		}
+		
+		return calList;
 	}
 }
 

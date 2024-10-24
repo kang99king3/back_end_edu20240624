@@ -45,9 +45,9 @@ public class CalController {
 	@GetMapping("/calendar")    // client에서 /schedule/calendar 요청
 	public String calendar(Model model,HttpServletRequest request) {
 		logger.info("달력보기");
-		String year=request.getParameter("year");
-		String month=request.getParameter("month");
-		Map<String, Integer> map = calService.makeCalendar(year, month);
+//		String year=request.getParameter("year");
+//		String month=request.getParameter("month");
+		Map<String, Integer> map = calService.makeCalendar(request);
 		model.addAttribute("calMap", map);
 		
 		return "calboard/calendar";
