@@ -17,23 +17,42 @@
                              +(date.length<2?"0"+date:date)
 			console.log(yyyyMMdd);
 			$.ajax({
-				url:"/scheudule/calcountajax", // 요청할 URL
+				url:"/schedule/calcountajax", // 요청할 URL
 				method:"get",
-				data:{}, // server로 전달할 파라미터
+				data:{"yyyyMMdd":yyyyMMdd}, // server로 전달할 파라미터
 				dataType:"json", // server에서 전달되는 파라미터 타입 정의
 				async:false, // ajax()메서드의 실행을 비동기식으로 실행할건지 정의
-				success:function(){
-					
+				success:function(data){//server에서 전달된 값을 data변수가 받는다
+// 					alert(data.count);
+					aDate.after("<div class='cp'>"+data.count+"</div>");//after():target요소의 다음에 추가하는 기능
 				},
 				error:function(){
 					alert("통신실패");
 				}
 			});
 		},function(){
-			
+			$(".cp").remove();//마우스가 나갔을때 일정개수 요소를 삭제
 		});// hover(func(),func())
 	});
 </script>
+<style type="text/css">
+	.cal #tbody > div{
+		position: relative;
+	}
+
+	.cp{
+		position: absolute;
+    	left: 20px;
+    	top:-30px;
+    	width: 40px;
+    	height: 40px;
+    	border-radius:20px 20px 20px 1px;
+    	background-color: pink;
+    	line-height: 40px;
+    	text-align: center;
+    	font-weight: bold;
+	}
+</style>
 </head>
 <body>
 <div layout:fragment="content" >

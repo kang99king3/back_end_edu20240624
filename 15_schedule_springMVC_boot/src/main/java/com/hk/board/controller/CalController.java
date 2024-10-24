@@ -189,11 +189,17 @@ public class CalController {
 	
 	@ResponseBody // body로 응답한다. 데이터를 보내면서..
 	@GetMapping("/calcountajax")
-	public String getMethodName(@RequestParam String param) {
+	public Map<String,Integer> calcountajax(String yyyyMMdd) {
 		
+		System.out.println(yyyyMMdd);
+		String id="hk";//session에서 가져오기
+		int count = calService.calBoardCount(id, yyyyMMdd);
 		
+		//client에서는 json으로 받음,  json과 구조가 비슷한 map으로 만들어서 전달
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("count", count);
 		
-		return "calboard/calboarddetail";
+		return map;//데이터를 브라우저로 반환한다.
 	}
 	
 	
