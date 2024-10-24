@@ -25,6 +25,7 @@ public class Util {
 				+mdate.substring(6, 8)+" "
 				+mdate.substring(8, 10)+":"
 				+mdate.substring(10)+":00";
+		
 		Timestamp tm=Timestamp.valueOf(m);//String --> Date 변환
 		
 		//date타입의 값을 원하는 패턴으로 만들어서 문자열로 반환
@@ -40,8 +41,9 @@ public class Util {
 		for (int j = 0; j < clist.size(); j++) {
 			// mdate: "202410181522" 12자리로 저장되어 있음
 			if(clist.get(j).getMdate().substring(6, 8).equals(d)) {
+				String ctitle=clist.get(j).getTitle();
 				calList+="<p>"
-						+clist.get(j).getTitle()
+						+(ctitle.length()>7?ctitle.substring(0, 7)+"..":ctitle)
 						+"</p>";
 			}
 		}
