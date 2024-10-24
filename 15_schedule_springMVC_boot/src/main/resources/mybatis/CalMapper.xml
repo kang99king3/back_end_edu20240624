@@ -37,6 +37,17 @@
 		MDATE=#{mdate}, REGDATE=SYSDATE()
 		WHERE SEQ=#{seq}
 	</update>
+	
+	<select id="calViewList" parameterType="Map" resultType="CalDto">
+		SELECT SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
+		FROM 
+			(SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(MDATE,1,8)  ORDER BY MDATE) RN , 
+			       SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
+			FROM CALBOARD
+			WHERE SUBSTRING(MDATE,1,6) = #{yyyyMM}
+			AND ID=#{id}) CAL
+		WHERE RN BETWEEN 1 AND 3
+	</select>
 </mapper>
 
 
