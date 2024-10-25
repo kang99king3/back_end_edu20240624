@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function allSel(bool){
+		var chks=document.getElementsByName("seq");// [seq,seq,seq,seq..]
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].checked=bool;//각각의 체크박스에 체크여부를 true/false로 적용
+		}
+	}
+	
+	function isCheck(){
+		if(confirm("정말 삭제 하시겠습니까?")){
+			return true;
+		}
+		return false;
+	}
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+<h1>게시판 목록</h1>
+<form action="/board/mulDel" method="post" th:object="${delBoardCommand}">
+	<table class="table">
+		<tr>
+			<th><input type="checkbox" name="all" 
+										onclick="allSel(this.checked)" /></th>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>작성일</th>
+		</tr>
+		<th:block th:if="${#lists.isEmpty(list)}">
+			<tr>
+				<td colspan="4" style="text-align: center;" >---작성된 글이 없습니다.---</td>
+			</tr> 
+		</th:block>
+		<th:block th:unless="${#lists.isEmpty(list)}">
+			<tr th:each="dto:${list}">
+				<td><input type="checkbox" name="seq" th:field="*{seq}"
+										   th:value="${dto.board_seq}"/></td>
+				<td th:text="${dto.id}"></td>
+				<td>
+					<a th:href="@{/board/boardDetail(board_seq=${dto.board_seq})}"
+					   th:text="${dto.title}"></a>
+				</td>
+				<td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+			</tr>
+		</th:block>
+		<tr>
+			<td colspan="4">
+				<button type="button" class="btn"
+				 th:onclick="|location.href='@{/board/boardInsert}'|">글추가</button>
+				<button type="submit" class="btn">삭제</button>
+				<span th:if="${#fields.hasErrors('seq')}"
+				      th:errors="*{seq}"></span>
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

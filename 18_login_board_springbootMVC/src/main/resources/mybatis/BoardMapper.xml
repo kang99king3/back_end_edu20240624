@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board.mapper.BoardMapper">
+	
+	<resultMap type="boardDto" id="boardDtoMap">
+		<id property="board_seq"   column="BOARD_SEQ" />
+		<result property="id"      column="ID" />
+		<result property="title"   column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="regdate" column="REGDATE" />
+<!-- 		<association property="fileBoardDto"></association> -->
+		<collection property="fileBoardDto" resultMap="fileBoardDtoMap" ></collection>
+	</resultMap>
+	
+	<resultMap type="fileBoardDto" id="fileBoardDtoMap">
+		<id property="file_seq"            column="FILE_SEQ" />
+		<result property="board_seq"       column="BOARD_SEQ" />
+		<result property="origin_filename" column="ORIGIN_FILENAME" />
+		<result property="stored_filename" column="STORED_FILENAME" />
+	</resultMap>
+	
+	
+	<select id="getAllList" resultType="boardDto">
+		SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
+		FROM TESTBOARD
+		WHERE DELFLAG = 'N'
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<select id="getBoard" parameterType="Integer" resultMap="boardDtoMap">
+		SELECT B.BOARD_SEQ, B.ID, B.TITLE, B.CONTENT, B.REGDATE
+      	,F.FILE_SEQ, F.ORIGIN_FILENAME, F.STORED_FILENAME
+		FROM TESTBOARD B LEFT OUTER JOIN FILEINFO F
+		ON B.BOARD_SEQ = F.BOARD_SEQ
+		WHERE B.BOARD_SEQ = #{board_seq}
+	</select>
+	
+<!-- 	useGeneratedKeys="true" keyProperty="board_seq"
+        : 증가된 board_seq값을 BoardDto에 전달 : insertBoard(boardDto) -->
+	<insert id="insertBoard" parameterType="boardDto"
+		useGeneratedKeys="true" keyProperty="board_seq">
+		INSERT INTO TESTBOARD
+		VALUES(NULL,#{id},#{title},#{content},sysdate(),'N')
+	</insert>
+	
+	<update id="updateBoard" parameterType="boardDto">
+		UPDATE TESTBOARD
+		SET TITLE=#{title}, CONTENT=#{content}
+		WHERE BOARD_SEQ=#{board_seq}
+	</update>
+	
+	<update id="mulDel" parameterType="Map">
+		UPDATE TESTBOARD SET DELFLAG = 'Y' WHERE BOARD_SEQ IN
+		<foreach collection="seqs" item="board_seq" open="(" close=")"
+		         separator=",">
+			#{board_seq}
+		</foreach>
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
