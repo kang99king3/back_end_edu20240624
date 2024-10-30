@@ -4,17 +4,15 @@
 .content{
 	margin: 70px 150px;   
 }
-
-#container{
-		width: 1000px;
-		margin: 0 auto;
-	}
 	
 /* footer요소 하단에 위치하는 코드 시작 --------*/
 /* footer요소가 항상 바닥에 위치하면서 페이지 내부가 길어지면 아래로 밀리면서 계속 하단에 위치 */
 
 #container {
+   width: 1000px;
+   margin: 0 auto;
    min-height: calc(90vh - 50px); /* 50px은 푸터 높이 */
+   
 }
 
 #footer{
