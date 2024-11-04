@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board.mapper.BoardMapper">
+
+	<select id="getAllList" resultType="HkDto">
+		SELECT seq, id, title, content, regdate 
+		FROM hkboard ORDER BY regdate DESC 	 
+	</select>
+	
+	<insert id="insertBoard" parameterType="HkDto">
+		INSERT INTO hkboard 
+		VALUES(null, #{id} , #{title} , #{content} ,SYSDATE()) 
+	</insert>
+	
+	<select id="getBoard" parameterType="int" resultType="HkDto">
+		SELECT seq, id, title, content, regdate 
+		FROM hkboard 
+		WHERE seq = #{seq}
+	</select>
+	
+	<update id="updateBoard" parameterType="HkDto">
+		UPDATE hkboard 
+		SET title = #{title} , content= #{content} , regdate=SYSDATE() 
+		WHERE seq = #{seq} 
+	</update>
+	
+	<delete id="mulDel" parameterType="Map">
+		delete from hkboard where seq in 
+		<foreach collection="seqs" item="seq" open="(" close=")"
+						                      separator=",">
+			#{seq}
+		</foreach>
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

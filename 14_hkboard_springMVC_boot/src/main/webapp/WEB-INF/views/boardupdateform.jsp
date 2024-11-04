@@ -2,8 +2,12 @@
 <%@page import="com.hk.board.dtos.HkDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("utf-8"); %>
-<%response.setContentType("text/html;charset=UTF-8"); %>  
+<%
+request.setCharacterEncoding("utf-8");
+%>
+<%
+response.setContentType("text/html;charset=UTF-8");
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +15,7 @@
 <title>게시판 글 수정하기 폼</title>
 </head>
 <%
-	HkDto dto=(HkDto)request.getAttribute("dto");
+HkDto dto=(HkDto)request.getAttribute("dto");
 %>
 <body>
 <h1>글 수정하기</h1>

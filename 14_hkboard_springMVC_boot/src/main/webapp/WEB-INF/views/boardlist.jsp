@@ -4,8 +4,12 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("utf-8"); %>
-<%response.setContentType("text/html;charset=UTF-8"); %>  
+<%
+request.setCharacterEncoding("utf-8");
+%>
+<%
+response.setContentType("text/html;charset=UTF-8");
+%>  
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +28,7 @@
 </style>
 </head>
 <%
-	List<HkDto> lists=(List<HkDto>)request.getAttribute("list");
+List<HkDto> lists=(List<HkDto>)request.getAttribute("list");
 %>
 <body>
 <h1>게시판</h1>
@@ -43,8 +47,8 @@
 		<th>번호</th><th>작성자</th><th>제목</th><th>작성일</th>
 	</tr>
 	<%
-		for(HkDto dto:lists){
-			%>
+	for(HkDto dto:lists){
+	%>
 			<tr>
 				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
 				<td><%=dto.getSeq()%></td>
@@ -105,13 +109,11 @@
 </script>
 <%-- <%//실행부 %> --%>
 <%-- <%=//표현부 %> --%>
-<%!  
-	//선언부:메서드 선언하기
+<%!//선언부:메서드 선언하기
 	public String toDates(Date regdate){
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	 return sdf.format(regdate);
-	}
-%>
+	}%>
 
 </body>
 </html>
