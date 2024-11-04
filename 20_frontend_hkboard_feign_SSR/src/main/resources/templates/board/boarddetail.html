@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>게시판 상세보기</h1>
+<table border="1">
+	<tr>
+		<th>번호</th>
+		<td th:text="${dto.seq}"></td>
+	</tr>
+	<tr>
+		<th>작성자</th>
+		<td th:text="${dto.id}"></td>
+	</tr>
+	<tr>
+		<th>제목</th>
+		<td th:text="${dto.title}"></td>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td>
+			<textarea rows="10" cols="60" th:text="${dto.content}"
+			          readonly="readonly"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button>수정</button>
+			<button>삭제</button>
+			<button th:onclick="|location.href='@{/api/board/boardlist}'|">목록</button>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
