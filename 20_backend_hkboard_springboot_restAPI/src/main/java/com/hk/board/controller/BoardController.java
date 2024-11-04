@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,10 +71,11 @@ public class BoardController {
 		return map;
 	}
 	
-	//글수정하기 폼이동: 전달파라미터 seq
+	//글수정하기: 전달파라미터 seq
 	@PutMapping("/update")
-	public Map<String,Integer> update(HkDto dto){
-		System.out.println("글 수정하기");
+//	public Map<String,Integer> update(HkDto dto){
+	public Map<String,Integer> update(@RequestBody HkDto dto){//feign으로 요청시	
+		System.out.println("글 수정하기:"+dto);
 		Map<String, Integer> map=new HashMap<>();
 		map.put("count", boardService.updateBoard(dto));
 		return map;

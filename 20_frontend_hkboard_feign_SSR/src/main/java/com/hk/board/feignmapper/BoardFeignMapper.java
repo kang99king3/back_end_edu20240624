@@ -3,10 +3,17 @@ package com.hk.board.feignmapper;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.board.dtos.HkDto;
+
+import feign.Param;
+
 import com.hk.board.dtos.HkBoardDetailDto;
 import com.hk.board.dtos.HkBoardListDto;
+import com.hk.board.dtos.HkBoardUpdateDto;
 
 @FeignClient(name = "boardFeignMapper",url="http://localhost:8085")
 public interface BoardFeignMapper {
@@ -20,4 +27,7 @@ public interface BoardFeignMapper {
 	
 	@GetMapping("/api/board/detail/{seq}")
 	public HkBoardDetailDto getBoard(@PathVariable("seq") int seq);
+
+	@PutMapping("/api/board/update")
+	public HkBoardUpdateDto updateBoard(@RequestBody HkDto dto);
 }

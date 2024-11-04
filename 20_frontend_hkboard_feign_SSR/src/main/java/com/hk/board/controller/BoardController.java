@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hk.board.dtos.HkDto;
@@ -44,5 +45,23 @@ public class BoardController {
 		System.out.println(hkBoardDetailDto.getDto());
 		model.addAttribute("dto", hkBoardDetailDto.getDto());
 		return "board/boarddetail";
+	}
+	
+	@GetMapping("/updateform/{seq}")
+	public String updateFrom(@PathVariable("seq") int seq
+			,Model model) {
+		HkBoardDetailDto hkBoardDetailDto=boardFeignMapper.getBoard(seq);
+		System.out.println(hkBoardDetailDto);
+		System.out.println(hkBoardDetailDto.getDto());
+		model.addAttribute("dto", hkBoardDetailDto.getDto());
+		return "board/updateform";
+	}
+	
+	@PostMapping("/update")
+	public String update(HkDto dto) {
+		System.out.println("수정하기 파라미터:"+dto);
+		boardFeignMapper.updateBoard(dto);
+		
+		return "redirect:/api/board/boarddetail/"+dto.getSeq();
 	}
 }

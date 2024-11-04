@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<button>수정</button>
+			<button th:onclick="|location.href='@{|/api/board/updateform/${seq}|}'|">수정</button>
 			<button>삭제</button>
 			<button th:onclick="|location.href='@{/api/board/boardlist}'|">목록</button>
 		</td>
