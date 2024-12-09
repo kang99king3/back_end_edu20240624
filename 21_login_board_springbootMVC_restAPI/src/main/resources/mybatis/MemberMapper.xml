@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board.mapper.MemberMapper">
+	
+	<insert id="addUser" parameterType="memberDto">
+		INSERT INTO MEMBER
+		VALUES(NULL,#{id},#{password},#{name},#{email},#{address},#{role})
+	</insert>
+	
+	<select id="idChk" parameterType="String" resultType="String">
+		SELECT ID FROM MEMBER WHERE ID = #{id}
+	</select>
+	
+	<select id="loginUser" parameterType="String" resultType="memberDto">
+		SELECT MEMBERID, ID, NAME, PASSWORD, EMAIL, ADDRESS, ROLE
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

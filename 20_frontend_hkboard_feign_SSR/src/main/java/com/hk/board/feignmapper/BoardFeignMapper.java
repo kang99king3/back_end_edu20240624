@@ -30,4 +30,12 @@ public interface BoardFeignMapper {
 
 	@PutMapping("/api/board/update")
 	public HkBoardUpdateDto updateBoard(@RequestBody HkDto dto);
+	
+
 }
+
+
+
+
+
+

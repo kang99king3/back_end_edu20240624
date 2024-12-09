@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+
+.content{
+	margin: 70px 150px;   
+}
+	
+/* footer요소 하단에 위치하는 코드 시작 --------*/
+/* footer요소가 항상 바닥에 위치하면서 페이지 내부가 길어지면 아래로 밀리면서 계속 하단에 위치 */
+
+#container {
+   width: 1000px;
+   margin: 0 auto;
+   min-height: calc(90vh - 50px); /*80vh는 viewport(브라우저창크기)의 80%를 의미 50px은 푸터 높이 */
+   
+}
+
+#footer{
+	text-align: center;
+	color:white;
+	background-color: #3c3c3c;
+	line-height: 50px;
+	height: 50px;
+}
+/* footer요소 하단에 위치하는 코드 종료--------*/	
+.errorField{
+	color : red;
+}	
+
