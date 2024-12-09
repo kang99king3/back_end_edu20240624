@@ -1,5 +1,28 @@
 <h1>건양대 의료IT학과 훈련과정</h1>
 <div>
   <a href="https://www.konyang.ac.kr/kor.do" target="_blank">
-  <img src="https://camo.githubusercontent.com/70d3d49cc8ca87b2cb8eef3d6ee720c7991345ad40eb2564c198ce302c6840f6/68747470733a2f2f7777772e6b6f6e79616e672e61632e6b722f696d616765732f6b6f722f73756230312f4b59552d4368617261637465722e6a7067" alt="건양대로고" /></a>
+  <img src="https://www.konyang.ac.kr/images/kor/sub01/KYU-Character.jpg" alt="건양대뀨"/></a>
+</div>
+<div>
+  <h2>교육 내용</h2>
+  <ul>
+    <li>Front-end
+      <ul>
+        <li>html/css/javascript/jQuery</li>
+        <li>React</li>
+      </ul>
+    </li>
+    <li>Back-end
+      <ul>
+        <li>java/mariaDB/jsp/Servlet</li>
+        <li>myBatis/spring/spring-boot/maven</li>
+        <li>실시간 데이터 처리(코스콤주식데이터처리/네트워크/Kafka/websocket)</li>
+      </ul>
+    </li>
+    <li>tool
+      <ul>
+        <li>eclipse/vscode/HeidiSQL</li>
+      </ul>
+    </li>
+  </ul>
 </div>
