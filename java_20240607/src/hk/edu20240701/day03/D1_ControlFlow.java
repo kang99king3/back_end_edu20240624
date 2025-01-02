@@ -32,7 +32,7 @@ public class D1_ControlFlow {
 		
 		//여러 조건을 설정한다면..
 		if(num1>num2) {
-			if(num1!=num2) {//조건문을 중첩해서 사용...
+			if(num1!=15) {//조건문을 중첩해서 사용...
 				
 			}
 		}else if(num1<num2) {
