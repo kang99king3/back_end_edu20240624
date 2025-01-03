@@ -121,6 +121,7 @@
 	</fieldset>
 </div>
 <script type="text/javascript">
+	var count=0;
 	function strTest04(){
 		//문제: 입력 키워드 최대 6개로 제한
 		//입력된 문자열 각각의 키워드를 추출해서 <span>요소에 출력하세요
@@ -129,7 +130,8 @@
 		console.log(prop);
 		var propArray=prop.split(",");//["수박","바나나","사과"]
 		
-		if(propArray.length>6){
+// 		if(propArray.length>6){
+		if(propArray.length>count){
 			alert("6개까지만 입력 가능합니다.");
 		}else{
 			var propVal="";//원하는 문자열 형식으로 저장할 변수
@@ -140,6 +142,13 @@
 	// 		document.getElementById("key").textContent=propVal;
 			document.getElementById("key").innerHTML=propVal;
 		}
+	}
+	
+	//입력 키워드 개수를 제한하는 가능 구현 : 
+	function numCount(buttonEle){
+		count=document.getElementById("num").value;
+		buttonEle.style.color="red";
+		document.getElementById("num").disabled="disabled";// 비활성화
 	}
 	
 	//  계산기 기능 구현하기 : 참고 네이버 계산기 --> 사칙연산, 클리어, 백스페이스(하나씩 지우기)
