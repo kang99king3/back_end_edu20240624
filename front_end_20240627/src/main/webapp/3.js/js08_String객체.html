@@ -73,6 +73,19 @@
 		console.log(`${strVal01},${strVal02}`);
 	}
 </script>
+<style type="text/css">
+	#calculator{
+		width:270px;
+	}
+	#calculator #view{
+		width:95%;
+	}
+	#calculator input[type=button]{
+		width:50px;
+		height:50px;
+		margin: 2px;
+	}
+</style>
 </head>
 <body>
 <h1>String 객체의 사용</h1>
@@ -95,29 +108,42 @@
 	<small>사용자가 최대입력수를 입력하고 설정버튼을 클릭하면 적용:설정버튼의 폰트색을 red로 변경</small>
 </fieldset>
 <hr/>
-<h2>계산기 구현하기</h2>
-<div>
+<h1>계산기 구현하기</h1>
+<div id="calculator">
 	<fieldset>
 		<input id="view" />
 	</fieldset>
 	<fieldset>
-		<input type="button" value="1"/>
-		<input type="button" value="2"/>
-		<input type="button" value="3"/>
-		<input type="button" value="4"/>
-		<input type="button" value="5"/>
-		<input type="button" value="6"/>
-		<input type="button" value="7"/>
-		<input type="button" value="8"/>
-		<input type="button" value="9"/>
-		<input type="button" value="0"/>
-		<input type="button" value="+"/>
-		<input type="button" value="-"/>
-		<input type="button" value="/"/>
-		<input type="button" value="*"/>
-		<input type="button" value="C"/>
-		<input type="button" value="←"/>
-		<input type="button" value="="/>
+		<div>
+			<input type="button" value="C"/>
+			<input type="button" value="←"/>
+			<input type="button" value="="/>
+			<input type="button" value="/"/>
+		</div>
+		<div>
+			<input type="button" value="7"/>
+			<input type="button" value="8"/>
+			<input type="button" value="9"/>
+			<input type="button" value="X"/>
+		</div>
+		<div>
+			<input type="button" value="4"/>
+			<input type="button" value="5"/>
+			<input type="button" value="6"/>
+			<input type="button" value="-"/>
+		</div>
+		<div>
+			<input type="button" value="1"/>
+			<input type="button" value="2"/>
+			<input type="button" value="3"/>
+			<input type="button" value="+"/>
+		</div>
+		<div>
+			<input type="button" value="ㅁ"/>
+			<input type="button" value="0"/>
+			<input type="button" value="ㅁ"/>
+			<input type="button" value="ㅁ"/>
+		</div>
 	</fieldset>
 </div>
 <script type="text/javascript">
@@ -153,8 +179,9 @@
 	
 	//  계산기 기능 구현하기 : 참고 네이버 계산기 --> 사칙연산, 클리어, 백스페이스(하나씩 지우기)
 	onload=function(){
+		var statusWrite="Y";
 		//body에 존재하는 input요소들을 모두 dom탐색하자
-		var inputs=document.querySelectorAll("fieldset > input[type=button]");
+		var inputs=document.querySelectorAll("fieldset > div > input[type=button]");
 		var view=document.getElementById("view");//계산결과를 보여줄 박스
 		for (var i = 0; i < inputs.length; i++) {
 			inputs[i].onclick=function(evt){//event객체를 파라미터로 받을 수 있다.
@@ -165,13 +192,19 @@
 				
 				if(inputVal=="="){//계산 결과출력
 					view.value=eval(view.value);//문자열을 자바스크립트 코드 실행
+					statusWrite="N";
 				}else if(inputVal=="C"){//전체 삭제
 					view.value="";
 				}else if(inputVal=="←"){//부분 삭제
 					// "50+30": 전체길이에서 -1한 값으로 종료인덱스를 설정하자.
 					view.value=view.value.substring(0,view.value.length-1);
 				}else{
-					view.value+=inputVal;//계산과정을 출력기능					
+					if(statusWrite=="Y"){
+						view.value+=inputVal;//계산과정을 출력기능											
+					}else{
+						view.value=inputVal;
+						statusWrite="Y";
+					}
 				}
 			}
 		}
