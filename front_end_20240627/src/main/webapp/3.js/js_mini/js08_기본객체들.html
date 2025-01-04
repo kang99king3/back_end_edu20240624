@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//2.배열사용하기
+	//배열을 선언하는 방법
+	var arrayObj=new Array("v1","v2","v3");//객체로 생성하는 방법
+	var arrayLit=["v1","v2","v3"];//리터럴 방식
+	//int[] a=new int[3];//자릿수까지 정의하면 java는 자동초기화 지원 : [0,0,0]
+	//new Array(3); // [ , , ] JS에서는 자동 초기화 지원X
+
+	//타입이 서로 다른 값을 저장 가능함
+	var arrayObj02=["v1",7,true];
+	
+	//배열을 선언하는 방법2
+	var array03=new Array();//배열 선언
+	var array04=new Array(10);//배열 선언, 자릿수 정의, 초기값X
+	var array05=new Array(2,3,4,5);//선언,정의,초기화 진행
+	array04[0]="배열1";//값 저장(set)
+	var aVal=array04[0];//값을 가져옴(get)
+	// 배열객체에서 제공되는 반복문 메서드: forEach(), map(), filter(), reduce()
+	// for문을 사용해야 하는 이유가 없다면 forEach()를 사용
+	// 범위가 큰 배열에서는 for문을 사용, forEach()는 콜백함수를 계속 호출하므로 성능저하..
+	array05.forEach((item,index)=>{
+		console.log(item);
+	});
+	
+	//배열에서 제공되는 여러 메서드들
+	// - sort(), push(), shift(), pop(), slice(), splice, indexOf()/lastIndexOf(), concat()
+	
+	//3.Math객체
+	// 수학적 계산을 위한 객체로 다양한 함수와 상수들을 포함하고 있다.
+	// 정적객체로 new를 이용해서 객체를 생성하지 않고 사용한다. new Math(); (X)
+	var num=Math.random();//random()함수는 0 ~ 1 사이에 실수를 랜덤하게 반환한다.
+    var num2=Math.pow(3,2);//pow()함수는 3의 2제곱
+    var num3=Math.PI; //원의 원주율 3.14
+    var num4=Math.round(5.6);//소수점 반올림
+	
+    // 1~20까지 숫자 랜덤 생성
+    // 0.0000..1 ~ 0.999...사이의 실수와 20의 곱 = 최대 20을 안넘음
+    // 0~19사이의 숫자가 나옴 --> 여기에 1을 더하면 1~20 이됨
+    var randomNum=Math.floor(Math.random()*20)+1;
+    console.log(`randomNum:${randomNum}`);
+    
+    //4. Date객체
+    // 날짜에 관련된 정보를 제공하는 객체 
+    // 객체를 생성하여 사용한다. new Date(), new Date("2025-01-01")
+    var today = new Date();//default생성자는 오늘 날짜
+    var tomorrow = new Date("2025-01-07");//특정날짜
+    var year=today.getFullYear();
+    var month=today.getMonth()+1;//0~11월로 표현
+    var date=today.getDate();
+    var week=today.getDay();//요일 0~6으로 표현
+    
+    // 경과일 구하기
+    // 오늘 날짜에서 경과일을 더해서 날짜를 구하자
+    var d=50; //경과일
+  //오늘 일수를 구해서 더해준 다음 오늘객체에 수정된 일수를 저장한다.
+  //그럼 오늘 날짜에서 경과일을 더한 날짜로 자동 계산하여 해당 날짜로 반영된다.
+    today.setDate(today.getDate()+d);
+    console.log(today.toLocaleString());
+</script>
+</head>
+<body>
+
+</body>
+</html>

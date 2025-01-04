@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>D-Day구하기</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	//D-Day 구현해보기
+	//현재날짜 , 수료날짜 사이에 일수를 구함
+	//Date객체에 getTime()를 사용 : 1970년1월1일 기준으로 ~~ 현재날짜까지의 경과 시간을 구해주는 메서드
+	//          반환값의 단위: ms 단위로 1초를 1000으로 반환함 
+	//          만약 반환값이 24시간이라면 1000*1*60*60*24 ms 를 반환하게 된다.
+	//현재날짜: 1970년 ------->현재날짜
+	//경과일 :                ----------->
+	//수료날짜: 1970년 ------------------->수료날짜
+	function testDate(){
+		//현재날짜 객체
+		var nowDate="코드작성";
+		
+		//입력한 수료날짜 가져오기
+		var date="코드작성";
+		
+	    //수료날짜 객체: date변수에 저장된 수료날짜로 Date객체 생성
+		var afterDate="코드작성";
+		
+	    //현재날짜와 입력한 수료날짜 사이의 일수를 구한다.(D-Day구하기)
+	    let period="코드작성";
+	    
+		document.getElementById("period").value=period;
+	} 
+	
+	onload=function(){
+		// 현재날짜 출력하는 코드
+		var date=new Date();
+		document.getElementById("dates2").value=date.toLocaleString();
+	}
+</script>
+</head>
+<body>
+<h1>D-Day기능</h1>
+<label>현재날짜:</label><input type="text" id="dates2" readonly /><br/>
+<label>수료일:</label><input type="date" id="d_day" /><br/>
+<label>남은 일수:</label><input type="text" id="period" readonly /><br/>
+<button onclick="testDate()">확인</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
