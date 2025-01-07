@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>D-Day 기능</title>
+<script type="text/javascript">
+	//D-Day기능구현
+	//현재날짜 , 수료날짜
+	//Date객체: getTime()를 사용 -> 1970년1월1일을 기준 ~ 현재날짜: 경과시간을 구함
+	//현재날짜: 1970년 ------->현재날짜
+	//경과일 :                ----------->
+	//수료날짜: 1970년 ------------------->수료날짜
+	// getTime() 반환값: 단위가 ms --> 1s --> 1000ms -> 1000*1*60*60 = 1h
+	function testDate05(){
+		var nowDate=new Date();//현재날짜 객체생성
+		var date=document.getElementById("d_day").value;//수료날짜
+		console.log(typeof date);// "2024-11-09"
+		
+		var afterDate=new Date(date);// 수료일로 설정된 Date객체생성
+		console.log(nowDate.getTime()+":"+afterDate.getTime());
+		//48h---> 48/24=2  하루는 24h, 24나누면 일수를 구할 수 있다.
+		//                 경과일=(수료날짜ms-현재날짜ms)/하루ms
+		var period=Math.ceil((afterDate.getTime()-nowDate.getTime())/(1000*1*60*60*24));
+		document.getElementById("period").value=period;
+	}
+	
+	//페이지가 로딩되면 기능이 실행된다.
+	onload=function(){
+		var date=new Date();
+		document.querySelector("#dates2").value=date.toLocaleString();
+	}
+</script>
+</head>
+<body>
+<h1>D-Day기능</h1>
+<label>현재날짜:</label><input type="text" id="dates2" readonly="readonly"/><br/>
+<label>수료일:</label><input type="date" id="d_day" /><br/>
+<label>남은 일수:</label><input type="text" id="period" readonly="readonly"/><br/>
+<button onclick="testDate05()">확인</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
