@@ -19,12 +19,10 @@ public class D4_ConstructorTest extends D3_AccessTest {
 	public String color="검정색";//색상
 	
 	//default 생성자는 단독으로 사용할땐 생략가능하지만 오버로딩하면 생략 불가능
+	//생성자 호출은 반드시 첫줄에 작성해야 한다.(제일 먼저 실행되어야 함)
 	public D4_ConstructorTest() {
-//		super();//부모의 생성자를 호출(반드시 첫줄에 작성한다)
-//		this(2);// super()와 this()는 같이 쓸 수 없다
-		        //  -> 생성자는 하나만 실행되기 때문에 this(2)를 쓰는 순간  
-		        //     파라미터 1개짜리 생성자가 실행된다. 
-		//             그래서 현재 default생성자에 코드들은 실행되면 안된다. 
+//		super();//부모의 생성자를 호출(명시적으로 선언하거나, 생략 가능하다)
+		this(2);// super()와 this()는 같이 쓸 수 없다-> 둘다 첫줄에 작성되어 하기때문에..  
 		this.size=60;
 	}
 	
