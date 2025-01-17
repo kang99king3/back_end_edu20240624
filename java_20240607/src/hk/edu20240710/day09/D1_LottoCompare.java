@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class D1_LottoCompare {
 
 	//당첨번호
-	public static D1_Lotto lottoBall = new D1_Lotto();
+	public static final D1_Lotto lottoBall = new D1_Lotto();
 	
 	//구매한 로또의 번호들
 	public D1_LottoStore userBall;

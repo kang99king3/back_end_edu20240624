@@ -17,7 +17,7 @@ public class D1_CalculatorMain {
 			//예: "5+10"입력값 받는 코드 작성
 			String s=scan.next();// 5+10 
 			//입력받은 값 s의 패턴: "숫자[+-/*]숫자" 확인 ---> 정규화표현식 
-			if(Pattern.matches("^[0-9][0-9]*[+|\\-|/|*][0-9]*[0-9]$", s)) {
+			if(Pattern.matches("^[0-9][0-9]*[+|\\-|/|*][0-9]*[0-9]$", s)) {	
 //				"5+10"에 대한 연산 처리 코드실행
 				cal.calcu(s);//계산실행
 			}else {

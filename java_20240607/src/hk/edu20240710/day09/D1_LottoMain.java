@@ -24,9 +24,9 @@ public class D1_LottoMain {
 		
 		System.out.println(Arrays.toString(lottoCompare.lottoBall.getLots()));
 		
-		lottoCompare.compareBall();
+//		lottoCompare.compareBall();
 //		
-//		System.out.println(Arrays.toString(lottoCompare2.lottoBall.getLots()));
+		System.out.println(Arrays.toString(lottoCompare2.lottoBall.getLots()));
 		
 //		System.out.println(
 //				Arrays.toString(lottoCompare.userBall.lottoObj[0].getLots()));
