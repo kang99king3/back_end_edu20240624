@@ -2,11 +2,11 @@ package hk.edu20240712.day11;
 
 public class D3_Customer {
 
-	protected int customerID;
-	protected String customerName;
-	protected String customerGrade;
-	int bonusPoint;
-	double bonusRatio;
+	protected int customerID; //고객아이디
+	protected String customerName;//고객이름
+	protected String customerGrade;//고객등급
+	int bonusPoint;//보너스포인트
+	double bonusRatio;//보너스적립률
 	
 	public D3_Customer() {
 		customerGrade="SILVER";
