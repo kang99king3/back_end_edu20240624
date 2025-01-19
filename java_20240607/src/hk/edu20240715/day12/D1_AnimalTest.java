@@ -34,6 +34,7 @@ public class D1_AnimalTest {
 		animal.move();//하나의 부모타입으로 여러 형태를 나타낼 수 있다.(다형성)
 		
 		//오버라이딩 안된 경우에 메서드를 사용한다면...
+		//특정 클래스 또는 하위클래스를 비교한다.
 		if(animal instanceof D1_Human ) {
 			D1_Human human2=(D1_Human)animal;
 			human2.test();
