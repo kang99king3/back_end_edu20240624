@@ -12,7 +12,7 @@ public class D1_MagicSquareMain {
 		evenMagic.make();
 		evenMagic.magicPrint();
 		
-		D1_SixMagicSquare sixMagic=new D1_SixMagicSquare(10);
+		D1_SixMagicSquare sixMagic=new D1_SixMagicSquare();
 		sixMagic.make();
 		sixMagic.magicPrint();
 		
