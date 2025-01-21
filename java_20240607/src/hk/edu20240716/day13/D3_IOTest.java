@@ -62,8 +62,8 @@ public class D3_IOTest {
 	//filter: 보조스트림을 이용해서 출력하기
 	public static void test02() {
 		OutputStream out=null;//출력 파이프 준비
-		OutputStreamWriter ow=null;
-		BufferedWriter bw=null;
+		OutputStreamWriter ow=null;//filter
+		BufferedWriter bw=null;//filter
 		String s="파일을 기록합니다.";
 		
 		try {
