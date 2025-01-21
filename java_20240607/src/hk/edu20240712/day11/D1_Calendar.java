@@ -21,7 +21,7 @@ public class D1_Calendar{
 	public int dates(int year) {
 		int tot=0;
 		for (int i = 1; i < year; i++) {
-			if(isLeapYear(year)) {// 윤년이면 366을 더하자
+			if(isLeapYear(i)) {// 윤년이면 366을 더하자
 				tot+=366;
 			}else {
 				tot+=365;
@@ -77,7 +77,7 @@ public class D1_Calendar{
 		D1_Calendar cal=new D1_Calendar();
 		
 		for (int i = 1; i <= 12; i++) {
-			cal.calendarPrint(2024, i);	
+			cal.calendarPrint(2025, i);	
 			System.out.println("\n------------------------------------------------------");
 		}
 		
