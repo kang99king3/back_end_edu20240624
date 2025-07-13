@@ -4,6 +4,9 @@
 ### Eclipse ###
 .metadata
 bin/
+/bin/
+/java_20240607/bin/
+/*.class
 tmp/
 *.tmp
 *.bak
