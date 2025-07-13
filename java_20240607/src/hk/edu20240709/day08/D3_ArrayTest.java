@@ -74,7 +74,7 @@ public class D3_ArrayTest {
 		e[1]=50;
 		System.out.println(Arrays.toString(c));
 		
-		//깊은복사 기능을 제공하는 메서드
+		//깊은복사 기능을 제공하는 메서드: 단, 값이 기본타입일 경우만
 		//System.arraycopy(원본배열,복사할시작인덱스,복사해줄배열,복사시작인덱스,길이)
 		int[]f=new int[5];
 		System.arraycopy(c, 0, f, 0, f.length);
@@ -82,6 +82,14 @@ public class D3_ArrayTest {
 		System.out.println(Arrays.toString(c));
 		System.out.println(Arrays.toString(f));
 		
+		//깊은 복사: clone()을 이용하면 진짜 깊은 복사를 할 수 있다. 
+		D3_Person[] person= {new D3_Person("홍길동"), new D3_Person("이순신")};
+		D3_Person[] personCopy=new D3_Person[person.length];
+		for (int i = 0; i < person.length; i++) {
+			personCopy[i]=person[i].clone();
+		}
+		personCopy[0].name="임꺽정";
+		System.out.println("원본값:"+person[0].name);
 	
 		//2차원배열
 		int [][] aa= {{1,2,3},{4,5,6}};
