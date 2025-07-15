@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-public class D3_IOTest {
+public class D4_IOTest {
 
 	public static void main(String[] args) {
 
