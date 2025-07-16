@@ -8,7 +8,7 @@ public class D1_Human extends D1_Animal{
 		System.out.println("사람이 두발로 걷습니다.");
 	}
 	
-	public void test() {
-		System.out.println("자식에서 새로 추가된 메서드");
+	public void eat() {
+		System.out.println("다 잘먹어요");
 	}
 }

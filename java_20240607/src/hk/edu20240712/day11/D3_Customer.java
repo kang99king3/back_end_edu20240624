@@ -8,12 +8,13 @@ public class D3_Customer {
 	int bonusPoint;//보너스포인트
 	double bonusRatio;//보너스적립률
 	
-	public D3_Customer() {
+	public D3_Customer() {//default생성자는 나중에 ID와Name을 따로 추가해야 함
 		customerGrade="SILVER";
 		bonusRatio=0.01;
 		System.out.println("Customer생성자호출");
 	}
 	
+	//ID와 Name을 생성시 바로 추가함
 	public D3_Customer(int customerID, String customerName) {
 		this.customerID=customerID;
 		this.customerName=customerName;

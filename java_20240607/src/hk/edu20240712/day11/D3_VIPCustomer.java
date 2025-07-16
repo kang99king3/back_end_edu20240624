@@ -27,10 +27,10 @@ public class D3_VIPCustomer extends D3_Customer{
 		//부모의 맴버필드에 접근해서 초기화
 		super.customerID=customerID;
 		super.customerName=customerName;
+		super.customerGrade="VIP";
+		super.bonusRatio=0.05;
 		
-		customerGrade="VIP";
-		bonusRatio=0.05;
-		saleRatio=0.1;
+		this.saleRatio=0.1;
 		this.agentID=agentID;
 	}
 	
