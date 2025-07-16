@@ -8,7 +8,7 @@ public class D5_SetTest {
 
 	public static void main(String[] args) {
 		
-		Set set=new HashSet();
+		Set<String> set=new HashSet<>();
 		set.add("건");
 		set.add("양");
 		set.add("대");
@@ -21,6 +21,9 @@ public class D5_SetTest {
 		while(iter.hasNext()) { //hasNext()는 Set에 값이 존재하는지 확인
 			String str =(String)iter.next();//값을 꺼낸다
 			System.out.print(str+" ");
+		}
+		for (String s : set) {
+			System.out.println(s);
 		}
 	}
 
