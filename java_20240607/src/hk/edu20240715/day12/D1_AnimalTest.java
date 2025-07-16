@@ -9,7 +9,7 @@ public class D1_AnimalTest {
 		D1_Human humanChild=(D1_Human)human;
 //		human.test();//부모에 공개된 메서드만 사용가능하다.
 		humanChild.move();
-		humanChild.test();
+		humanChild.eat();
 		
 		System.out.println("============================");
 		//다형성 발생원리 3가지
@@ -37,10 +37,10 @@ public class D1_AnimalTest {
 		//특정 클래스 또는 하위클래스를 비교한다.
 		if(animal instanceof D1_Human ) {
 			D1_Human human2=(D1_Human)animal;
-			human2.test();
+			human2.eat();
 		}else if(animal instanceof D1_Eagle) {
 			D1_Eagle human2=(D1_Eagle)animal;
-			human2.test();
+			human2.eat();
 		}
 		
 	}

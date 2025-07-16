@@ -7,9 +7,8 @@ public class D1_Eagle extends D1_Animal{
 		System.out.println("독수리가 하늘을 납니다.");
 	}
 
-	public void test() {
-		// TODO Auto-generated method stub
-		
+	public void eat() {
+		System.out.println("새를 먹어요");
 	}
 	
 	
