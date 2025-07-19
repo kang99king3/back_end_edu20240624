@@ -19,6 +19,7 @@ public class D5_MapTest {
 		                             +map.get("둘")
 		                             +map.get("셋"));
 		
+		//Map에서 일괄적으로 데이터를 접근하고 싶다면
 		Set<String> setKeyMap=map.keySet();//key값만 set으로 반환
 		Iterator<String> iterKeyMap=setKeyMap.iterator();
 		while(iterKeyMap.hasNext()) {

@@ -26,8 +26,9 @@ public class D5_GBoxMain {
 		//와일드카드
 		//<? extends T> : T 또는 하위타입(읽기전용)
 		List<? extends Number> numbers=new ArrayList<Integer>();
-//		numbers.add(434);
+//		numbers.add(434);//클래스로더 입장에서는 어떤 자식타입일지 모르기때문에 추가,수정작업을 할 수 없음.
 		
+		//그럼 데이터를 어떻게 추가해?
 		List<Integer> num=new ArrayList<Integer>();
 		num.add(1);num.add(2);num.add(3);
 		numbers=num;//와일드카드 적용 객체에 넘기면..
@@ -35,6 +36,6 @@ public class D5_GBoxMain {
 		
 		//<? super T> : T 또는 상위타입(쓰기도 가능)
 		List<? super Integer> ints=new ArrayList<Number>();
-		ints.add(123);
+		ints.add(123);//interger의 상위 타입들은 정해져 있기때문에..
 	}
 }

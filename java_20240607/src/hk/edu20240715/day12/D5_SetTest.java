@@ -22,6 +22,7 @@ public class D5_SetTest {
 			String str =(String)iter.next();//값을 꺼낸다
 			System.out.print(str+" ");
 		}
+		//향상된 for문도 가능
 		for (String s : set) {
 			System.out.println(s);
 		}
