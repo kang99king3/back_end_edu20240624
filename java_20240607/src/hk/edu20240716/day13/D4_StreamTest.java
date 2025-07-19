@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class D3_StreamTest {
+public class D4_StreamTest {
 
 	public static void main(String[] args) {
 		//List객체를 stream객체로 생성후 filter와 sort, forEach를 사용하여 결과 출력
