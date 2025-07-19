@@ -65,7 +65,7 @@ public class D4_ChatServer {
                 //client로 출력할 객체 PrinterWriter를 clients에 저장
                 //동시적으로 접근하면 오류가 발생될 여지가 있으므로 동기화 블럭 설정
                 synchronized (clients) {
-                	clients.add(out);
+                	clients.add(out);  // clients안에는 여러 클라이언트 Socket객체가 저장된다. 
                 }
 
                 String message;
