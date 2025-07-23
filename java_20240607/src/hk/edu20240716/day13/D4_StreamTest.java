@@ -29,8 +29,8 @@ public class D4_StreamTest {
 		//만약 Stream을 사용하지 않을 경우
 		List<String> list2=new ArrayList<>();
 		for (String s : list) {
-//			if(s.startsWith("홍")) {
-			if(s.contains("홍")) {
+			if(s.startsWith("홍")) {
+//			if(s.contains("홍")) {
 				list2.add(s);
 			}
 		}

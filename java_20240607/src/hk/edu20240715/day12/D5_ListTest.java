@@ -21,9 +21,13 @@ public class D5_ListTest {
 			System.out.print(str+" "); 
 		}
 		
+		System.out.println();
+		
+		System.out.println(list.contains("한"));//검색기능
+		list.add(1, "국");list.add(3, "제");
 		list.remove(0);//특정 인덱스에 값을 삭제
 //		list.clear();//모두 삭제
-		
+		System.out.println(list);
 		System.out.println("list의 길이값:"+list.size());
 		
 		//Lotto객체를 저장해보자
