@@ -7,16 +7,28 @@ import java.io.InputStreamReader;
 public class D2_ExceptionTest {
 	public static void main(String[] args){
 //		exTest("123");
-		
-		try {
-			userExceptionTest(12);
-		} catch (D2_UserException e) {
-			e.printStackTrace();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		exTest2("a");
+//		try {
+//			userExceptionTest(12);
+//		} catch (D2_UserException e) {
+//			e.printStackTrace();
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
+	//예외처리를 안하면?
+	public static void exTest2(String s) {
+		int a=0;
+//		try {
+			a = Integer.parseInt(s);
+//		} catch (NumberFormatException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		System.out.println(a+":오류 코드 이후에 코드들이 실행된다.");
+	}
+
 	public static void exTest(String s) {
 		int i=0;
 		String ss="";
