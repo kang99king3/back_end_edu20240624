@@ -5,6 +5,7 @@ public class D3_ThreadSync {
 	//내부클래스
 	class ShareObject{
 		public synchronized void print(String title) {
+//		public void print(String title) {
 			for (int i = 0; i < 10; i++) {
 				System.out.println(title);
 				try {
@@ -26,16 +27,20 @@ public class D3_ThreadSync {
 		//설정방법 2가지: synchronized 메서드, 
 		//             동기화 블록 synchronized(공유객체){}
 		Thread trA=new Thread() {
-			@Override
-			public void run() {
-				so.print("공");
-			}
+				@Override
+				public void run() {
+//					synchronized(so) {
+					so.print("공");
+//					}
+				}				
 		};
 		
 		Thread trB=new Thread() {
 			@Override
 			public void run() {
-				so.print("유");
+//				synchronized (so) {
+					so.print("유");					
+//				}
 			}
 		};
 //		trA.start();
@@ -70,17 +75,19 @@ public class D3_ThreadSync {
 	
 	public void sbTest(String s) {
 		
-		synchronized (sb) {
-			sb.append(s);
-			System.out.println(sb.toString());			
-		}
+//		synchronized (sb) {
+			for (int i = 0; i < 1000; i++) {
+				sb.append(s);
+			}
+//		}
 		
 		try {
-			Thread.sleep(500);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(sb.length());			
 	}
 	
 }

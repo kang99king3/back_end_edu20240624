@@ -16,11 +16,12 @@ public class D4_StreamTest {
 		List<String> list=Arrays.asList("홍길동","임꺽정","김홍도");
 		Stream<String> streamList=list.stream();
 //		streamList.filter(s->s.contains("홍")).sorted().forEach(s->System.out.println(s));
-		streamList.filter(s->s.startsWith("홍")).forEach(s->System.out.println(s));
+		streamList.filter(s->s.startsWith("홍")).forEach(System.out::println);
 		
 		//List객체를 stream객체로 생성후 맵핑과 수집
 		List<Integer> listNum=list.stream() 
-								  .map(String::length)//각 요소를 요소의길이값으로 변환
+								  .map(s->s.length())
+//								  .map(String::length)//각 요소를 요소의길이값으로 변환
 								  .collect(Collectors.toList());//List객체로 반환
 		System.out.println(listNum.toString());
 		
