@@ -62,16 +62,20 @@ public class D5_IOTest {
 	//filter: 보조스트림을 이용해서 출력하기
 	public static void test02() {
 		OutputStream out=null;//출력 파이프 준비
-		OutputStreamWriter ow=null;//filter
-		BufferedWriter bw=null;//filter
+		OutputStreamWriter ow=null;//filter로 문자인코딩처리 기능
+		BufferedWriter bw=null;//filter로 버퍼를 이용한 성능향상
 		String s="파일을 기록합니다.";
 		
 		try {
 			out=new FileOutputStream("C:\\Users\\user\\output_data.java");
-			ow=new OutputStreamWriter(out);
-			bw=new BufferedWriter(ow);
-			bw.write(s);
+//			out.write(s.getBytes("utf-8"));
 			
+			ow=new OutputStreamWriter(out, "utf-8");//바이트스트림->문자기반스트림으로 변환
+			ow.write(s);
+			
+//			ow=new OutputStreamWriter(out);
+//			bw=new BufferedWriter(ow);//버퍼를 이용하여 성능향상(많은 양의 문자를 모아서 한번에 출력)
+//			bw.write(s);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +101,7 @@ public class D5_IOTest {
 	//filter : 보조스트림을 이용해서 출력하기
 	public static void test02_1() {
 		OutputStream out=null;//출력을 위한 파이프 준비
-		DataOutputStream ds=null;//보조 스트림(filter), 단독으로 사용못함
+		DataOutputStream ds=null;//filter로 기본타입 데이터를 이진데이터로 출력 , 단독으로 사용못함
 		
 		String s="파일을 기록합니다.";
 		try {
@@ -144,6 +148,7 @@ public class D5_IOTest {
 				             //   [11,12,13,14,15,6,7,8,9,10] -> 나머지 데이터가 10개이하면
 				             //                           그전에 읽었던 데이터가 남아있게 된다
 				out.write(b, 0, i);//b배열의 0번째부터 i개수의 길이만큼 출력한다.
+				//결론은 write(b,0,i)를 사용하는 것이 안전하다.(권장)
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -184,7 +189,7 @@ public class D5_IOTest {
 			while((i=in.read(ch))!=-1) {
 				System.out.println("입력값");
 				out.write(ch, 0, i);// ~er 객체들은 기본적으로 버퍼의 기능을 가지고 있음
-				out.flush();        // --->  다 채워질때까지 출력되지 않을 수 있음--> flush() 밀어낸다.
+				out.flush();        // --->System.out(콘솔출력)은 다 채워질때까지 출력되지 않을 수 있음--> flush() 밀어낸다.
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
