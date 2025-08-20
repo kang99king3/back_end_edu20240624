@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#container1{
+ 		border:1px solid red;
+ 		display: flex; /* flex를 적용한다는 의미 */
+ 		flex-direction: row;/* 행(가로방향)을 기준축으로 사용한다는 의미 */
+		flex-wrap: wrap; /* 박스너비가 좁아지면 줄바꿔준다.*/ 		
+	}
+	
+	#container2{
+		border:1px solid red;
+ 		display: flex; 
+ 		flex-direction: column; /* 열(세로방향)을 기준축으로 사용한다는 의미 */
+		flex-wrap: wrap; /* 자동 줄바꿈*/
+		
+	}
+	
+	/* 레이아웃 작성*/
+	.box{
+		width:200px;
+/* 		height:200px; */
+		background-color: orange;
+ 		border:1px solid blue; 
+	}
+	
+	
+	#container3{
+		display: flex;
+		flex-direction: column;
+
+	}
+	
+	#content{
+		display: flex;
+		flex-direction: row;
+ 		min-height: 80vh; 
+	}
+	
+	.a{width:300px;  margin-left: auto;}
+	.b{width:800px; }
+	.c{width:300px;  margin-right: auto; }
+</style>
+</head>
+<body>
+<!-- <div id="container1"> -->
+<!-- 	<div class="box">1</div> -->
+<!-- 	<div class="box">2</div> -->
+<!-- 	<div class="box">3</div> -->
+<!-- 	<div class="box">1</div> -->
+<!-- 	<div class="box">2</div> -->
+<!-- 	<div class="box">3</div> -->
+<!-- </div> -->
+<!-- <hr/> -->
+<!-- <div id="container2"> -->
+<!-- 	<div class="box">1</div> -->
+<!-- 	<div class="box">2</div> -->
+<!-- 	<div class="box">3</div> -->
+<!-- 	<div class="box">1</div> -->
+<!-- 	<div class="box">2</div> -->
+<!-- 	<div class="box">3</div> -->
+<!-- </div> -->
+<div id="container3">
+	<div class="box"  style="width:100%; height: 100px;">1</div>
+	<div id="content">
+		<div class="box a">2</div>
+		<div class="box b">3</div>
+	    <div class="box c">4</div>	
+	</div>
+    <div class="box" style="width:100%;height: 100px;">5</div>
+</div>
+</body>
+</html>
