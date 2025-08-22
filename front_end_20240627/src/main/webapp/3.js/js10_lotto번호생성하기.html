@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <title>js10_lotto번호생성하기</title>
 <script type="text/javascript">
+	//객체로 구현
+	function Lotto(){
+		this.balls=new Array();
+		
+		this.makeBall=function(){
+			return Math.floor(Math.random()*45+1);
+		}
+		
+		this.lottoBalls=function(){
+			let count=0;
+			while(count<7){
+				let ball=this.makeBall();
+				if(this.balls.indexOf(ball)==-1){
+					this.balls.push(ball);
+					count++;
+				}
+			}
+			console.log(this.balls.toString());
+		}
+	}
+
 	//로또번호: 1~45까지 랜덤하게 생성하는 기능
 	//random():0~1사이의 실수를 랜덤하게 생성 --> 0.00000...~0.999999.. 
 	function makeBall(){
