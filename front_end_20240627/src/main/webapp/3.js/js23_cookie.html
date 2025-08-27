@@ -78,8 +78,19 @@
 	//원하는 cookie값 가져오는 기능
 	//"user=hk;name=kkk"
 	function getCookie(cookieName){
-		
-		return "cookieName에 해당하는 값 리턴";
+		//String.split(";"): ";"기준으로 잘라서 배열로 반환 	
+		var cookieSplit=document.cookie.split(";");//["name=value","name=value",...]
+		var value="";
+		for(var i=0;i<cookieSplit.length;i++){
+			if(cookieSplit[i].indexOf(cookieName)!=-1){// 존재여부 판단
+			//        "name=value". [name,value][1]
+				value=cookieSplit[i].split("=")[1];  // "name=value" -> [name,value]
+				console.log("저장된 쿠키값:"+value);
+				return  decodeURIComponent(value);
+			}
+		}
+		console.log("저장된 쿠키값:"+value);
+		return null;
 	}
 	
 	//cookie 삭제하는 기능: expires 유효기간을 재설정
