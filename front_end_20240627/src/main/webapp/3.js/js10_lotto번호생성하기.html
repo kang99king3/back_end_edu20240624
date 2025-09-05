@@ -4,14 +4,17 @@
 <meta charset="UTF-8">
 <title>js10_lotto번호생성하기</title>
 <script type="text/javascript">
-	//객체로 구현
+	//객체로 구현시
 	function Lotto(){
+		// 로또 번호 담을 배열 객체
 		this.balls=new Array();
 		
-		this.makeBall=function(){
+		//랜덤하게 숫자 하나 생성할 메서드
+		this.makeBall=function(){ 
 			return Math.floor(Math.random()*45+1);
 		}
 		
+		//생성한 랜덤 숫자를 배열에 저장하는 메서드
 		this.lottoBalls=function(){
 			let count=0;
 			while(count<7){
