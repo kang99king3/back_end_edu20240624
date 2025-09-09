@@ -31,7 +31,11 @@ public class AnswerDto {
 	private String readCount;
 	private String delflag;
 	
+	public AnswerDto() {
+	
+	}
 
+	
 	public AnswerDto(String id, String title, String content) {
 		this.id = id;
 		this.title = title;

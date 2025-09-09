@@ -23,9 +23,9 @@
 </head>
 <body>
 <% 
-	AnswerDto dto=new AnswerDto();
-	dto.setId("id");
-	dto.getId();
+AnswerDto dto=new AnswerDto();
+// dto.setId("id");
+// dto.getId();
 %>
 <%-- <jsp:useBean id="udto" class="com.hk.ans.dtos.AnswerDto" /> --%>
 <%-- <jsp:setProperty property="id" name="udto" value="id값"/> --%>
