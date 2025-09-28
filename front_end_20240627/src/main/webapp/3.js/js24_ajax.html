@@ -19,7 +19,7 @@
 		//요청이 완료된 후에 처리할 작업을 정의
 		//- 요청 결과에 대한 처리 변화를 지정한다.
 		xhr.onreadystatechange=function(){
-			// readyState가 4이면 완료, status가 200이면 성공을 의미
+			// readyState가 4이면 서버응답 데이터 모두 수신 완료, status가 200이면 성공을 의미
 			if(xhr.readyState === 4 && xhr.status === 200){
 // 				xhr.responseText : 응답한 데이터를 텍스트 반환
 //              -응답데이터를 처리
@@ -90,6 +90,8 @@
 	}
 	
 	//-----promise 사용하기 
+	// 여러 ajax처리 작업을 연결해서 하다보면 콜백함수를 많이 써야 하는 경우가 생김
+	// -> 콜백함수를 해결하고, 비동기 작업의 성공/실패를 깔끔하게 처리하는 객체
 	function promiseTest(method,url,data=null){ // promiseTest(post,...json)
 		return new Promise((resolve,reject)=>{
 			var xhr=new XMLHttpRequest();

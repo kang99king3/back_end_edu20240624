@@ -46,7 +46,7 @@
 			console.log("익명함수 활용");
 		}
 		
-		//1.객체 리터럴 방식: 작성형식이 json 데이터 형식
+		//1.객체 리터럴 방식: 작성형식이 json 데이터 형식-------------------------------
 		document.getElementsByClassName("a")[0].onclick=()=>{
 			console.log("객체리터럴방식");
 			//리터럴: 값 자체를 의미 --> var a=5; var b=a;
@@ -90,12 +90,34 @@
 			console.log(`구조분해할당:${subject},${test}`);
 		}//객체 리터럴방식 확인 종료.
 		
-		//2.객체 생성자 함수 방식
+		//객체 리터럴방식 확인할때 사용하던 함수
+		function printCredit(func){
+			console.log("printCredit()");
+			console.log(func());// 파라미터로 전달받은 함수(기능)를 실행한다.
+		}
+		
+		//2.객체 생성자 함수 방식-------------------------------------------
 		document.getElementsByClassName("a")[1].onclick=()=>{
-			let info=new Info();// new 예약어를 사용하여 객체 생성
+			let info=new Info("javascript");// new 예약어를 사용하여 객체 생성
 			console.log(`${info.subject},${info.credit},${info.printout()}`);
 			console.log(info.test);//(X) 그냥 접근 못함
 			console.log(info.getTest());
+		}
+		
+		//생성자 함수 
+		function Info(subject){
+			let test="일반변수"; //외부에서 접근할 수 없다.
+			//변수(메서드) 선언할 때 this예약어를 사용
+			this.subject=subject;
+			this.credit=2;
+			this.printout=function(){  //객체안에서 정의할때 익명함수로 정의, 화살표함수(X)
+				return `${this.subject},${this.credit}학점`;
+			}
+			//private int a;
+			//public int getA(){return a;} 은닉화
+			this.getTest=function(){ // 외부에서 메서드를 통해서 접근 가능
+				return test;
+			}
 		}
 		
 		//3.프로토타입 사용하기
@@ -104,12 +126,21 @@
 		// -> 객체 작성시 직접 기능을 정의하는 경우는 객체간 각각 관리를 해야 하는 경우
         //     이거나, 외부에서 수정 및 접근 또는 내부에서 관리되어야 하는 경우
 		document.getElementsByClassName("a")[2].onclick=()=>{
+			
+			const infoA=new Info("javascript");	//기존에 사용하던 객체	
+	
 			Info.prototype.addFunc=function(){// 화살표함수 사용X
-				alert(`기능추가:${this.subject}`);// this를 이용해서 접근
+				console.log(`기능추가:${this.subject}`);// this를 이용해서 접근
 			}
 			
-			let info=new Info();
-			info.addFunc();// prototype으로 추가된 메서드를 실행한다.
+			const infoB=new Info("reactJS"); // 앞으로 사용될 객체
+			infoA.addFunc();//기존에 사용되던 객체도 추가된 메서드를 실행한다.
+			infoB.addFunc();//새로 사용되는 객체도 추가된 메서드를 실행한다.
+			// --> 기본 속성과 기능을 가지고 있는 객체를 만들었는데 
+			//    이후에 모든 객체(기존객체포함)들에게 공통적으로 사용할 기능을 추가하고 싶다면 
+			//    프로토타입으로 정의하면 된다.
+			// --> infoA, infoB가 하나의 addFunc()를 사용한다.(메모리효율성 좋음)
+			console.log(infoA.addFunc===infoB.addFunc);
 		}
 		
 		//클로저 기능 실행하기
@@ -120,7 +151,7 @@
 // 			closureTest2()();//부모함수실행,자식함수실행 순서로 실행됨
 			closureTest3();//지역변수 count값이 계속 증가됨
 		}
-	}
+	}//onload종료
 	
 	//클로저: 부모함수의 스코프(전달범위)를 자식함수가 기억하는 상태
 	//      부모함수, 자식함수 : 부모함수에서 정의한 지역변수의 상태를 자식 함수가 유지시켜줄수 있는 방식
@@ -154,28 +185,7 @@
 		}
 	}();// ()를 추가로 작성하면 --> 외부함수가 실행됨
 	
-	//생성자 함수 
-	function Info(){
-		var test="일반변수"; //외부에서 접근할 수 없다.
-		//변수(메서드) 선언할 때 this예약어를 사용
-		this.subject="javascript";
-		this.credit=2;
-		this.printout=function(){  //객체안에서 정의할때 익명함수로 정의, 화살표함수(X)
-			return `${this.subject},${this.credit}학점`;
-		}
-		//private int a;
-		//public int getA(){return a;} 은닉화
-		this.getTest=function(){ // 외부에서 메서드를 통해서 접근 가능
-			return test;
-		}
-	}
 	
-	
-	//객체 리터럴방식 확인할때 사용하던 함수
-	function printCredit(func){
-		console.log("printCredit()");
-		console.log(func());// 파라미터로 전달받은 함수(기능)를 실행한다.
-	}
 </script>
 </head>
 <body>
