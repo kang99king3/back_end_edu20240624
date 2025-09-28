@@ -13,15 +13,15 @@
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
-<!-- 			<dataSource type="POOLED"> -->
-<!-- 				<property name="driver" value="${driver}"/> -->
-<!-- 				<property name="url" value="${url}"/> -->
-<!-- 				<property name="username" value="${username}"/> -->
-<!-- 				<property name="password" value="${password}"/> -->
-<!-- 			</dataSource> -->
-			<dataSource type="JNDI">
-           		<property name="data_source" value="java:comp/env/jdbc/mydb"/>
-        	</dataSource>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+<!-- 			<dataSource type="JNDI"> -->
+<!--            		<property name="data_source" value="java:comp/env/jdbc/mydb"/> -->
+<!--         	</dataSource> -->
 		</environment>
 	</environments>
 	
