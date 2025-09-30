@@ -36,6 +36,24 @@
 			pageContext.forward("index.jsp");
 		}		
 	}
+// 코드 수정함
+// 	System.out.println(request.getRequestURI());
+
+// 	UserDto ldto=null;
+	
+// 	String requestPath=request.getRequestURI();
+	
+// 	if(!requestPath.contains("index.jsp")&&
+// 	   !requestPath.contains("registform.jsp")
+// 	  ){
+// 		ldto=(UserDto)session.getAttribute("ldto");
+	
+// 		//로그인 정보가 없는 경우(로그아웃한 경우) 화면처리 
+// 		if(ldto==null){
+// 			response.sendRedirect("index.jsp");
+// 			return;//다음 코드 실행 방지
+// 		}			
+// 	}
 // 	hkcontroller.jsp/admin/*    --> 로그인정보확인해서 볼수 있는 페이지
 // 	hkcontroller.jsp/user/login --> 로그인정보확인해서 볼수 있는 페이지
 // 	hkcontroller.jsp/user/regist--> 로그인정보확인X

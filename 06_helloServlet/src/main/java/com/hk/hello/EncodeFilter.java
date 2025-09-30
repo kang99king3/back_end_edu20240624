@@ -10,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
 
 //urlmapping 방법 2가지 (xml, 어노테이션)
 @WebFilter(
@@ -31,7 +32,7 @@ public class EncodeFilter extends HttpFilter implements Filter {
 		System.out.println("요청했을때 코드 실행");
 		request.setCharacterEncoding(encode);
 		response.setContentType("text/html;charset="+encode);
-		
+		System.out.println("요청 URL: " + ((HttpServletRequest)request).getRequestURI());
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 		
