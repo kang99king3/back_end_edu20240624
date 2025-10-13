@@ -25,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 public class AnsControllerTest {
 
 	@Autowired
+	//웹 테스트 환경에서 서버 없이 컨트롤러 테스트를 수행하기 위한 Spring Context 객체
 	private WebApplicationContext wac;
 	
 	private MockMvc mock;//가상의 클라이언트 요청을 처리할 객체
@@ -40,8 +41,8 @@ public class AnsControllerTest {
 									  .get("/boardlist.do")
 				                      .param("pnum", "1")
 				                     )
-				             .andExpect(MockMvcResultMatchers.status().isOk())
-							 .andReturn();
+				             .andExpect(MockMvcResultMatchers.status().isOk()) //요청처리후 상태가 200인지 검증
+							 .andReturn(); //MvcResult객체 반환
 		//처리결과내용을 받아옴
 		int statusCode=result.getResponse().getStatus();
 		System.out.println("status코드:"+statusCode);

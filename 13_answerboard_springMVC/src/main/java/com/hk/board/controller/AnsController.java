@@ -28,6 +28,7 @@ public class AnsController {
 				  ,method = RequestMethod.GET)
 	public String home() {
 		System.out.println("HOME 페이지로 이동");
+		System.out.println("Working Directory: " + System.getProperty("user.dir"));
 		return "home";
 	}
 	
@@ -35,7 +36,7 @@ public class AnsController {
 			      ,method = RequestMethod.GET)
 	public String boardList(Model model, String pnum,
 			               HttpServletRequest request) {
-		
+
 		//-- 현재 요청한 페이지 번호 유지를 위한 코드----
 		//session 스코프객체 이용--> request 객체로부터 얻어온다.
 		//session객체가 개인 장바구니 개념
