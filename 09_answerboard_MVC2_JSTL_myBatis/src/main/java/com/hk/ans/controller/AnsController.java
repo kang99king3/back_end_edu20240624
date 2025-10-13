@@ -2,8 +2,10 @@ package com.hk.ans.controller;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -81,7 +83,7 @@ public class AnsController extends HttpServlet {
 		}else if(command.equals("/boarddetail.board")) {//글 상세조회
 			String seq=request.getParameter("seq");
 			AnswerDto dto=dao.getBoard(seq);
-			
+			/*
 			//boardlist.jsp에서 제목링크를 클릭하여 파라미터가 전달될때
 			//review=y 값을 전달해준다.
 			String review=request.getParameter("review");
@@ -95,6 +97,20 @@ public class AnsController extends HttpServlet {
 				request.getRequestDispatcher("detailboard.jsp")
 				.forward(request, response);	
 			}
+			*/
+			
+			HttpSession session=request.getSession();
+			
+			Set<String> viewed = (Set<String>) session.getAttribute("viewedPosts");
+			if(viewed == null) {
+			    viewed = new HashSet<>();
+			    session.setAttribute("viewedPosts", viewed);
+			}
+			if(!viewed.contains(seq)) {
+			    dao.readCount(Integer.parseInt(seq));
+			    viewed.add(seq);
+			}
+			
 			
 		}else if(command.equals("/replyboard.board")) {
 			int seq=Integer.parseInt(request.getParameter("seq"));
