@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.hk.board.command.InsertCalCommand;
 import com.hk.board.command.UpdateCalCommand;
 import com.hk.board.dtos.CalDto;
@@ -16,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Service
+@Transactional
 public class CalServiceImp {
 
 	@Autowired

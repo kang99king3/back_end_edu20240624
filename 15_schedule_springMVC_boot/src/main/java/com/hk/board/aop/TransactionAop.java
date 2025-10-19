@@ -16,7 +16,7 @@ import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 //등록된 빈을 스프링컨테이너에 제공하는 클래스를 선언하는 의미
-@Configuration //환경설정 클래스 선언
+//@Configuration //환경설정 클래스 선언
 public class TransactionAop {
 
 	@Autowired
