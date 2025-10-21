@@ -15,7 +15,7 @@ public class BoardController {
 	@GetMapping("/board")
 	public String board() {
 		System.out.println("게시판 페이지입니다.");
-		return "board/boardList2";
+		return "board/boardList3";
 	}
 }
 

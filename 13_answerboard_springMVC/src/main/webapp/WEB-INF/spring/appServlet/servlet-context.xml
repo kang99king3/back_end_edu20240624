@@ -26,7 +26,9 @@
 <!-- 	인터셉터 설정하기 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*.do"/>
+			<mvc:mapping path="/**/*.do"/>
+			<mvc:exclude-mapping path="/boardlist.do"/>
+			<mvc:exclude-mapping path="/resources/**"/>
 			<bean class="com.hk.board.interceptor.InterceptorTest" />
 		</mvc:interceptor>
 	</mvc:interceptors>

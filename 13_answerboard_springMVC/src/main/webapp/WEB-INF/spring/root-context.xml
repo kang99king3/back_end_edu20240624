@@ -45,6 +45,7 @@
 <!-- 	선언적 트랜젝션 처리: @transactional 어노테이션 사용 -->
 	<tx:annotation-driven transaction-manager="transactionManager"
 	                      proxy-target-class="true"  />
+	
 </beans>
 
 

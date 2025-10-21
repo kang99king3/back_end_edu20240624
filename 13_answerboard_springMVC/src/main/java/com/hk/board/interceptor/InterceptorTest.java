@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 //해당 클래스를 인터셉터로 설정할경우 HandlerInterceptor를 구현한다.
 public class InterceptorTest implements HandlerInterceptor{
 
+	// slf4j는 로그 형식을 정의 -> log4j는 실제 로그 출력을 수행
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	//컨트롤러 실행 전에 호출된다.
@@ -19,7 +20,8 @@ public class InterceptorTest implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		HttpSession session=request.getSession();
+		HttpSession session=request.getSession(false);
+		/*
 		Object obj=session.getAttribute("ldto");//로그인 정보
 		
 		//요청 url로 구별해서 처리 분기
@@ -36,7 +38,12 @@ public class InterceptorTest implements HandlerInterceptor{
 				return true;//상세조회 확인해야 되니깐 true로 다시 수정
 			}
 		}
-		
+		*/
+		if(session == null || session.getAttribute("ldto")==null) {
+			logger.info("로그인이 필요함");
+			response.sendRedirect("index.jsp");
+			return false;//controller로 진입 못함
+		}
 		return true;
 	}
 	
