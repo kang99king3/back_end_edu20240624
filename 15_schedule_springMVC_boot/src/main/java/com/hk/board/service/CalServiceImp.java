@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,8 @@ public class CalServiceImp {
 	private Util util;
 	@Autowired
 	private CalMapper calMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 	
 							   //id값이 필요하므로 컨트롤러에서 Request객체도 전달해야 함
 							   //아니면 컨트롤러에서 id값을 구해서 전달해주기
@@ -94,12 +98,14 @@ public class CalServiceImp {
 					+util.isTwo(insertCalCommand.getMin()+"");
 		
 		// command --> dto 값 복사해서 넣는 작업
-		CalDto dto=new CalDto();
-		dto.setId(insertCalCommand.getId());
-		dto.setTitle(insertCalCommand.getTitle());
-		dto.setContent(insertCalCommand.getContent());
+//		CalDto dto=new CalDto();
+//		dto.setId(insertCalCommand.getId());
+//		dto.setTitle(insertCalCommand.getTitle());
+//		dto.setContent(insertCalCommand.getContent());
+//		dto.setMdate(mdate);
+		//                          (복사할 대상객체     ,붙여넣을 객체의 타입)
+		CalDto dto = modelMapper.map(insertCalCommand, CalDto.class);
 		dto.setMdate(mdate);
-		
 		int count=calMapper.insertCalBoard(dto);
 		
 		//예외발생코드 추가

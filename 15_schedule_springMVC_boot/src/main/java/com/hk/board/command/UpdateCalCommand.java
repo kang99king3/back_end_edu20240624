@@ -37,6 +37,14 @@ public class UpdateCalCommand {
 	@NotNull(message = "분을 입력하세요")
 	private int min;
 	
+	public void mdateToYMDHM(String mdate) {
+		this.year=Integer.parseInt(mdate.substring(0, 4));
+		this.month=Integer.parseInt(mdate.substring(4, 6));
+		this.date=Integer.parseInt(mdate.substring(6, 8));
+		this.hour=Integer.parseInt(mdate.substring(8, 10));
+		this.min= Integer.parseInt(mdate.substring(10));
+	}
+	
 	public UpdateCalCommand() {
 		super();
 		// TODO Auto-generated constructor stub

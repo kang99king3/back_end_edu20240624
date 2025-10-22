@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,8 @@ public class CalController {
 	
 	@Autowired
 	private CalServiceImp calService;
-	
+	@Autowired
+	private ModelMapper modelMapper;
 	@GetMapping("/")
 	public String getMethodName() {
 		return "index";//  "/templates/index.html"
@@ -158,15 +160,18 @@ public class CalController {
 		CalDto dto=calService.calBoardDetail(seq);
 		
 		//dto ---> command : 값을 이동시킴
-		updateCalCommand.setSeq(dto.getSeq());
-		updateCalCommand.setId(dto.getId());// <--id 추가
-		updateCalCommand.setTitle(dto.getTitle());
-		updateCalCommand.setContent(dto.getContent());
-		updateCalCommand.setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
-		updateCalCommand.setMonth(Integer.parseInt(dto.getMdate().substring(4, 6)));
-		updateCalCommand.setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
-		updateCalCommand.setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
-		updateCalCommand.setMin(Integer.parseInt(dto.getMdate().substring(10)));
+//		updateCalCommand.setSeq(dto.getSeq());
+//		updateCalCommand.setId(dto.getId());// <--id 추가
+//		updateCalCommand.setTitle(dto.getTitle());
+//		updateCalCommand.setContent(dto.getContent());
+//		updateCalCommand.setYear(Integer.parseInt(dto.getMdate().substring(0, 4)));
+//		updateCalCommand.setMonth(Integer.parseInt(dto.getMdate().substring(4, 6)));
+//		updateCalCommand.setDate(Integer.parseInt(dto.getMdate().substring(6, 8)));
+//		updateCalCommand.setHour(Integer.parseInt(dto.getMdate().substring(8, 10)));
+//		updateCalCommand.setMin(Integer.parseInt(dto.getMdate().substring(10)));
+		
+		updateCalCommand=modelMapper.map(dto, UpdateCalCommand.class);
+		updateCalCommand.mdateToYMDHM(dto.getMdate());
 		
 		//화면으로 전달해야 되니깐 model에 dto객체 담고..
 		model.addAttribute("updateCalCommand", updateCalCommand);
