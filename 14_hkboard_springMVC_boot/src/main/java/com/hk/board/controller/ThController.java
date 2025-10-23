@@ -22,7 +22,7 @@ public class ThController {
 	//요청 url : localhost:9090/thboard/home 요청했을때 실행
 	@GetMapping("/home")
 	public String home() {
-		
+		System.out.println("home");
 		//thymeleaf 템플릿 리졸버가 동작함
 		return "thymeleaf/home";
 	}

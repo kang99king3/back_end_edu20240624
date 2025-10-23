@@ -1,5 +1,6 @@
 package com.hk.board.controller;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,10 @@ public class CalController {
 		                        //입력폼 요청시에도 command객체를 보내야함
 		model.addAttribute("insertCalCommand", insertCalCommand);
 		
+		//현재시간구하기
+		LocalTime now = LocalTime.now();
+        model.addAttribute("now", now);
+        
 		return "calboard/addcalboardform";
 	}
 	
@@ -73,7 +78,7 @@ public class CalController {
 	//          BindingResult - 유효값처리 후 결과를 받아줄 객체
 	@PostMapping("/addcalboard")
 	public String addcalboard(@Validated InsertCalCommand insertCalCommand,
-			                  BindingResult result) {
+			                  BindingResult result, Model model) {
 		//유효값처리 결과를 받아 에러가 있는지 확인
 		if(result.hasErrors()) {
 			System.out.println("글을 모두 입력해야 함");

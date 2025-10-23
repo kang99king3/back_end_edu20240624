@@ -56,12 +56,14 @@
 						</select>일
 						<select name="hour">
 							<th:block th:each="i:${#numbers.sequence(0,23)}">
-								<option th:value="${i}" th:text="${i}"></option>
+								<option th:value="${i}" th:text="${i}"
+								        th:selected="${i==#temporals.hour(now)}"></option>
 							</th:block>
 						</select>시
 						<select name="min">
 							<th:block th:each="i:${#numbers.sequence(0,59)}">
-								<option th:value="${i}" th:text="${i}"></option>
+								<option th:value="${i}" th:text="${i}"
+								        th:selected="${i==#temporals.minute(now)}"></option>
 							</th:block>
 						</select>분
 					</td>
